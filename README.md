@@ -1,2 +1,2 @@
-It's about my own website: <a href='tangmeijie.me'>tangmeijie.me</a> <br />
+It's about my own website: [tangmeijie.me](tangmeijie.me) <br />
 Welcome to my space!
