@@ -1,2 +1,2 @@
-It's about my own website: [tangmeijie.me](tangmeijie.me) <br />
+It's about my own website<br />
 Welcome to my space!
