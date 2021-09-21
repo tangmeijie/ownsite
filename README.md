@@ -1,2 +1,2 @@
-It's about my own website<br />
-Welcome to my space!
+个人网站的一些东西<br />
+主要是作品集展示
