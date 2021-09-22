@@ -6,8 +6,7 @@ h1 {
   font-size: 32px;
   text-shadow: 3px 3px 2px #000;
   transform-origin: 45% 50%;
-  // transform-style: preserve-3d;
-  // animation: run 5s ease-in infinite forwards;
+  animation: run 5s ease-in infinite forwards;
 }
 @keyframes run {
   from {
