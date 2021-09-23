@@ -2,12 +2,12 @@ body {
   background-color: rgb(255, 80, 80);
 }
 
-@a: green;
+$a: green;
 
 h1 {
   margin-top: 100px;
   text-align: center;
-  color: @a;
+  color: $a;
   font-size: 32px;
   text-shadow: 3px 3px 2px #000;
   transform-origin: 45% 50%;

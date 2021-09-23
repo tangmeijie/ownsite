@@ -12,8 +12,8 @@
     "copy-webpack-plugin": "^8.1.1",
     "css-loader": "^5.2.1",
     "html-webpack-plugin": "4",
-    "less": "^4.1.1",
-    "less-loader": "^10.0.1",
+    "sass": "^1.42.1",
+    "sass-loader": "^12.1.0",
     "webpack": "^5.33.2",
     "webpack-dev-server": "^3.11.2"
   },
