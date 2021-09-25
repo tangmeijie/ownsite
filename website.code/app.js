@@ -5,7 +5,7 @@ module.exports = {
       './src/js/main.js'
     ]
   },
-  about-me: {
+  about: {
     html: './src/html/about-me.html',
     js: [
       './src/js/main.js'
