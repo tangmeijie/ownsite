@@ -5,8 +5,8 @@ module.exports = {
       './src/js/main.js'
     ]
   },
-  about: {
-    html: './src/html/about-me.html',
+  me: {
+    html: './src/html/me.html',
     js: [
       './src/js/main.js'
     ]
