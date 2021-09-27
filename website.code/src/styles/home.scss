@@ -1,8 +1,15 @@
-@import './clear.scss';
+// @import './clear.scss';
 @import './style.scss';
 
 body {
   font-family: $font-en, sans-serif;
   background: $color-light;
   // background-color: gray;
+}
+.logo {
+  width: 100px;
+  height: 100px;
+}
+.me {
+  font-size: 0.5rem;
 }
