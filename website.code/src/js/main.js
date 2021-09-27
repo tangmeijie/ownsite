@@ -1,3 +1,4 @@
+import "../styles/clear.scss"
 import "../styles/color.scss"
 import anime from 'animejs/lib/anime.es.js';
 

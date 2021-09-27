@@ -1,0 +1,42 @@
+body,
+menu,
+nav,
+ul,
+ol,
+li,
+input {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border: 0;
+}
+
+button {
+  outline: 0;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
