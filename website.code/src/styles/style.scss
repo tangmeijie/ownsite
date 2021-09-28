@@ -19,26 +19,28 @@
   src: url('../../public/fonts/Lexend-Thin.ttf');
 }
 
-html {
-  font-size: 100px;
-}
-
+// 字重
 @mixin font-en($weight) {
-  @if $weight==5 {
+  @if $weight=='mid' {
     font-family: EN-MID, sans-serif;
   }
 
-  @else if $weight==7 {
+  @else if $weight=='bold' {
     font-family: EN-BOLD, sans-serif;
   }
 
-  @else if $weight==1 {
+  @else if $weight=='thin' {
     font-family: EN-THIN, sans-serif;
   }
 
   @else {
     font-family: EN, sans-serif;
   }
+}
+
+// 字号
+html {
+  font-size: 100px;
 }
 
 // 颜色

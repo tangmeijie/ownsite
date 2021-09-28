@@ -3,7 +3,7 @@
 
 body {
   background: $color-light;
-  @include font-en(7);
+  @include font-en('bold');
 }
 .logo {
   width: 150px;
