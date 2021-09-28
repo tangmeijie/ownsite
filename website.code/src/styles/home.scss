@@ -3,6 +3,7 @@
 
 body {
   background: $color-light;
+  @include font-en(7);
 }
 .logo {
   width: 150px;

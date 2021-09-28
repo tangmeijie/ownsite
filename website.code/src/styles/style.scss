@@ -1,12 +1,44 @@
 // 字体
 @font-face {
   font-family: EN;
-  src: url('../../public/fonts/Lexend-Regular.ttf') format('truetype');
+  src: url('../../public/fonts/Lexend-Regular.ttf');
+}
+
+@font-face {
+  font-family: EN-MID;
+  src: url('../../public/fonts/Lexend-Medium.ttf');
+}
+
+@font-face {
+  font-family: EN-BOLD;
+  src: url('../../public/fonts/Lexend-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: EN-THIN;
+  src: url('../../public/fonts/Lexend-Thin.ttf');
 }
 
 html {
-  font-family: EN, sans-serif;
   font-size: 100px;
+}
+
+@mixin font-en($weight) {
+  @if $weight==5 {
+    font-family: EN-MID, sans-serif;
+  }
+
+  @else if $weight==7 {
+    font-family: EN-BOLD, sans-serif;
+  }
+
+  @else if $weight==1 {
+    font-family: EN-THIN, sans-serif;
+  }
+
+  @else {
+    font-family: EN, sans-serif;
+  }
 }
 
 // 颜色
