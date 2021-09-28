@@ -4,21 +4,24 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const app = require('./app')
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: Object.fromEntries(
     Object.entries(app).map(e => [e[0], e[1].js])
   ),
   output: {
-    filename: "[name]_[hash].js",
+    filename: '[name]_[hash].js',
     path: __dirname + '/dist'
   },
   module: {
     rules: [{
       test: /\.scss$/,
-      use: ["style-loader", "css-loader", "sass-loader"]
+      use: ['style-loader', 'css-loader', 'sass-loader']
     }, {
       test: /\.css$/,
-      use: ["style-loader", "css-loader"]
+      use: ['style-loader', 'css-loader']
+    }, {
+      test: /\.(ttf|eof|woff|woff2|svg)/,
+      use: ['file-loader']
     }]
   },
   devServer: {
@@ -29,7 +32,7 @@ module.exports = {
   },
   plugins: [...Object.keys(app).map(key => new HtmlWebpackPlugin({
     filename: `${key}.html`,
-    inject: "body",
+    inject: 'body',
     chunks: [key],
     template: app[key].html
   })),

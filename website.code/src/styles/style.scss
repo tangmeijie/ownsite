@@ -1,16 +1,11 @@
 // 字体
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap');
-
-// @font-face {
-  // font-family: EN;
-  // src: url('/fonts/Lexend-Bold.ttf'), url('/fonts/Lexend-ExtraBold.ttf'), url('/fonts/Lexend-Light.ttf'), url('/fonts/Lexend-Medium.ttf'), url('/fonts/Lexend-Regular.ttf'), url('/fonts/Lexend-SemiBold.ttf'), url('/fonts/Lexend-Thin.ttf');
-  // src: url('/fonts/Lexend-Bold.ttf');
-// }
-
-$font-en: 'Lexend';
+@font-face {
+  font-family: EN;
+  src: url('./fonts/Lexend-Regular.ttf') format('truetype');
+}
 
 html {
-  font-family: $font-en, sans-serif;
+  font-family: EN, sans-serif;
   font-size: 100px;
 }
 

@@ -11,6 +11,7 @@
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "copy-webpack-plugin": "^8.1.1",
     "css-loader": "^5.2.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "4",
     "sass": "^1.42.1",
     "sass-loader": "^12.1.0",
