@@ -12,7 +12,7 @@ module.exports = {
     ]
   },
   fengos: {
-    html: './src/html/fengos.html',
+    html: './src/html/fengos/index.html',
     js: [
       './src/js/global.js'
     ]
