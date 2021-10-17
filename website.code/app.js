@@ -13,14 +13,11 @@ const config = {
   },
   fengos: {
     html: './src/html/fengos/index.html',
-    js: [
-      './src/js/global.js'
-    ],
     children: {
       demo: {
         html: './src/html/fengos/demo.html',
         js: [
-          './src/js/global.js'
+          './src/js/fos-base.js'
         ]
       }
     }
