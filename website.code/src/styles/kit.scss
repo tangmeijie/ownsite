@@ -20,7 +20,7 @@
 }
 
 // 字重
-@mixin font-weight-en($weight) {
+@mixin font-en($weight) {
   @if $weight=='mid' {
     font-family: EN-MID, sans-serif;
   }
