@@ -14,5 +14,6 @@
     width: 120px;
     height: 70px;
     fill: url(#gradient-search);
+    // fill: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><linearGradient id='grad'><stop offset='0%' stop-color='%23ff00cc'/><stop offset='100%' stop-color='%23333399'/></linearGradient></svg>#grad");
   }
 }
