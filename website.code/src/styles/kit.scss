@@ -1,25 +1,20 @@
-// 字体
+// 文字
 @font-face {
   font-family: EN;
   src: url('../../public/fonts/Lexend-Regular.ttf');
 }
-
 @font-face {
   font-family: EN-MID;
   src: url('../../public/fonts/Lexend-Medium.ttf');
 }
-
 @font-face {
   font-family: EN-BOLD;
   src: url('../../public/fonts/Lexend-ExtraBold.ttf');
 }
-
 @font-face {
   font-family: EN-THIN;
   src: url('../../public/fonts/Lexend-Thin.ttf');
 }
-
-// 字重
 @mixin font-en($weight) {
   @if $weight=='mid' {
     font-family: EN-MID, sans-serif;
@@ -38,7 +33,6 @@
   }
 }
 
-// 字号
 html {
   font-size: 100px;
 }

@@ -1,9 +1,29 @@
+// 文字
+@font-face {
+  font-family: Lato;
+  src: url('../../../public/fengos/demo/fonts/Lato-Regular.ttf');
+}
+
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap);
+
+$font-en: Lato;
+$font-cn: 'Noto Sans SC';
+
 // 颜色
 $color-bg: linear-gradient(to bottom, #525662, #3F444E);
 $color-white: #fff;
+$color-black: #292B2F;
+$color-main: #26EBDB;
 
+// 通用页面
 .page {
   width: 1920px;
   height: 1080px;
   background: $color-bg;
+  font-family: $font-en, $font-cn, sans-serif;
+  position: relative;
+  overflow: hidden;
+
+  transform: scale(0.5);
+  transform-origin: 0 0;
 }
