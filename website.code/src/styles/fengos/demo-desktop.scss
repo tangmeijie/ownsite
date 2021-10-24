@@ -16,15 +16,15 @@
   .time {
     font-size: 34px;
     line-height: 34px;
-    color: rgba($color-white, .6);
-    margin-right: 40px;
+    color: rgba($color-white, .7);
+    margin: 0 40px 0 10px;
   }
 
   svg {
     width: 40px;
     height: 40px;
     fill: $color-white;
-    opacity: .5;
+    opacity: .7;
     margin-right: 20px;
   }
 }
