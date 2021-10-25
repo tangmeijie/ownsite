@@ -1,5 +1,5 @@
-@import '../clear.scss';
-@import './demo-kit.scss';
+@import "../clear.scss";
+@import "./demo-kit.scss";
 
 .bar {
   position: absolute;
@@ -14,9 +14,8 @@
   z-index: 99;
 
   .time {
-    font-size: 34px;
-    line-height: 34px;
-    color: rgba($color-white, .7);
+    @include font-height(34px);
+    color: rgba($color-white, 0.7);
     margin: 0 40px 0 10px;
   }
 
@@ -24,7 +23,7 @@
     width: 40px;
     height: 40px;
     fill: $color-white;
-    opacity: .7;
+    opacity: 0.7;
     margin-right: 20px;
   }
 }

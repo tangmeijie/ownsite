@@ -1,26 +1,45 @@
 // 文字
 @font-face {
-  font-family: Lato;
-  src: url('../../../public/fengos/demo/fonts/Lato-Regular.ttf');
+  font-family: EN;
+  font-weight: 400;
+  src: url("../../../public/fengos/demo/fonts/Lato-Regular.ttf");
+}
+@font-face {
+  font-family: EN;
+  font-weight: 700;
+  src: url("../../../public/fengos/demo/fonts/Lato-Bold.ttf");
 }
 
-@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap);
+@font-face {
+  font-family: CN;
+  src: local("PingFang SC"), local("Microsoft YaHei");
+}
 
-$font-en: Lato;
-$font-cn: 'Noto Sans SC';
+@mixin font-height($size, $isN: false) {
+  @if $isN == true {
+    font-size: $size;
+    line-height: $size * 1.5;
+  } @else {
+    font-size: $size;
+    line-height: $size;
+  }
+}
 
 // 颜色
-$color-bg: linear-gradient(to bottom, #525662, #3F444E);
+$color-bg: linear-gradient(to bottom, #525662, #3f444e);
 $color-white: #fff;
-$color-black: #292B2F;
-$color-main: #26EBDB;
+$color-black: #292b2f;
+$color-main: #26ebdb;
 
 // 通用页面
+html {
+  overflow: hidden;
+}
 .page {
   width: 1920px;
   height: 1080px;
   background: $color-bg;
-  font-family: $font-en, $font-cn, sans-serif;
+  font-family: EN, CN, sans-serif;
   position: relative;
   overflow: hidden;
 
