@@ -1,17 +1,14 @@
 @import "../clear.scss";
 @import "./demo-kit.scss";
 
-.bar {
-  position: absolute;
-}
-
 .status {
   width: 100%;
-  height: 60px;
+  height: $safe-h;
   display: flex;
   align-items: center;
   justify-content: end;
-  z-index: 99;
+  position: absolute;
+  z-index: 9;
 
   .time {
     @include font-height(34px);
@@ -31,6 +28,32 @@
 .channel {
   height: 70px;
   display: inline-flex;
-  top: 60px;
-  left: 80px;
+  align-items: center;
+  position: absolute;
+  top: $safe-h;
+  left: $safe-v;
+  background: rgba($color-black, .2);
+  border-radius: 20px;
+  z-index: 9;
+
+  img {
+    height: 70px;
+  }
+
+  span {
+    @include font-height(30px);
+    padding: 0 30px;
+    color: $color-white;
+    opacity: 0.4;
+    mix-blend-mode: difference;
+  }
+
+  .slider{
+    width:180px;
+    height: 100%;
+    position: absolute;
+    background: $color-white;
+    border-radius: 20px;
+    z-index: -1;
+  }
 }

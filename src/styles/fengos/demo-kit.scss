@@ -29,7 +29,14 @@
 $color-bg: linear-gradient(to bottom, #525662, #3f444e);
 $color-white: #fff;
 $color-black: #292b2f;
+$color-veil: #000;
 $color-main: #26ebdb;
+
+// 栅格
+$safe-v: 80px;
+$safe-h: 60px;
+$grid-gap: 40px;
+$grid-min: 10px;
 
 // 通用页面
 html {
