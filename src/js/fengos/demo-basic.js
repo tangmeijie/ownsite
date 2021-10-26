@@ -1,5 +1,6 @@
 export {
-  fnGetTime
+  fnGetTime,
+  fnNodeIndex
 }
 
 function fnKeytoStr(keycode) {
@@ -33,4 +34,14 @@ function fnGetTime() {
     s = '0' + s
   }
   return h + ':' + m
+}
+
+function fnNodeIndex(nodelist, node) {
+  let array = Array.from(nodelist)
+  let index = array.indexOf(node)
+  if (index >= 0) {
+    return index
+  } else {
+    return false
+  }
 }
