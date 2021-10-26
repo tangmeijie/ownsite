@@ -2,24 +2,27 @@
 @font-face {
   font-family: EN;
   font-weight: 400;
-  src: url("../../../public/fengos/demo/fonts/Lato-Regular.ttf");
+  src: url('../../../public/fengos/demo/fonts/Lato-Regular.ttf');
 }
+
 @font-face {
   font-family: EN;
   font-weight: 700;
-  src: url("../../../public/fengos/demo/fonts/Lato-Bold.ttf");
+  src: url('../../../public/fengos/demo/fonts/Lato-Bold.ttf');
 }
 
 @font-face {
   font-family: CN;
-  src: local("PingFang SC"), local("Microsoft YaHei");
+  src: local('PingFang SC'), local('Microsoft YaHei');
 }
 
 @mixin font-height($size, $isN: false) {
-  @if $isN == true {
+  @if $isN==true {
     font-size: $size;
     line-height: $size * 1.5;
-  } @else {
+  }
+
+  @else {
     font-size: $size;
     line-height: $size;
   }
@@ -42,6 +45,7 @@ $grid-min: 10px;
 html {
   overflow: hidden;
 }
+
 .page {
   width: 1920px;
   height: 1080px;

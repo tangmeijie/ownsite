@@ -26,7 +26,6 @@ const config = {
   }
 }
 
-
 function peek(obj, prefix = '') {
   const keys = Object.keys(obj)
   keys.forEach(key => {
