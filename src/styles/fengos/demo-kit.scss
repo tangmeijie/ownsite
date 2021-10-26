@@ -16,8 +16,8 @@
   src: local('PingFang SC'), local('Microsoft YaHei');
 }
 
-@mixin font-height($size, $isN: false) {
-  @if $isN==true {
+@mixin font-height($size, $isMulti: false) {
+  @if $isMulti==true {
     font-size: $size;
     line-height: $size * 1.5;
   }
@@ -40,6 +40,62 @@ $safe-v: 80px;
 $safe-h: 60px;
 $grid-gap: 40px;
 $grid-min: 10px;
+
+// 卡片形状
+@mixin shape($width: 100px, $shape: 16/9) {
+  width: $width;
+
+  @if type-of($shape)=='number' {
+    height: math.floor($width / $shape);
+  }
+
+  @else if type-of($shape)=='string' {
+    @if str-index($shape, 'metal')==1 {
+      @for $i from 1 through 10 {
+        @if $shape=='metal-'+#{$i} {
+          height: math.floor($width / metallic-ratio($i));
+        }
+      }
+    }
+
+    @else {
+      height: $width;
+    }
+  }
+}
+
+@function metallic-ratio($n) {
+  @return ($n + math.sqrt($n * $n + 4)) / 2;
+}
+
+// 圆角
+@mixin corner($multiple) {
+  border-radius: 10px * $multiple;
+  overflow: hidden;
+}
+
+// 阴影
+@mixin shadow($depth: .7, $size: 'focus') {
+  @if $size=='focus' {
+    box-shadow: 0 40px 80px -10px rgba($color-veil, $depth);
+  }
+
+  @else if $size=='small' {
+    box-shadow: 0 20px 40px 0 rgba($color-veil, $depth);
+  }
+
+  @else if $size=='def' {
+    box-shadow: 0 5px 10px 0 rgba($color-veil, $depth - .3);
+  }
+}
+
+// 常用样式
+@mixin para-omit($line: 3) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+}
 
 // 通用页面
 html {
