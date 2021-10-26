@@ -1,39 +1,27 @@
 // 文字
 @font-face {
   font-family: EN;
+  font-weight: 400;
   src: url('../../public/fonts/Lexend-Regular.ttf');
 }
 @font-face {
-  font-family: EN-MID;
-  src: url('../../public/fonts/Lexend-Medium.ttf');
+  font-family: EN;
+  font-weight: 600;
+  src: url('../../public/fonts/Lexend-SemiBold.ttf');
 }
 @font-face {
-  font-family: EN-BOLD;
-  src: url('../../public/fonts/Lexend-ExtraBold.ttf');
-}
-@font-face {
-  font-family: EN-THIN;
+  font-family: EN;
+  font-weight: 100;
   src: url('../../public/fonts/Lexend-Thin.ttf');
 }
-@mixin font-en($weight) {
-  @if $weight=='mid' {
-    font-family: EN-MID, sans-serif;
-  }
-
-  @else if $weight=='bold' {
-    font-family: EN-BOLD, sans-serif;
-  }
-
-  @else if $weight=='thin' {
-    font-family: EN-THIN, sans-serif;
-  }
-
-  @else {
-    font-family: EN, sans-serif;
-  }
+@font-face {
+  font-family: EN;
+  font-weight: 800;
+  src: url('../../public/fonts/Lexend-ExtraBold.ttf');
 }
 
 html {
+  font-family: EN, sans-serif;
   font-size: 100px;
 }
 

@@ -3,11 +3,11 @@
 
 body {
   background: $color-light;
-  @include font-en('bold');
+  font-weight: 800;
 }
 .logo {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
 }
 .me {
   font-size: 0.6rem;
