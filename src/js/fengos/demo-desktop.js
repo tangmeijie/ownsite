@@ -5,7 +5,7 @@ import {
 } from '../../js/fengos/demo-basic.js'
 import anime from 'animejs/lib/anime.es.js'
 
-let oTime = document.getElementById('time')
+const oTime = document.getElementById('time')
 oTime.innerHTML = fnGetTime()
 setInterval(function () {
   oTime.innerHTML = fnGetTime()
