@@ -69,8 +69,8 @@ $grid-min: 10px;
 }
 
 // 圆角
-@mixin corner($multiple) {
-  border-radius: 10px * $multiple;
+@mixin corner($corner: 10px) {
+  border-radius: $corner;
   overflow: hidden;
 }
 

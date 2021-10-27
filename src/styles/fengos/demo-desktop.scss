@@ -34,6 +34,7 @@
   left: $safe-v;
   background: rgba($color-black, 0.2);
   border-radius: 20px;
+  isolation: isolate;
   z-index: 9;
   &.highlight {
     background: rgba($color-black, 0.7);
@@ -46,6 +47,7 @@
   img {
     height: 70px;
     opacity: 0.4;
+    mix-blend-mode: difference;
   }
 
   span {
