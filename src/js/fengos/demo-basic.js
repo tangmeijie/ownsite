@@ -56,3 +56,8 @@ function fnToggleFocus(oNew, fn) {
     fn(oOld, oNew)
   }
 }
+
+function fnMarkFocus() {
+  let oFocus = document.getElementById('focus')
+  oFocus.classList.add('mark')
+}
