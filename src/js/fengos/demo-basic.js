@@ -1,10 +1,11 @@
 export {
   fnGetTime,
-  fnNodeIndex
+  fnNodeIndex,
+  fnActions
 }
 
 function fnGetTime() {
-  let d = new Date()
+  const d = new Date()
   let h = d.getHours()
   let m = d.getMinutes()
   let s = d.getSeconds()
@@ -17,47 +18,43 @@ function fnGetTime() {
   return h + ':' + m
 }
 
-function fnKeytoStr(keycode) {
-  switch (keycode) {
-    case 37:
-      return 'left'
-    case 38:
-      return 'up'
-    case 39:
-      return 'right'
-    case 40:
-      return 'down'
-    case 13:
-      return 'ok' // 回车
-    case 32:
-      return 'back' // 空格
-    default:
-      return false
-  }
+function fnActions() {
+  document.addEventListener("keydown", function (event) {
+    event.preventDefault()
+
+    switch (event.code) {
+
+      case 'ArrowRight':
+        break
+
+      case 'ArrowLeft':
+        break
+
+        // case 'ArrowDown':
+        //   break
+
+      case 'ArrowUp':
+        break
+
+      case 'Enter':
+        break
+
+      case 'Space':
+        break
+
+      default:
+        event.returnValue = true
+    }
+
+  })
 }
 
 function fnNodeIndex(nodelist, node) {
-  let array = Array.from(nodelist)
-  let index = array.indexOf(node)
+  const array = Array.from(nodelist)
+  const index = array.indexOf(node)
   if (index >= 0) {
     return index
   } else {
     return false
   }
-}
-
-function fnToggleFocus(oNew, fn) {
-  let oOld = document.getElementById('focus')
-  oOld.id = ''
-  oOld.classList.remove('mark')
-  oNew.id = 'focus'
-  oNew.classList.add('mark')
-  if (fn) {
-    fn(oOld, oNew)
-  }
-}
-
-function fnMarkFocus() {
-  let oFocus = document.getElementById('focus')
-  oFocus.classList.add('mark')
 }

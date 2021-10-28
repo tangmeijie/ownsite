@@ -27,21 +27,26 @@
 
 .channel {
   height: 70px;
-  display: inline-flex;
-  align-items: center;
   position: absolute;
   top: $safe-h;
   left: $safe-v;
   background: rgba($color-black, 0.2);
-  border-radius: 20px;
+  @include corner;
   isolation: isolate;
   z-index: 9;
+
   &.highlight {
     background: rgba($color-black, 0.7);
+
     img,
     span {
       opacity: 1;
     }
+  }
+
+  .bar {
+    display: inline-flex;
+    align-items: center;
   }
 
   img {
@@ -56,6 +61,7 @@
     color: $color-white;
     opacity: 0.4;
     mix-blend-mode: difference;
+
     &.mark {
       opacity: 1;
     }
@@ -65,8 +71,9 @@
     width: 180px;
     height: 100%;
     position: absolute;
+    top: 0;
     background: $color-white;
-    border-radius: 20px;
+    @include corner;
     z-index: -1;
   }
 }

@@ -99,7 +99,7 @@ $grid-min: 10px;
 
 // 通用页面
 html {
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .page {
@@ -110,6 +110,6 @@ html {
   position: relative;
   overflow: hidden;
 
-  transform: scale(0.5);
+  // transform: scale(0.5);
   transform-origin: 0 0;
 }

@@ -2,7 +2,8 @@ import '../../styles/fengos/demo-desktop.scss'
 
 import {
   fnGetTime,
-  fnNodeIndex
+  fnNodeIndex,
+  fnActions
 } from '../../js/fengos/demo-basic.js'
 
 import anime from 'animejs/lib/anime.es.js'
@@ -16,4 +17,31 @@ setInterval(function () {
 
 // 频道栏切换
 const oChannel = document.getElementById('channel')
-const aChannelCells = oChannel.getElementsByClassName('cell')
+
+function fnToggleChannel(direction) {
+  const aChannelCells = oChannel.getElementsByClassName('cell')
+  let oFocus = document.getElementById('focus')
+  let index = fnNodeIndex(aChannelCells, oFocus)
+
+  switch (direction) {
+    case 'right':
+      if (index < aChannelCells.length) {
+        oFocus.id = ''
+        aChannelCells[index + 1].id = 'focus'
+      }
+      break
+    case 'left':
+      if (index > 0) {
+        oFocus.id = ''
+        aChannelCells[index - 1].id = 'focus'
+      }
+      break
+  }
+}
+
+fnActions()
+
+// fnActions({
+//   fnRight: /* fnToggleChannel('right') */console.log('right'),
+//   fnLeft: /* fnToggleChannel('left') */console.log('left')
+// })
