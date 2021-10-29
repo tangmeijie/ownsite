@@ -40,8 +40,3 @@ function fnToggleChannel(direction) {
 }
 
 fnActions()
-
-// fnActions({
-//   fnRight: /* fnToggleChannel('right') */console.log('right'),
-//   fnLeft: /* fnToggleChannel('left') */console.log('left')
-// })

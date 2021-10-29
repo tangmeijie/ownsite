@@ -20,7 +20,8 @@ function fnGetTime() {
 
 function fnActions() {
   document.addEventListener("keydown", function (event) {
-    event.preventDefault()
+    
+    console.log(event.code)
 
     switch (event.code) {
 
@@ -30,8 +31,8 @@ function fnActions() {
       case 'ArrowLeft':
         break
 
-        // case 'ArrowDown':
-        //   break
+      case 'ArrowDown':
+        break
 
       case 'ArrowUp':
         break
@@ -42,8 +43,6 @@ function fnActions() {
       case 'Space':
         break
 
-      default:
-        event.returnValue = true
     }
 
   })
