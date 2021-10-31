@@ -12,6 +12,7 @@
 
   .time {
     @include font-height(34px);
+    font-weight: 700;
     color: rgba($color-white, 0.7);
     margin: 0 40px 0 10px;
   }
