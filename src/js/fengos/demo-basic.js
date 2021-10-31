@@ -18,15 +18,20 @@ function fnFitScreen() {
   const iWidth = iScreenWidth / iPageWidth
   const iHeight = iScreenHeight / iPageHeight
 
-  let iScale
-  if (iWidth < iHeight) {
-    iScale = iWidth
-  } else {
-    iScale = iHeight
-  }
-
   const oPage = document.getElementById('desktop')
-  oPage.style.transform = 'scale(' + iScale + ')'
+  let iScale, iOffset
+
+  if (iWidth < iHeight) {
+    // 宽撑满
+    iScale = iWidth
+    iOffset = (iScreenHeight - iPageHeight * iScale) / (2 * iScale)
+    oPage.style.transform = `scale(${ iScale }) translateY(${ iOffset }px)`
+  } else {
+    // 高撑满
+    iScale = iHeight
+    iOffset = (iScreenWidth - iPageWidth * iScale) / (2 * iScale)
+    oPage.style.transform = `scale(${ iScale }) translateX(${ iOffset }px)`
+  }
 }
 
 function fnGetTime() {
