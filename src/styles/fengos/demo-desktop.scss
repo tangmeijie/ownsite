@@ -6,7 +6,7 @@
   height: $safe-h;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   position: absolute;
   z-index: 9;
 
@@ -31,7 +31,7 @@
   top: $safe-h;
   left: $safe-v;
   background: rgba($color-black, 0.2);
-  @include corner;
+  border-radius: 10px;
   isolation: isolate;
   z-index: 9;
 
@@ -52,7 +52,6 @@
   img {
     height: 70px;
     opacity: 0.4;
-    mix-blend-mode: difference;
   }
 
   span {
@@ -68,12 +67,12 @@
   }
 
   .slider {
-    width: 180px;
     height: 100%;
     position: absolute;
     top: 0;
     background: $color-white;
     @include corner;
+    @include shadow($size: 'small');
     z-index: -1;
   }
 }
