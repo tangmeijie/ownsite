@@ -36,6 +36,8 @@ $color-veil: #000;
 $color-main: #26ebdb;
 
 // 栅格
+$page-w: 1920px;
+$page-h: 1080px;
 $safe-v: 80px;
 $safe-h: 60px;
 $grid-gap: 40px;
@@ -103,11 +105,22 @@ html {
 }
 
 .page {
-  width: 1920px;
-  height: 1080px;
+  width: $page-w;
+  height: $page-h;
   background: $color-bg;
   font-family: EN, CN, sans-serif;
   position: relative;
   overflow: hidden;
   transform-origin: 0 0;
+}
+
+// 导出js所需变量
+:root {
+  --pageWidth: 1920px;
+  --pageHeight: 1080px;
+}
+
+:export {
+  pageWidth: 1920;
+  pageHeight: 1080;
 }

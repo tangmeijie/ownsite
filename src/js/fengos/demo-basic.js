@@ -1,12 +1,15 @@
+import variables from '../../styles/fengos/demo-kit.scss'
+
 export {
   fnGetTime,
-  fnNodeIndex,
-  fnMarkFocus,
-  fnToggleFocus
+  fnAddActions
 }
 
 fnFitScreen()
 window.onresize = fnFitScreen
+
+let w=window.getComputedStyle(document.documentElement).getPropertyValue('--pageWidth')
+console.log(w)
 
 function fnFitScreen() {
   const iScreenWidth = document.body.clientWidth
@@ -18,7 +21,7 @@ function fnFitScreen() {
   const iWidth = iScreenWidth / iPageWidth
   const iHeight = iScreenHeight / iPageHeight
 
-  const oPage = document.getElementById('desktop')
+  const oPage = document.getElementsByClassName('page')[0]
   let iScale, iOffset
 
   if (iWidth < iHeight) {
@@ -46,6 +49,40 @@ function fnGetTime() {
     s = '0' + s
   }
   return h + ':' + m
+}
+
+function fnAddActions(event) {
+
+  console.log(event.code)
+
+  switch (event.code) {
+
+    // →
+    case 'ArrowRight':
+
+      break
+
+    // ←
+    case 'ArrowLeft':
+      break
+
+    // ↓
+    case 'ArrowDown':
+      break
+
+    // ↑
+    case 'ArrowUp':
+      break
+
+    // OK
+    case 'Enter':
+      break
+
+    // Back
+    case 'Space':
+      break
+
+  }
 }
 
 function fnNodeIndex(nodelist, node) {
@@ -76,31 +113,4 @@ function fnToggleFocus(oFocusNew) {
 
   oFocusNew.id = 'focus'
   oFocus.classList.add('mark')
-}
-
-function fnAddAction(event) {
-
-  console.log(event.code)
-
-  switch (event.code) {
-
-    case 'ArrowRight':
-      break
-
-    case 'ArrowLeft':
-      break
-
-    case 'ArrowDown':
-      break
-
-    case 'ArrowUp':
-      break
-
-    case 'Enter':
-      break
-
-    case 'Space':
-      break
-
-  }
 }
