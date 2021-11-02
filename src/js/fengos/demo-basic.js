@@ -1,4 +1,4 @@
-import variables from '../../styles/fengos/demo-kit.scss'
+import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
   fnGetTime,
@@ -8,15 +8,12 @@ export {
 fnFitScreen()
 window.onresize = fnFitScreen
 
-let w=window.getComputedStyle(document.documentElement).getPropertyValue('--pageWidth')
-console.log(w)
-
 function fnFitScreen() {
   const iScreenWidth = document.body.clientWidth
   const iScreenHeight = document.body.clientHeight
 
-  const iPageWidth = 1920
-  const iPageHeight = 1080
+  const iPageWidth = Number.parseInt(scssVars.pageWidth)
+  const iPageHeight = Number.parseInt(scssVars.pageHeight)
 
   const iWidth = iScreenWidth / iPageWidth
   const iHeight = iScreenHeight / iPageHeight

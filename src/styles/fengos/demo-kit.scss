@@ -115,12 +115,7 @@ html {
 }
 
 // 导出js所需变量
-:root {
-  --pageWidth: 1920px;
-  --pageHeight: 1080px;
-}
-
 :export {
-  pageWidth: 1920;
-  pageHeight: 1080;
+  pageWidth: $page-w;
+  pageHeight: $page-h;
 }

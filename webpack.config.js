@@ -15,7 +15,14 @@ module.exports = {
   module: {
     rules: [{
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader']
+      use: ['style-loader', {
+        loader: "css-loader",
+        options: {
+          modules: {
+            compileType: 'icss'
+          }
+        }
+      }, 'sass-loader']
     }, {
       test: /\.css$/,
       use: ['style-loader', 'css-loader']

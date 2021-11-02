@@ -1,6 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const app = require('./app')
 module.exports = {
@@ -15,7 +17,14 @@ module.exports = {
   module: {
     rules: [{
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader']
+      use: ['style-loader', {
+        loader: "css-loader",
+        options: {
+          modules: {
+            compileType: 'icss'
+          }
+        }
+      }, 'sass-loader']
     }, {
       test: /\.css$/,
       use: ['style-loader', 'css-loader']
@@ -31,16 +40,18 @@ module.exports = {
     port: 8080
   },
   plugins: [...Object.keys(app).map(key => new HtmlWebpackPlugin({
-    filename: `${key}.html`,
-    inject: 'body',
-    chunks: [key],
-    template: app[key].html
-  })),
-  new CopyWebpackPlugin({
-    patterns: [
-      { from: path.resolve(__dirname, 'public'), to: path.resolve(__dirname, 'dist'), noErrorOnMissing: true }
-    ]
-  }),
-  new CleanWebpackPlugin(),
+      filename: `${key}.html`,
+      inject: 'body',
+      chunks: [key],
+      template: app[key].html
+    })),
+    new CopyWebpackPlugin({
+      patterns: [{
+        from: path.resolve(__dirname, 'public'),
+        to: path.resolve(__dirname, 'dist'),
+        noErrorOnMissing: true
+      }]
+    }),
+    new CleanWebpackPlugin(),
   ]
 }
