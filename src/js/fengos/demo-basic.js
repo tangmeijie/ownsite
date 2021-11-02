@@ -2,7 +2,8 @@ import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
   fnGetTime,
-  fnAddActions
+  fnAddActions,
+  fnGetFocus
 }
 
 fnFitScreen()
@@ -48,38 +49,49 @@ function fnGetTime() {
   return h + ':' + m
 }
 
-function fnAddActions(event) {
+function fnGetFocus(id) {
+  const focus = document.getElementById(id)
+  focus.focus()
+}
 
-  console.log(event.code)
+function fnAddActions() {
+  // fnGetFocus(id)
 
-  switch (event.code) {
+  document.addEventListener('keydown', function (e) {
+    console.log(e.code)
+    const focus = document.activeElement
+    focus.blur()
 
-    // →
-    case 'ArrowRight':
+    switch (e.code) {
 
-      break
+      // →
+      case 'ArrowRight':
+        const idr = focus.getAttribute('idr')
+        fnGetFocus(idr)
+        console.log(idr)
+        break
 
-    // ←
-    case 'ArrowLeft':
-      break
+        // ←
+      case 'ArrowLeft':
+        break
 
-    // ↓
-    case 'ArrowDown':
-      break
+        // ↓
+      case 'ArrowDown':
+        break
 
-    // ↑
-    case 'ArrowUp':
-      break
+        // ↑
+      case 'ArrowUp':
+        break
 
-    // OK
-    case 'Enter':
-      break
+        // OK
+      case 'Enter':
+        break
 
-    // Back
-    case 'Space':
-      break
-
-  }
+        // Back
+      case 'Space':
+        break
+    }
+  })
 }
 
 function fnNodeIndex(nodelist, node) {

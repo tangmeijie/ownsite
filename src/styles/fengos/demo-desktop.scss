@@ -66,6 +66,10 @@
       opacity: 1;
     }
   }
+  .item:focus {
+    opacity: 1;
+    box-shadow: 0 0 0 1px red inset;
+  }
 
   .slider {
     height: 100%;
