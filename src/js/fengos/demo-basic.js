@@ -9,6 +9,12 @@ export {
 fnFitScreen()
 window.onresize = fnFitScreen
 
+// 阻止鼠标点击失焦
+window.onmousedown = function(e) {
+  e.preventDefault()
+  return false
+}
+
 function fnFitScreen() {
   const iScreenWidth = document.body.clientWidth
   const iScreenHeight = document.body.clientHeight
@@ -58,17 +64,19 @@ function fnAddActions() {
   // fnGetFocus(id)
 
   document.addEventListener('keydown', function (e) {
-    console.log(e.code)
     const focus = document.activeElement
-    focus.blur()
+
+    const idr = focus.getAttribute('idr')
+    const idl = focus.getAttribute('idl')
+
+    console.log(idr)
 
     switch (e.code) {
 
       // →
       case 'ArrowRight':
-        const idr = focus.getAttribute('idr')
-        fnGetFocus(idr)
-        console.log(idr)
+        // focus.blur()
+        // fnGetFocus(idr)
         break
 
         // ←
