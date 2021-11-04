@@ -2,7 +2,7 @@ import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
   fnGetTime,
-  fnAddActions,
+  fnAddKeyActions,
   fnGetFocus
 }
 
@@ -10,7 +10,7 @@ fnFitScreen()
 window.onresize = fnFitScreen
 
 // 阻止鼠标点击失焦
-window.onmousedown = function(e) {
+window.onmousedown = function (e) {
   e.preventDefault()
   return false
 }
@@ -55,51 +55,67 @@ function fnGetTime() {
   return h + ':' + m
 }
 
-function fnGetFocus(id) {
-  const focus = document.getElementById(id)
-  focus.focus()
-}
-
-function fnAddActions() {
-  // fnGetFocus(id)
+function fnAddKeyActions() {
 
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
 
     const idr = focus.getAttribute('idr')
     const idl = focus.getAttribute('idl')
-
-    console.log(idr)
+    const idd = focus.getAttribute('idd')
+    const idu = focus.getAttribute('idu')
 
     switch (e.code) {
-
       // →
       case 'ArrowRight':
-        // focus.blur()
-        // fnGetFocus(idr)
+        if (idr) {
+          focus.blur()
+          fnGetFocus(idr)
+        }
         break
 
-        // ←
+      // ←
       case 'ArrowLeft':
+        if (idl) {
+          focus.blur()
+          fnGetFocus(idl)
+        }
         break
 
-        // ↓
+      // ↓
       case 'ArrowDown':
+        if (idd) {
+          focus.blur()
+          fnGetFocus(idd)
+        }
         break
 
-        // ↑
+      // ↑
       case 'ArrowUp':
+        if (idu) {
+          focus.blur()
+          fnGetFocus(idu)
+        }
         break
 
-        // OK
+      // OK
       case 'Enter':
         break
 
-        // Back
+      // Back
       case 'Space':
         break
     }
   })
+
+  // document.addEventListener('mousedown', function (e) {
+  //   console.log(this)
+  // })
+}
+
+function fnGetFocus(id) {
+  const focus = document.getElementById(id)
+  focus.focus()
 }
 
 function fnNodeIndex(nodelist, node) {

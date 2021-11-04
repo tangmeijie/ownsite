@@ -3,7 +3,7 @@ import '../../styles/fengos/demo-desktop.scss'
 import anime from 'animejs/lib/anime.es.js'
 import {
   fnGetTime,
-  fnAddActions,
+  fnAddKeyActions,
   fnGetFocus
 } from '../../js/fengos/demo-basic.js'
 
@@ -105,4 +105,9 @@ function fnChannelSilder(oFocus) {
 }
 
 fnGetFocus('chan1')
-fnAddActions()
+fnAddKeyActions()
+
+let a = document.getElementById('chan0')
+a.onclick = function() {
+  console.log(this)
+}
