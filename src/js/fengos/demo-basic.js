@@ -3,7 +3,8 @@ import scssVars from '../../styles/fengos/demo-kit.scss'
 export {
   fnGetTime,
   fnAddKeyActions,
-  fnGetFocus
+  fnGetFocus,
+  fnHighlightBox
 }
 
 fnFitScreen()
@@ -55,67 +56,84 @@ function fnGetTime() {
   return h + ':' + m
 }
 
-function fnAddKeyActions() {
+function fnAddKeyActions(fnBefore, fnAfter) {
 
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
+    const box = focus.closest('.box')
 
     const idr = focus.getAttribute('idr')
     const idl = focus.getAttribute('idl')
     const idd = focus.getAttribute('idd')
     const idu = focus.getAttribute('idu')
 
+    if (fnBefore) {
+      fnBefore()
+    }
+
     switch (e.code) {
       // →
       case 'ArrowRight':
         if (idr) {
           focus.blur()
-          fnGetFocus(idr)
+          fnGetFocus(idr, fnAfter)
         }
         break
 
-      // ←
+        // ←
       case 'ArrowLeft':
         if (idl) {
           focus.blur()
-          fnGetFocus(idl)
+          fnGetFocus(idl, fnAfter)
         }
         break
 
-      // ↓
+        // ↓
       case 'ArrowDown':
         if (idd) {
           focus.blur()
-          fnGetFocus(idd)
+          fnGetFocus(idd, fnAfter)
         }
         break
 
-      // ↑
+        // ↑
       case 'ArrowUp':
         if (idu) {
           focus.blur()
-          fnGetFocus(idu)
+          fnGetFocus(idu, fnAfter)
         }
         break
 
-      // OK
+        // OK
       case 'Enter':
         break
 
-      // Back
+        // Back
       case 'Space':
         break
     }
+    
+    // 切换焦点所在区域
+    if (document.activeElement.closest('.box') !== box) {
+      box.classList.remove('highlight')
+      fnHighlightBox()
+    }
   })
-
-  // document.addEventListener('mousedown', function (e) {
-  //   console.log(this)
-  // })
 }
 
-function fnGetFocus(id) {
+function fnGetFocus(id, fn) {
   const focus = document.getElementById(id)
   focus.focus()
+
+  if (fn) {
+    fn()
+  }
+}
+
+function fnHighlightBox() {
+  const focus = document.activeElement
+  const box = focus.closest('.box')
+  box.classList.add('highlight')
 }
 
 function fnNodeIndex(nodelist, node) {

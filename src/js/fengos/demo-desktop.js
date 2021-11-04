@@ -4,7 +4,8 @@ import anime from 'animejs/lib/anime.es.js'
 import {
   fnGetTime,
   fnAddKeyActions,
-  fnGetFocus
+  fnGetFocus,
+  fnHighlightBox
 } from '../../js/fengos/demo-basic.js'
 
 // 状态栏时间
@@ -38,56 +39,12 @@ function fnChannalFocusable() {
   }
 }
 
-// fnChannelFocus()
+function fnChannelSilder() {
+  const oFocus = document.activeElement
+  if (!oFocus.closest('#channel')) {
+    return false
+  }
 
-// function fnChannelFocus() {
-//   fnMarkFocus(oChannel, '.cell')
-//   oChannel.classList.add('highlight')
-
-//   let oFocus = document.getElementById('focus')
-//   fnChannelSilder(oFocus)
-
-//   fnToggleChannel(oChannel)
-// }
-
-// function fnChannelBlur() {
-//   let oFocus = document.getElementById('focus')
-//   oFocus.id = ''
-
-//   oChannel.classList.remove('highlight')
-// }
-
-// function fnToggleChannel(oBox) {
-//   const aCells = oBox.getElementsByClassName('cell')
-
-//   document.addEventListener('keydown', function (event) {
-//     let oFocusOld = document.getElementById('focus')
-//     let index = fnNodeIndex(aCells, oFocusOld)
-
-//     switch (event.code) {
-
-//       case 'ArrowRight':
-//         if (index < aCells.length - 1) {
-//           fnToggleFocus(aCells[index + 1])
-//           fnChannelSilder(aCells[index + 1])
-//         }
-//         break
-
-//       case 'ArrowLeft':
-//         if (index > 0) {
-//           fnToggleFocus(aCells[index - 1])
-//           fnChannelSilder(aCells[index - 1])
-//         }
-//         break
-
-//       case 'ArrowDown':
-//         // fnChannelBlur()
-//         break
-//     }
-//   })
-// }
-
-function fnChannelSilder(oFocus) {
   const oSilder = document.getElementById('channel-slider')
   const oBar = oSilder.parentNode
 
@@ -104,10 +61,14 @@ function fnChannelSilder(oFocus) {
   sliderAnime.play()
 }
 
-fnGetFocus('chan1')
-fnAddKeyActions()
+fnAddKeyActions(false, fnChannelSilder)
 
-let a = document.getElementById('chan0')
-a.onclick = function() {
-  console.log(this)
-}
+// 初始焦点
+fnGetFocus('chan1')
+fnChannelSilder()
+fnHighlightBox()
+
+// let a = document.getElementById('chan0')
+// a.ontouchstart = function() {
+//   console.log(this)
+// }

@@ -36,15 +36,6 @@
   isolation: isolate;
   z-index: 9;
 
-  &.highlight {
-    background: rgba($color-black, 0.7);
-
-    img,
-    span {
-      opacity: 1;
-    }
-  }
-
   .bar {
     display: inline-flex;
     align-items: center;
@@ -61,14 +52,19 @@
     color: $color-white;
     opacity: 0.4;
     mix-blend-mode: difference;
+  }
 
-    &.mark {
+  &.highlight {
+    background: rgba($color-black, 0.7);
+
+    img,
+    span {
       opacity: 1;
     }
   }
+
   .item:focus {
     opacity: 1;
-    box-shadow: 0 0 0 1px red inset;
   }
 
   .slider {

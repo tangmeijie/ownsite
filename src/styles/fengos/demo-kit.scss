@@ -99,6 +99,10 @@ $grid-min: 10px;
   overflow: hidden;
 }
 
+:focus {
+  outline: none;
+}
+
 // 通用页面
 html {
   overflow: hidden;
