@@ -3,9 +3,8 @@ import '../../styles/fengos/demo-desktop.scss'
 import anime from 'animejs/lib/anime.es.js'
 import {
   fnGetTime,
-  fnAddKeyActions,
-  fnGetFocus,
-  fnHighlightBox
+  fnAddActions,
+  fnGetFocus
 } from '../../js/fengos/demo-basic.js'
 
 // 状态栏时间
@@ -15,7 +14,7 @@ setInterval(function () {
   oTime.innerHTML = fnGetTime()
 }, 1000 * 30)
 
-// 频道栏切换
+// 频道栏
 const oChannel = document.getElementById('channel')
 fnChannalFocusable()
 
@@ -61,12 +60,11 @@ function fnChannelSilder() {
   sliderAnime.play()
 }
 
-fnAddKeyActions(false, fnChannelSilder)
+fnAddActions({fnAfter=fnChannelSilder()})
 
 // 初始焦点
-fnGetFocus('chan1')
+// fnGetFocus('chan1')
 fnChannelSilder()
-fnHighlightBox()
 
 // let a = document.getElementById('chan0')
 // a.ontouchstart = function() {

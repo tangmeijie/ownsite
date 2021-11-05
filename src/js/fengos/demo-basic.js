@@ -2,19 +2,13 @@ import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
   fnGetTime,
-  fnAddKeyActions,
-  fnGetFocus,
-  fnHighlightBox
+  fnAddActions,
+  fnGetFocus
 }
 
+// 自适应屏幕大小并居中
 fnFitScreen()
 window.onresize = fnFitScreen
-
-// 阻止鼠标点击失焦
-window.onmousedown = function (e) {
-  e.preventDefault()
-  return false
-}
 
 function fnFitScreen() {
   const iScreenWidth = document.body.clientWidth
@@ -56,20 +50,27 @@ function fnGetTime() {
   return h + ':' + m
 }
 
-function fnAddKeyActions(fnBefore, fnAfter) {
+// 阻止鼠标点击失焦
+window.onmousedown = function (e) {
+  e.preventDefault()
+  return false
+}
+
+function fnAddActions({
+  fnBefore = null,
+  fnAfter = null,
+  fnNoChange = null
+}) {
 
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
-    const box = focus.closest('.box')
 
     const idr = focus.getAttribute('idr')
     const idl = focus.getAttribute('idl')
     const idd = focus.getAttribute('idd')
     const idu = focus.getAttribute('idu')
 
-    if (fnBefore) {
-      fnBefore()
-    }
+    fnBefore()
 
     switch (e.code) {
       // →
@@ -112,12 +113,21 @@ function fnAddKeyActions(fnBefore, fnAfter) {
       case 'Space':
         break
     }
-    
-    // 切换焦点所在区域
-    if (document.activeElement.closest('.box') !== box) {
-      box.classList.remove('highlight')
-      fnHighlightBox()
+
+    if (document.activeElement === focus) {
+      fnNoChange()
+    } else {
+      fnAfter()
     }
+
+    // 切换焦点所在区域
+    if (focus.closest('.box')) {
+      focus.closest('.box').classList.remove('highlight')
+    }
+    if (document.activeElement.closest('.box')) {
+      document.activeElement.closest('.box').classList.add('highlight')
+    }
+
   })
 }
 
@@ -128,12 +138,6 @@ function fnGetFocus(id, fn) {
   if (fn) {
     fn()
   }
-}
-
-function fnHighlightBox() {
-  const focus = document.activeElement
-  const box = focus.closest('.box')
-  box.classList.add('highlight')
 }
 
 function fnNodeIndex(nodelist, node) {
