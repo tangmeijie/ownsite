@@ -56,11 +56,7 @@ window.onmousedown = function (e) {
   return false
 }
 
-function fnAddActions({
-  fnBefore = null,
-  fnAfter = null,
-  fnNoChange = null
-}) {
+function fnAddActions(fnBefore, fnAfter, fnNoChange) {
 
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
@@ -70,14 +66,18 @@ function fnAddActions({
     const idd = focus.getAttribute('idd')
     const idu = focus.getAttribute('idu')
 
-    fnBefore()
+    if (fnBefore) {
+      fnBefore()
+    }
 
     switch (e.code) {
       // →
       case 'ArrowRight':
         if (idr) {
           focus.blur()
-          fnGetFocus(idr, fnAfter)
+          fnGetFocus(idr)
+        } else {
+          return
         }
         break
 
@@ -85,7 +85,9 @@ function fnAddActions({
       case 'ArrowLeft':
         if (idl) {
           focus.blur()
-          fnGetFocus(idl, fnAfter)
+          fnGetFocus(idl)
+        } else {
+          return
         }
         break
 
@@ -93,7 +95,9 @@ function fnAddActions({
       case 'ArrowDown':
         if (idd) {
           focus.blur()
-          fnGetFocus(idd, fnAfter)
+          fnGetFocus(idd)
+        } else {
+          return
         }
         break
 
@@ -101,7 +105,9 @@ function fnAddActions({
       case 'ArrowUp':
         if (idu) {
           focus.blur()
-          fnGetFocus(idu, fnAfter)
+          fnGetFocus(idu)
+        } else {
+          return
         }
         break
 
@@ -112,32 +118,34 @@ function fnAddActions({
         // Back
       case 'Space':
         break
+
+      default:
+        return
     }
 
     if (document.activeElement === focus) {
-      fnNoChange()
+      if (fnNoChange) {
+        fnNoChange()
+      }
     } else {
-      fnAfter()
-    }
-
-    // 切换焦点所在区域
-    if (focus.closest('.box')) {
-      focus.closest('.box').classList.remove('highlight')
-    }
-    if (document.activeElement.closest('.box')) {
-      document.activeElement.closest('.box').classList.add('highlight')
+      if (fnAfter) {
+        fnAfter()
+      }
     }
 
   })
 }
 
 function fnGetFocus(id, fn) {
-  const focus = document.getElementById(id)
-  focus.focus()
+  document.getElementById(id).focus()
 
   if (fn) {
     fn()
   }
+}
+
+function fnInitFocus() {
+
 }
 
 function fnNodeIndex(nodelist, node) {
@@ -150,22 +158,22 @@ function fnNodeIndex(nodelist, node) {
   }
 }
 
-function fnMarkFocus(oBox, sSelector) {
-  let oFocus
-  if (oBox.querySelector('.mark')) {
-    oFocus = oBox.querySelector('.mark')
-  } else {
-    oFocus = oBox.querySelector(sSelector)
-    oFocus.classList.add('mark')
-  }
-  oFocus.id = 'focus'
-}
+// function fnMarkFocus(oBox, sSelector) {
+//   let oFocus
+//   if (oBox.querySelector('.mark')) {
+//     oFocus = oBox.querySelector('.mark')
+//   } else {
+//     oFocus = oBox.querySelector(sSelector)
+//     oFocus.classList.add('mark')
+//   }
+//   oFocus.id = 'focus'
+// }
 
-function fnToggleFocus(oFocusNew) {
-  let oFocus = document.getElementById('focus')
-  oFocus.id = ''
-  oFocus.classList.remove('mark')
+// function fnToggleFocus(oFocusNew) {
+//   let oFocus = document.getElementById('focus')
+//   oFocus.id = ''
+//   oFocus.classList.remove('mark')
 
-  oFocusNew.id = 'focus'
-  oFocus.classList.add('mark')
-}
+//   oFocusNew.id = 'focus'
+//   oFocus.classList.add('mark')
+// }

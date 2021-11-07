@@ -60,11 +60,15 @@ function fnChannelSilder() {
   sliderAnime.play()
 }
 
-fnAddActions({fnAfter=fnChannelSilder()})
+// 添加焦点事件
+fnAddActions(null, function () {
+  fnChannelSilder()
+})
 
 // 初始焦点
-// fnGetFocus('chan1')
-fnChannelSilder()
+fnGetFocus('chan1', function () {
+  fnChannelSilder()
+})
 
 // let a = document.getElementById('chan0')
 // a.ontouchstart = function() {
