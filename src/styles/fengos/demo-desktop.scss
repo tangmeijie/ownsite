@@ -54,7 +54,7 @@
     mix-blend-mode: difference;
   }
 
-  &.highlight {
+  &:focus-within {
     background: rgba($color-black, 0.7);
 
     img,
