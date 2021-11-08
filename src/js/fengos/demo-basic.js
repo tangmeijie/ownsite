@@ -74,8 +74,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
       // →
       case 'ArrowRight':
         if (idr) {
-          focus.blur()
-          fnGetFocus(idr)
+          fnToggleFocus(idr, focus)
         } else {
           return
         }
@@ -84,8 +83,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
         // ←
       case 'ArrowLeft':
         if (idl) {
-          focus.blur()
-          fnGetFocus(idl)
+          fnToggleFocus(idl, focus)
         } else {
           return
         }
@@ -94,8 +92,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
         // ↓
       case 'ArrowDown':
         if (idd) {
-          focus.blur()
-          fnGetFocus(idd)
+          fnToggleFocus(idd, focus)
         } else {
           return
         }
@@ -104,8 +101,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
         // ↑
       case 'ArrowUp':
         if (idu) {
-          focus.blur()
-          fnGetFocus(idu)
+          fnToggleFocus(idu, focus)
         } else {
           return
         }
@@ -136,8 +132,16 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
   })
 }
 
-function fnGetFocus(id, fn) {
-  document.getElementById(id).focus()
+function fnToggleFocus(newid, oldfocus, fn) {
+  if (oldfocus) {
+    oldfocus.blur()
+    oldfocus.classList.remove('mark')
+  }
+
+  const mark = fnFindMark(newid, '.item')
+  // const focus = document.getElementById(newid)
+  mark.focus()
+  mark.classList.add('mark')
 
   if (fn) {
     fn()
@@ -145,12 +149,25 @@ function fnGetFocus(id, fn) {
 }
 
 function fnInitFocus(fn) {
-  const autoFocus = document.querySelector('.item[autofocus]')
-  autoFocus.focus()
+  const autoFocus = document.querySelector('[autofocus]')
+  fnToggleFocus(autoFocus.id)
 
   if (fn) {
     fn()
   }
+}
+
+function fnFindMark(id, selector) {
+  const box = document.getElementById(id).closest('.box')
+  let mark
+
+  if (box.querySelector('.mark')) {
+    mark = box.querySelector('.mark')
+  } else {
+    mark = box.querySelector(selector)
+  }
+
+  return mark
 }
 
 function fnNodeIndex(nodelist, node) {
@@ -162,23 +179,3 @@ function fnNodeIndex(nodelist, node) {
     return false
   }
 }
-
-// function fnMarkFocus(oBox, sSelector) {
-//   let oFocus
-//   if (oBox.querySelector('.mark')) {
-//     oFocus = oBox.querySelector('.mark')
-//   } else {
-//     oFocus = oBox.querySelector(sSelector)
-//     oFocus.classList.add('mark')
-//   }
-//   oFocus.id = 'focus'
-// }
-
-// function fnToggleFocus(oFocusNew) {
-//   let oFocus = document.getElementById('focus')
-//   oFocus.id = ''
-//   oFocus.classList.remove('mark')
-
-//   oFocusNew.id = 'focus'
-//   oFocus.classList.add('mark')
-// }
