@@ -64,10 +64,11 @@ function fnChannelSilder() {
 fnAddActions(null, function () {
   fnChannelSilder()
 })
+
+// 初始焦点
 fnInitFocus(function () {
   fnChannelSilder()
 })
-
 
 // let a = document.getElementById('chan0')
 // a.ontouchstart = function() {

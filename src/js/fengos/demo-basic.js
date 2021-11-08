@@ -74,7 +74,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
       // →
       case 'ArrowRight':
         if (idr) {
-          fnToggleFocus(idr, focus)
+          fnToggleFocus(focus, idr)
         } else {
           return
         }
@@ -83,7 +83,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
         // ←
       case 'ArrowLeft':
         if (idl) {
-          fnToggleFocus(idl, focus)
+          fnToggleFocus(focus, idl)
         } else {
           return
         }
@@ -92,7 +92,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
         // ↓
       case 'ArrowDown':
         if (idd) {
-          fnToggleFocus(idd, focus)
+          fnToggleFocus(focus, idd)
         } else {
           return
         }
@@ -101,7 +101,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
         // ↑
       case 'ArrowUp':
         if (idu) {
-          fnToggleFocus(idu, focus)
+          fnToggleFocus(focus, idu)
         } else {
           return
         }
@@ -132,39 +132,39 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
   })
 }
 
-function fnToggleFocus(newid, oldfocus, fn) {
-  if (oldfocus) {
-    oldfocus.blur()
-    oldfocus.classList.remove('mark')
-  }
-
-  const mark = fnFindMark(newid, '.item')
-  // const focus = document.getElementById(newid)
-  mark.focus()
-  mark.classList.add('mark')
-
-  if (fn) {
-    fn()
-  }
-}
-
 function fnInitFocus(fn) {
   const autoFocus = document.querySelector('[autofocus]')
-  fnToggleFocus(autoFocus.id)
+  autoFocus.focus()
 
   if (fn) {
     fn()
   }
 }
 
-function fnFindMark(id, selector) {
+function fnToggleFocus(oldfocus, newid) {
+  const oldbox = focus.closest(':focus-within')
+  oldfocus.blur()
+
+  const newfocus = document.getElementById(newid)
+  // const newbox = newfocus.closest(':focus-within')
+
+  if (oldbox === newbox) {
+    newfocus.focus()
+  } else {
+    const mark = fnFindMark(id)
+    mark.focus()
+    mark.classList.add('mark')
+  }
+}
+
+function fnFindMark(id) {
   const box = document.getElementById(id).closest('.box')
   let mark
 
   if (box.querySelector('.mark')) {
     mark = box.querySelector('.mark')
   } else {
-    mark = box.querySelector(selector)
+    mark = box.querySelector('.item')
   }
 
   return mark
