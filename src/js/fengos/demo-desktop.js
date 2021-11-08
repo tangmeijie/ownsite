@@ -4,7 +4,7 @@ import anime from 'animejs/lib/anime.es.js'
 import {
   fnGetTime,
   fnAddActions,
-  fnGetFocus
+  fnInitFocus
 } from '../../js/fengos/demo-basic.js'
 
 // 状态栏时间
@@ -64,11 +64,10 @@ function fnChannelSilder() {
 fnAddActions(null, function () {
   fnChannelSilder()
 })
-
-// 初始焦点
-fnGetFocus('chan1', function () {
+fnInitFocus(function () {
   fnChannelSilder()
 })
+
 
 // let a = document.getElementById('chan0')
 // a.ontouchstart = function() {

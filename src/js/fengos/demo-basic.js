@@ -3,7 +3,7 @@ import scssVars from '../../styles/fengos/demo-kit.scss'
 export {
   fnGetTime,
   fnAddActions,
-  fnGetFocus
+  fnInitFocus
 }
 
 // 自适应屏幕大小并居中
@@ -144,8 +144,13 @@ function fnGetFocus(id, fn) {
   }
 }
 
-function fnInitFocus() {
+function fnInitFocus(fn) {
+  const autoFocus = document.querySelector('.item[autofocus]')
+  autoFocus.focus()
 
+  if (fn) {
+    fn()
+  }
 }
 
 function fnNodeIndex(nodelist, node) {
