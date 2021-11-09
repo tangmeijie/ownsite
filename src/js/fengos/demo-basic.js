@@ -52,7 +52,7 @@ function fnGetTime() {
   return h + ':' + m
 }
 
-// 阻止鼠标点击失焦
+// 焦点事件
 window.onmousedown = function (e) {
   e.preventDefault()
   return false
@@ -188,3 +188,7 @@ function fnNodeIndex(nodelist, node) {
     return false
   }
 }
+// let a = document.getElementById('chan0')
+// a.ontouchstart = function() {
+//   console.log(this)
+// }

@@ -7,6 +7,17 @@ import {
   fnInitFocus
 } from '../../js/fengos/demo-basic.js'
 
+// 添加焦点事件
+fnChannalFocusable()
+
+fnInitFocus(function () {
+  fnChannelSilder()
+})
+
+fnAddActions(null, function () {
+  fnChannelSilder()
+})
+
 // 状态栏时间
 const oTime = document.getElementById('time')
 oTime.innerHTML = fnGetTime()
@@ -58,19 +69,3 @@ function fnChannelSilder() {
   })
   sliderAnime.play()
 }
-
-// 添加焦点事件
-fnChannalFocusable()
-
-fnAddActions(null, function () {
-  fnChannelSilder()
-})
-
-fnInitFocus(function () {
-  fnChannelSilder()
-})
-
-// let a = document.getElementById('chan0')
-// a.ontouchstart = function() {
-//   console.log(this)
-// }
