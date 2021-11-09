@@ -6,7 +6,6 @@ export {
   fnInitFocus
 }
 
-// 自适应屏幕大小并居中
 fnFitScreen()
 window.onresize = fnFitScreen
 
@@ -21,19 +20,22 @@ function fnFitScreen() {
   const iHeight = iScreenHeight / iPageHeight
 
   const oPage = document.getElementsByClassName('page')[0]
-  let iScale, iOffset
+  let iScale, iOffset, sTransform
 
   if (iWidth < iHeight) {
     // 宽撑满
     iScale = iWidth
-    iOffset = (iScreenHeight - iPageHeight * iScale) / (2 * iScale)
-    oPage.style.transform = `scale(${ iScale }) translateY(${ iOffset }px)`
+    iOffset = (iScreenHeight - iPageHeight * iScale) / 2
+    sTransform = `translateY(${ iOffset }px)`
   } else {
     // 高撑满
     iScale = iHeight
-    iOffset = (iScreenWidth - iPageWidth * iScale) / (2 * iScale)
-    oPage.style.transform = `scale(${ iScale }) translateX(${ iOffset }px)`
+    iOffset = (iScreenWidth - iPageWidth * iScale) / 2
+    sTransform = `translateX(${ iOffset }px)`
   }
+
+  sTransform += ` scale(${ iScale })`
+  oPage.style.transform = sTransform
 }
 
 function fnGetTime() {
