@@ -74,7 +74,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
       // →
       case 'ArrowRight':
         if (idR) {
-          fnToggleFocus(focus, idR)
+          fnGetFocus(idR)
         } else {
           return
         }
@@ -83,7 +83,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
         // ←
       case 'ArrowLeft':
         if (idL) {
-          fnToggleFocus(focus, idL)
+          fnGetFocus(idL)
         } else {
           return
         }
@@ -92,7 +92,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
         // ↓
       case 'ArrowDown':
         if (idD) {
-          fnToggleFocus(focus, idD)
+          fnGetFocus(idD)
         } else {
           return
         }
@@ -101,7 +101,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
         // ↑
       case 'ArrowUp':
         if (idU) {
-          fnToggleFocus(focus, idU)
+          fnGetFocus(idU)
         } else {
           return
         }
@@ -134,37 +134,44 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
 
 function fnInitFocus(fn) {
   const autoFocus = document.querySelector('[autofocus]')
-  autoFocus.focus()
+  fnGetFocus(autoFocus.id)
 
   if (fn) {
     fn()
   }
 }
 
-function fnToggleFocus(oldfocus, newid) {
-  const oldbox = focus.closest(':focus-within')
-  oldfocus.blur()
+function fnGetFocus(id) {
+  let prefocus, prebox
 
-  const newfocus = document.getElementById(newid)
-  // const newbox = newfocus.closest(':focus-within')
+  if (document.activeElement !== document.body) {
+    prefocus = document.activeElement
+    prebox = prefocus.parentNode
+    prefocus.blur()
+  }
 
-  if (oldbox === newbox) {
-    newfocus.focus()
-  } else {
+  const newfocus = document.getElementById(id)
+  const newbox = newfocus.parentNode
+
+  if (prefocus && prebox !== newbox) {
     const mark = fnFindMark(id)
     mark.focus()
-    mark.classList.add('mark')
+
+    mark.classList.remove('mark')
+    prefocus.classList.add('mark')
+  } else {
+    newfocus.focus()
   }
 }
 
 function fnFindMark(id) {
-  const box = document.getElementById(id).closest('.box')
   let mark
+  const box = document.getElementById(id).parentNode
 
-  if (box.querySelector('.mark')) {
-    mark = box.querySelector('.mark')
+  if (box.getElementsByClassName('mark')[0]) {
+    mark = box.getElementsByClassName('mark')[0]
   } else {
-    mark = box.querySelector('.item')
+    mark = box.getElementsByClassName('item')[0]
   }
 
   return mark
