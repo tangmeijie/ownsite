@@ -21,19 +21,19 @@ fnChannalFocusable()
 function fnChannalFocusable() {
   const aItems = oChannel.getElementsByClassName('item')
   for (let i = 0; i < aItems.length; i++) {
-    aItems[i].id = 'chan' + i
+    aItems[i].id = 'chann-' + i
     aItems[i].tabIndex = '-1'
 
     switch (i) {
       case 0:
-        aItems[i].setAttribute('idr', 'chan' + (i + 1))
+        aItems[i].setAttribute('id-r', 'chann-' + (i + 1))
         break
       case aItems.length - 1:
-        aItems[i].setAttribute('idl', 'chan' + (i - 1))
+        aItems[i].setAttribute('id-l', 'chann-' + (i - 1))
         break
       default:
-        aItems[i].setAttribute('idr', 'chan' + (i + 1))
-        aItems[i].setAttribute('idl', 'chan' + (i - 1))
+        aItems[i].setAttribute('id-r', 'chann-' + (i + 1))
+        aItems[i].setAttribute('id-l', 'chann-' + (i - 1))
     }
   }
 }

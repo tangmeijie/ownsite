@@ -61,10 +61,10 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
 
-    const idr = focus.getAttribute('idr')
-    const idl = focus.getAttribute('idl')
-    const idd = focus.getAttribute('idd')
-    const idu = focus.getAttribute('idu')
+    const idR = focus.getAttribute('id-r')
+    const idL = focus.getAttribute('id-l')
+    const idD = focus.getAttribute('id-d')
+    const idU = focus.getAttribute('id-u')
 
     if (fnBefore) {
       fnBefore()
@@ -73,8 +73,8 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
     switch (e.code) {
       // →
       case 'ArrowRight':
-        if (idr) {
-          fnToggleFocus(focus, idr)
+        if (idR) {
+          fnToggleFocus(focus, idR)
         } else {
           return
         }
@@ -82,8 +82,8 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
 
         // ←
       case 'ArrowLeft':
-        if (idl) {
-          fnToggleFocus(focus, idl)
+        if (idL) {
+          fnToggleFocus(focus, idL)
         } else {
           return
         }
@@ -91,8 +91,8 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
 
         // ↓
       case 'ArrowDown':
-        if (idd) {
-          fnToggleFocus(focus, idd)
+        if (idD) {
+          fnToggleFocus(focus, idD)
         } else {
           return
         }
@@ -100,8 +100,8 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
 
         // ↑
       case 'ArrowUp':
-        if (idu) {
-          fnToggleFocus(focus, idu)
+        if (idU) {
+          fnToggleFocus(focus, idU)
         } else {
           return
         }
