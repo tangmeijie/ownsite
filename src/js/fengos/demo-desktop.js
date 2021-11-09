@@ -16,7 +16,6 @@ setInterval(function () {
 
 // 频道栏
 const oChannel = document.getElementById('channel')
-fnChannalFocusable()
 
 function fnChannalFocusable() {
   const aItems = oChannel.getElementsByClassName('item')
@@ -61,11 +60,12 @@ function fnChannelSilder() {
 }
 
 // 添加焦点事件
+fnChannalFocusable()
+
 fnAddActions(null, function () {
   fnChannelSilder()
 })
 
-// 初始焦点
 fnInitFocus(function () {
   fnChannelSilder()
 })
