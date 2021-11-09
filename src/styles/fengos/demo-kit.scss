@@ -43,6 +43,24 @@ $safe-h: 60px;
 $grid-gap: 40px;
 $grid-min: 10px;
 
+// 圆角
+$corner: 10px;
+
+// 阴影
+@mixin shadow($depth: .7, $size: 'focus') {
+  @if $size=='focus' {
+    box-shadow: 0 40px 80px -10px rgba($color-veil, $depth);
+  }
+
+  @else if $size=='small' {
+    box-shadow: 0 20px 40px 0 rgba($color-veil, $depth);
+  }
+
+  @else if $size=='def' {
+    box-shadow: 0 5px 10px 0 rgba($color-veil, $depth - .3);
+  }
+}
+
 // 卡片形状
 @mixin shape($width: 100px, $shape: 16/9) {
   width: $width;
@@ -70,33 +88,37 @@ $grid-min: 10px;
   @return ($n + math.sqrt($n * $n + 4)) / 2;
 }
 
-// 圆角
-@mixin corner($corner: 10px) {
-  border-radius: $corner;
-  overflow: hidden;
-}
-
-// 阴影
-@mixin shadow($depth: .7, $size: 'focus') {
-  @if $size=='focus' {
-    box-shadow: 0 40px 80px -10px rgba($color-veil, $depth);
-  }
-
-  @else if $size=='small' {
-    box-shadow: 0 20px 40px 0 rgba($color-veil, $depth);
-  }
-
-  @else if $size=='def' {
-    box-shadow: 0 5px 10px 0 rgba($color-veil, $depth - .3);
-  }
-}
-
 // 常用组件
 @mixin para-omit($line: 3) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $line;
   overflow: hidden;
+}
+
+.status {
+  width: 100%;
+  height: $safe-h;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  z-index: 9;
+
+  .time {
+    @include font-height(34px);
+    font-weight: 700;
+    color: rgba($color-white, .7);
+    margin: 0 40px 0 10px;
+  }
+
+  svg {
+    width: 40px;
+    height: 40px;
+    fill: $color-white;
+    opacity: .7;
+    margin-right: 20px;
+  }
 }
 
 // 通用页面
@@ -116,6 +138,10 @@ html {
   position: relative;
   overflow: hidden;
   transform-origin: 0 0;
+}
+
+.container {
+  padding: 0 $safe-v;
 }
 
 // 导出js所需变量

@@ -1,38 +1,14 @@
 @import '../clear.scss';
 @import './demo-kit.scss';
 
-.status {
-  width: 100%;
-  height: $safe-h;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: absolute;
-  z-index: 9;
-
-  .time {
-    @include font-height(34px);
-    font-weight: 700;
-    color: rgba($color-white, 0.7);
-    margin: 0 40px 0 10px;
-  }
-
-  svg {
-    width: 40px;
-    height: 40px;
-    fill: $color-white;
-    opacity: 0.7;
-    margin-right: 20px;
-  }
-}
-
 .channel {
   height: 70px;
   position: absolute;
   top: $safe-h;
   left: $safe-v;
-  background: rgba($color-black, 0.2);
-  border-radius: 10px;
+  background: rgba($color-black, .2);
+  backdrop-filter: blur(2px);
+  border-radius: $corner;
   isolation: isolate;
   z-index: 9;
 
@@ -43,19 +19,20 @@
 
   img {
     height: 70px;
-    opacity: 0.4;
+    opacity: .4;
   }
 
   span {
-    @include font-height(30px);
+    font-size: 30px;
     padding: 0 30px;
     color: $color-white;
-    opacity: 0.4;
+    opacity: .4;
     mix-blend-mode: difference;
   }
 
   &:focus-within {
-    background: rgba($color-black, 0.7);
+    background: rgba($color-black, .7);
+    backdrop-filter: blur(10px);
 
     img,
     span {
@@ -72,8 +49,54 @@
     position: absolute;
     top: 0;
     background: $color-white;
-    @include corner;
+    border-radius: $corner;
     @include shadow($size: 'small');
     z-index: -1;
+  }
+}
+
+.btn-search {
+  width: 580px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 250px auto 0;
+  background: rgba($color-white, .1);
+  border-radius: $corner;
+
+  svg {
+    width: 40px;
+    height: 40px;
+    stroke: $color-white;
+    margin-right: 20px;
+    opacity: .8;
+  }
+
+  span {
+    font-size: 30px;
+    color: rgba($color-white, .7);
+  }
+}
+
+.tag {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+
+  li {
+    font-size: 26px;
+    line-height: 60px;
+    padding: 0 30px;
+    color: $color-white;
+    background: rgba($color-white, .1);
+    border-radius: $corner * 3;
+    margin: 0 15px;
+
+    &:focus {
+      color: $color-black;
+      background: $color-white;
+      @include shadow;
+    }
   }
 }
