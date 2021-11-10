@@ -1,6 +1,11 @@
-aMovies = [{
-  id: 101,
-  name: '',
+export {
+  aMovies,
+  aCasts
+}
+
+const aMovies = [{
+  id: 201,
+  name: 'CoCo',
   director: '',
   cast: '',
   country: '',
@@ -19,8 +24,8 @@ aMovies = [{
   awards: []
 }]
 
-aCasts = [{
-  id: 001,
+const aCasts = [{
+  id: 101,
   name: '',
   nameEn: ''
 }]

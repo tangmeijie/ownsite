@@ -1,11 +1,12 @@
 import '../../styles/fengos/demo-desktop.scss'
 
 import anime from 'animejs/lib/anime.es.js'
+import { aMovies } from './demo-data.js'
 import {
   fnGetTime,
   fnAddActions,
   fnInitFocus
-} from '../../js/fengos/demo-basic.js'
+} from './demo-basic.js'
 
 // 状态栏时间
 const oTime = document.getElementById('time')

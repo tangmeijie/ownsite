@@ -18,6 +18,7 @@ const config = {
       demo: {
         html: './src/html/fengos/demo.html',
         js: [
+          './src/js/fengos/demo-data.js',
           './src/js/fengos/demo-basic.js',
           './src/js/fengos/demo-desktop.js'
         ]
