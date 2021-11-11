@@ -2,6 +2,7 @@ import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
   fnGetTime,
+  fnSiblingsFocusable,
   fnAddActions,
   fnInitFocus
 }
@@ -56,6 +57,41 @@ function fnGetTime() {
 window.onmousedown = function (e) {
   e.preventDefault()
   return false
+}
+
+function fnSiblingsFocusable(parent, prefix, isX = true, isLoop = false) {
+  const siblings = parent.getElementsByClassName('item')
+  let lastid, nextid
+
+  if (isX) {
+    lastid = 'id-l'
+    nextid = 'id-r'
+  } else {
+    lastid = 'id-u'
+    nextid = 'id-d'
+  }
+
+  for (let i = 0; i < siblings.length; i++) {
+    siblings[i].id = prefix + i
+    siblings[i].tabIndex = -1
+
+    switch (i) {
+      case 0:
+        siblings[i].setAttribute(nextid, prefix + (i + 1))
+        break
+      case siblings.length - 1:
+        siblings[i].setAttribute(lastid, prefix + (i - 1))
+        break
+      default:
+        siblings[i].setAttribute(nextid, prefix + (i + 1))
+        siblings[i].setAttribute(lastid, prefix + (i - 1))
+    }
+  }
+
+  if (isLoop) {
+    siblings[0].setAttribute(lastid, prefix + (siblings.length - 1))
+    siblings[siblings.length - 1].setAttribute(nextid, prefix + 0)
+  }
 }
 
 function fnAddActions(fnBefore, fnAfter, fnNoChange) {
@@ -144,23 +180,23 @@ function fnInitFocus(fn) {
 }
 
 function fnGetFocus(id) {
-  let prefocus, prebox
+  let lastfocus, lastbox
 
   if (document.activeElement !== document.body) {
-    prefocus = document.activeElement
-    prebox = prefocus.parentNode
-    prefocus.blur()
+    lastfocus = document.activeElement
+    lastbox = lastfocus.parentNode
+    lastfocus.blur()
   }
 
   const newfocus = document.getElementById(id)
   const newbox = newfocus.parentNode
 
-  if (prefocus && prebox !== newbox) {
+  if (lastfocus && lastbox !== newbox) {
     const mark = fnFindMark(id)
     mark.focus()
 
     mark.classList.remove('mark')
-    prefocus.classList.add('mark')
+    lastfocus.classList.add('mark')
   } else {
     newfocus.focus()
   }
