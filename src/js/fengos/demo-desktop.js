@@ -1,9 +1,12 @@
 import '../../styles/fengos/demo-desktop.scss'
 
 import anime from 'animejs/lib/anime.es.js'
-import { aMovies } from './demo-data.js'
+import {
+  aMovies
+} from './demo-data.js'
 import {
   fnGetTime,
+  fnSiblingsFocusable,
   fnAddActions,
   fnInitFocus
 } from './demo-basic.js'
@@ -17,26 +20,6 @@ setInterval(function () {
 
 // 频道栏
 const oChannel = document.getElementById('channel')
-
-function fnChannalFocusable() {
-  const aItems = oChannel.getElementsByClassName('item')
-  for (let i = 0; i < aItems.length; i++) {
-    aItems[i].id = 'chann-' + i
-    aItems[i].tabIndex = '-1'
-
-    switch (i) {
-      case 0:
-        aItems[i].setAttribute('id-r', 'chann-' + (i + 1))
-        break
-      case aItems.length - 1:
-        aItems[i].setAttribute('id-l', 'chann-' + (i - 1))
-        break
-      default:
-        aItems[i].setAttribute('id-r', 'chann-' + (i + 1))
-        aItems[i].setAttribute('id-l', 'chann-' + (i - 1))
-    }
-  }
-}
 
 function fnChannelSilder() {
   const oFocus = document.activeElement
@@ -60,13 +43,25 @@ function fnChannelSilder() {
   sliderAnime.play()
 }
 
+function fnChannalFocusable() {
+  const aItems = oChannel.getElementsByClassName('item')
+
+  aItems[0].setAttribute('id-d', 'btn-search')
+}
+
+function fnSearchFocusable() {
+  const oBtnSearch = document.getElementById('btn-search')
+  oBtnSearch.setAttribute('id-u', 'chann-0')
+}
+
 // 添加焦点事件
+fnSiblingsFocusable(oChannel, 'chann-')
 fnChannalFocusable()
+fnSearchFocusable()
 
 fnInitFocus(function () {
   fnChannelSilder()
 })
-
 fnAddActions(null, function () {
   fnChannelSilder()
 })

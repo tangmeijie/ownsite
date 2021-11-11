@@ -77,6 +77,20 @@
     font-size: 30px;
     color: rgba($color-white, .7);
   }
+
+  &:focus {
+    background: $color-white;
+    transform: scale(1.2);
+    @include shadow;
+
+    svg {
+      stroke: $color-black;
+    }
+
+    span {
+      color: $color-black;
+    }
+  }
 }
 
 .tag {
