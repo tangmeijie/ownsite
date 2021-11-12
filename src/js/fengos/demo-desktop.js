@@ -6,6 +6,7 @@ import {
 } from './demo-data.js'
 import {
   fnSiblingsFocusable,
+  fnSetAttr,
   fnAddActions,
   fnInitFocus
 } from './demo-basic.js'
@@ -38,16 +39,22 @@ function fnChannelSilder() {
 function fnChannalFocusable() {
   const aItems = oChannel.getElementsByClassName('item')
 
-  aItems[0].setAttribute('id-d', 'btn-search')
+  aItems[0].setAttribute('elemid-down', 'btn-search')
 }
 
+// 搜索区
+const oBtnSearch = document.getElementById('btn-search')
+const oHotWord = document.getElementById('hot-words')
+
 function fnSearchFocusable() {
-  const oBtnSearch = document.getElementById('btn-search')
-  oBtnSearch.setAttribute('id-u', 'chann-0')
+  fnSetAttr(oBtnSearch, {
+    'elemid-up': 'chann-0'
+  })
 }
 
 // 添加焦点事件
 fnSiblingsFocusable(oChannel, 'chann-')
+fnSiblingsFocusable(oHotWord, 'word-')
 fnChannalFocusable()
 fnSearchFocusable()
 

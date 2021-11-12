@@ -38,6 +38,11 @@
     span {
       opacity: 1;
     }
+    .slider{
+      height: 100%;
+      border-radius: $corner;
+      @include shadow($size: 'small');
+    }
   }
 
   .item:focus {
@@ -45,12 +50,11 @@
   }
 
   .slider {
-    height: 100%;
+    height: 4px;
     position: absolute;
-    top: 0;
+    bottom: 0;
     background: $color-white;
-    border-radius: $corner;
-    @include shadow($size: 'small');
+    border-radius: 2px;
     z-index: -1;
   }
 }

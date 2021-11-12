@@ -2,6 +2,7 @@ import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
   fnSiblingsFocusable,
+  fnSetAttr,
   fnAddActions,
   fnInitFocus
 }
@@ -79,11 +80,11 @@ function fnSiblingsFocusable(parent, prefix, isX = true, isLoop = false) {
   let lastid, nextid
 
   if (isX) {
-    lastid = 'id-l'
-    nextid = 'id-r'
+    lastid = 'elemid-left'
+    nextid = 'elemid-right'
   } else {
-    lastid = 'id-u'
-    nextid = 'id-d'
+    lastid = 'elemid-up'
+    nextid = 'elemid-down'
   }
 
   for (let i = 0; i < siblings.length; i++) {
@@ -109,15 +110,21 @@ function fnSiblingsFocusable(parent, prefix, isX = true, isLoop = false) {
   }
 }
 
+function fnSetAttr(obj, attrs) {
+  for (let key of Object.keys(attrs)) {
+    obj.setAttribute(key, attrs[key])
+  }
+}
+
 function fnAddActions(fnBefore, fnAfter, fnNoChange) {
 
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
 
-    const idR = focus.getAttribute('id-r')
-    const idL = focus.getAttribute('id-l')
-    const idD = focus.getAttribute('id-d')
-    const idU = focus.getAttribute('id-u')
+    const idR = focus.getAttribute('elemid-right')
+    const idL = focus.getAttribute('elemid-left')
+    const idD = focus.getAttribute('elemid-down')
+    const idU = focus.getAttribute('elemid-up')
 
     if (fnBefore) {
       fnBefore()
