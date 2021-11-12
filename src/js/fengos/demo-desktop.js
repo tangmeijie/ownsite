@@ -5,18 +5,10 @@ import {
   aMovies
 } from './demo-data.js'
 import {
-  fnGetTime,
   fnSiblingsFocusable,
   fnAddActions,
   fnInitFocus
 } from './demo-basic.js'
-
-// 状态栏时间
-const oTime = document.getElementById('time')
-oTime.innerHTML = fnGetTime()
-setInterval(function () {
-  oTime.innerHTML = fnGetTime()
-}, 1000 * 30)
 
 // 频道栏
 const oChannel = document.getElementById('channel')

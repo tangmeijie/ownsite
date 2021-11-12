@@ -1,15 +1,17 @@
 import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
-  fnGetTime,
   fnSiblingsFocusable,
   fnAddActions,
   fnInitFocus
 }
 
+// 对所有页面执行：
 fnFitScreen()
 window.onresize = fnFitScreen
+fnShowTime(30)
 
+// 自适应屏幕大小
 function fnFitScreen() {
   const iScreenWidth = document.body.clientWidth
   const iScreenHeight = document.body.clientHeight
@@ -39,6 +41,7 @@ function fnFitScreen() {
   oPage.style.transform = sTransform
 }
 
+// 状态栏时间
 function fnGetTime() {
   const d = new Date()
   let h = d.getHours()
@@ -51,6 +54,18 @@ function fnGetTime() {
     s = '0' + s
   }
   return h + ':' + m
+}
+
+function fnShowTime(interval) {
+  if (!document.getElementById('time')) {
+    return false
+  }
+
+  const time = document.getElementById('time')
+  time.innerHTML = fnGetTime()
+  setInterval(function () {
+    time.innerHTML = fnGetTime()
+  }, 1000 * interval)
 }
 
 // 焦点事件
