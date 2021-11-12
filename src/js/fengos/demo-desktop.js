@@ -12,7 +12,6 @@ import {
 } from './demo-basic.js'
 
 // 频道栏
-const oChannel = document.getElementById('channel')
 
 function fnChannelSilder() {
   const oFocus = document.activeElement
@@ -37,24 +36,29 @@ function fnChannelSilder() {
 }
 
 function fnChannalFocusable() {
+  const oChannel = document.getElementById('channel')
+  fnSiblingsFocusable(oChannel, 'chann-')
+
   const aItems = oChannel.getElementsByClassName('item')
-
-  aItems[0].setAttribute('elemid-down', 'btn-search')
-}
-
-// 搜索区
-const oBtnSearch = document.getElementById('btn-search')
-const oHotWord = document.getElementById('hot-words')
-
-function fnSearchFocusable() {
-  fnSetAttr(oBtnSearch, {
-    'elemid-up': 'chann-0'
+  // aItems[0].setAttribute('iddown', 'btn-search')
+  fnSetAttr(aItems[0], {
+    'iddown': 'btn-search'
   })
 }
 
+// 搜索区
+function fnSearchFocusable() {
+  const oBtnSearch = document.getElementById('btn-search')
+  const oHotWord = document.getElementById('hot-words')
+
+  fnSetAttr(oBtnSearch, {
+    'tabindex': -1,
+    'idup': 'chann-0'
+  })
+  fnSiblingsFocusable(oHotWord, 'word-')
+}
+
 // 添加焦点事件
-fnSiblingsFocusable(oChannel, 'chann-')
-fnSiblingsFocusable(oHotWord, 'word-')
 fnChannalFocusable()
 fnSearchFocusable()
 

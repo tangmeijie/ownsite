@@ -80,11 +80,11 @@ function fnSiblingsFocusable(parent, prefix, isX = true, isLoop = false) {
   let lastid, nextid
 
   if (isX) {
-    lastid = 'elemid-left'
-    nextid = 'elemid-right'
+    lastid = 'idleft'
+    nextid = 'idright'
   } else {
-    lastid = 'elemid-up'
-    nextid = 'elemid-down'
+    lastid = 'idup'
+    nextid = 'iddown'
   }
 
   for (let i = 0; i < siblings.length; i++) {
@@ -121,10 +121,10 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
 
-    const idR = focus.getAttribute('elemid-right')
-    const idL = focus.getAttribute('elemid-left')
-    const idD = focus.getAttribute('elemid-down')
-    const idU = focus.getAttribute('elemid-up')
+    const idR = focus.getAttribute('idright')
+    const idL = focus.getAttribute('idleft')
+    const idD = focus.getAttribute('iddown')
+    const idU = focus.getAttribute('idup')
 
     if (fnBefore) {
       fnBefore()
