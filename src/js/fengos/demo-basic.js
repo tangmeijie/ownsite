@@ -1,8 +1,8 @@
 import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
+  fnFocusable,
   fnSiblingsFocusable,
-  fnSetAttr,
   fnAddActions,
   fnInitFocus
 }
@@ -89,28 +89,40 @@ function fnSiblingsFocusable(parent, prefix, isX = true, isLoop = false) {
 
   for (let i = 0; i < siblings.length; i++) {
     siblings[i].id = prefix + i
-    siblings[i].tabIndex = -1
 
     switch (i) {
       case 0:
-        siblings[i].setAttribute(nextid, prefix + (i + 1))
+        fnFocusable(siblings[i], {
+          [nextid]: prefix + (i + 1)
+        })
         break
       case siblings.length - 1:
-        siblings[i].setAttribute(lastid, prefix + (i - 1))
+        fnFocusable(siblings[i], {
+          [lastid]: prefix + (i - 1)
+        })
         break
       default:
-        siblings[i].setAttribute(nextid, prefix + (i + 1))
-        siblings[i].setAttribute(lastid, prefix + (i - 1))
+        fnFocusable(siblings[i], {
+          [nextid]: prefix + (i + 1),
+          [lastid]: prefix + (i - 1)
+        })
     }
   }
 
   if (isLoop) {
-    siblings[0].setAttribute(lastid, prefix + (siblings.length - 1))
-    siblings[siblings.length - 1].setAttribute(nextid, prefix + 0)
+    fnFocusable(siblings[0], {
+      [lastid]: prefix + (siblings.length - 1)
+    })
+    fnFocusable(siblings[siblings.length - 1], {
+      [nextid]: prefix + 0
+    })
   }
 }
 
-function fnSetAttr(obj, attrs) {
+function fnFocusable(obj, attrs) {
+  obj.setAttribute('tabindex', '-1')
+  obj.classList.add('item')
+
   for (let key of Object.keys(attrs)) {
     obj.setAttribute(key, attrs[key])
   }
@@ -129,7 +141,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
     if (fnBefore) {
       fnBefore()
     }
-
+    
     switch (e.code) {
       // →
       case 'ArrowRight':
@@ -209,7 +221,7 @@ function fnGetFocus(id) {
     lastbox = lastfocus.parentNode
     lastfocus.blur()
   }
-
+  
   const newfocus = document.getElementById(id)
   const newbox = newfocus.parentNode
 

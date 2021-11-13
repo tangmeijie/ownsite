@@ -5,8 +5,8 @@ import {
   aMovies
 } from './demo-data.js'
 import {
+  fnFocusable,
   fnSiblingsFocusable,
-  fnSetAttr,
   fnAddActions,
   fnInitFocus
 } from './demo-basic.js'
@@ -40,8 +40,7 @@ function fnChannalFocusable() {
   fnSiblingsFocusable(oChannel, 'chann-')
 
   const aItems = oChannel.getElementsByClassName('item')
-  // aItems[0].setAttribute('iddown', 'btn-search')
-  fnSetAttr(aItems[0], {
+  fnFocusable(aItems[0], {
     'iddown': 'btn-search'
   })
 }
@@ -51,8 +50,7 @@ function fnSearchFocusable() {
   const oBtnSearch = document.getElementById('btn-search')
   const oHotWord = document.getElementById('hot-words')
 
-  fnSetAttr(oBtnSearch, {
-    'tabindex': -1,
+  fnFocusable(oBtnSearch, {
     'idup': 'chann-0'
   })
   fnSiblingsFocusable(oHotWord, 'word-')
