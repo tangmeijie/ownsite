@@ -30,6 +30,16 @@
     mix-blend-mode: difference;
   }
 
+  .slider {
+    height: 4px;
+    position: absolute;
+    bottom: 0;
+    background: $color-white;
+    border-radius: $corner;
+    z-index: -1;
+    transform: scaleX(0.3);
+  }
+
   &:focus-within {
     background: rgba($color-black, .7);
     backdrop-filter: blur(10px);
@@ -40,22 +50,13 @@
     }
     .slider{
       height: 100%;
-      border-radius: $corner;
       @include shadow($size: 'small');
+      transform: scaleX(1);
     }
   }
 
-  .item:focus {
+  .item:focus, .item.mark {
     opacity: 1;
-  }
-
-  .slider {
-    height: 4px;
-    position: absolute;
-    bottom: 0;
-    background: $color-white;
-    border-radius: 2px;
-    z-index: -1;
   }
 }
 
@@ -114,7 +115,7 @@
     &:focus {
       color: $color-black;
       background: $color-white;
-      @include shadow;
+      @include shadow($size: 'small');
     }
   }
 }
