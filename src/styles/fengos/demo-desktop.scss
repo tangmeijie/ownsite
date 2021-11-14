@@ -11,7 +11,7 @@
   border-radius: $corner;
   isolation: isolate;
   z-index: 9;
-  transition: background 250ms $curve-ease;
+  transition: background 200ms $curve-ease;
 
   .bar {
     display: inline-flex;
@@ -38,7 +38,7 @@
     background: $color-white;
     border-radius: $corner;
     z-index: -1;
-    transform: scaleX(0.3);
+    transform: scaleX(0.25);
     transition:
       height 350ms $curve-decel,
       transform 250ms $curve-ease,
@@ -89,6 +89,9 @@
   margin: 250px auto 0;
   background: rgba($color-white, .1);
   border-radius: $corner;
+  transition:
+    transform 200ms $curve-decel,
+    box-shadow 200ms $curve-ease;
 
   svg {
     width: 40px;
@@ -105,7 +108,7 @@
 
   &:focus {
     background: $color-white;
-    transform: scale(1.2);
+    transform: scale(grid-scale(580px));
     @include shadow;
 
     svg {
@@ -131,6 +134,7 @@
     background: rgba($color-white, .1);
     border-radius: $corner * 3;
     margin: 0 15px;
+    transition: box-shadow 200ms $curve-ease;
 
     &:focus {
       color: $color-black;
