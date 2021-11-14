@@ -51,7 +51,7 @@ $corner: 10px;
 // 阴影
 @mixin shadow($depth: .7, $size: 'focus') {
   @if $size=='focus' {
-    box-shadow: 0 40px 80px -5px rgba($color-veil, $depth);
+    box-shadow: 0 40px 80px 0 rgba($color-veil, $depth);
   }
 
   @else if $size=='small' {

@@ -12,6 +12,8 @@ import {
 } from './demo-basic.js'
 
 // 频道栏
+const oChannel = document.getElementById('channel')
+const aItems = oChannel.getElementsByClassName('item')
 
 function fnChannelSilder() {
   const oFocus = document.activeElement
@@ -36,24 +38,39 @@ function fnChannelSilder() {
 }
 
 function fnChannalFocusable() {
-  const oChannel = document.getElementById('channel')
   fnSiblingsFocusable(oChannel, 'chann-')
 
-  const aItems = oChannel.getElementsByClassName('item')
   fnFocusable(aItems[0], {
     'iddown': 'btn-search'
   })
 }
 
 // 搜索区
-function fnSearchFocusable() {
-  const oBtnSearch = document.getElementById('btn-search')
-  const oHotWord = document.getElementById('hot-words')
+const oBtnSearch = document.getElementById('btn-search')
+const oHotWord = document.getElementById('hot-words')
+const aHotWords = oHotWord.getElementsByClassName('item')
 
+function fnFillHotWords() {
+  let start = 0
+  for (let i of Object.keys(aHotWords)) {
+    let j = (i + start) % aMovies.length
+    aHotWords[i].innerHTML = aMovies[j].name
+  }
+}
+fnFillHotWords()
+
+function fnSearchFocusable() {
   fnFocusable(oBtnSearch, {
-    'idup': 'chann-0'
+    'idup': 'chann-0',
+    'iddown': 'word-0'
   })
+
   fnSiblingsFocusable(oHotWord, 'word-')
+  for (let item of aHotWords) {
+    fnFocusable(item, {
+      'idup': 'btn-search'
+    })
+  }
 }
 
 // 添加焦点事件
