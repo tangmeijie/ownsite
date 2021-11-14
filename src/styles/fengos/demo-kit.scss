@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // 文字
 @font-face {
   font-family: EN;
@@ -86,6 +88,31 @@ $corner: 10px;
 
 @function metallic-ratio($n) {
   @return ($n + math.sqrt($n * $n + 4)) / 2;
+}
+
+// 动画曲线
+$curve-stand: cubic-bezier(0.4, 0.0, 0.2, 1);
+$curve-decel: cubic-bezier(0.0, 0.0, 0.2, 1);
+$curve-accel: cubic-bezier(0.4, 0.0, 1.0, 1);
+$curve-sharp: cubic-bezier(0.4, 0.0, 0.6, 1);
+$curve-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+$curve-ease-in: cubic-bezier(0.42, 0, 1, 1);
+$curve-ease-out: cubic-bezier(0, 0, 0.58, 1);
+$curve-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+
+@function spring-wobbly($t) {
+  $E: math.$e;
+  @return -0.5 * math.pow($E, (-6 * $t)) * (-2 * math.pow($E, (6 * $t)) + math.sin(12 * $t) + 2 * math.cos(12 * $t));
+}
+
+@function lerp($a, $b, $p) {
+  @return $a+$p * ($b - $a);
+}
+
+// 放大倍数
+@function grid-scale($width) {
+  $scale: ($width + ($grid-gap - $grid-min) * 2) / $width;
+  @return math.floor($scale * 100) / 100;
 }
 
 // 常用组件

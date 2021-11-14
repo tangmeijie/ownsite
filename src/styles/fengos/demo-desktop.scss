@@ -11,6 +11,7 @@
   border-radius: $corner;
   isolation: isolate;
   z-index: 9;
+  transition: background 250ms $curve-ease;
 
   .bar {
     display: inline-flex;
@@ -38,6 +39,10 @@
     border-radius: $corner;
     z-index: -1;
     transform: scaleX(0.3);
+    transition:
+      height 350ms $curve-decel,
+      transform 250ms $curve-ease,
+      box-shadow 200ms $curve-ease;
   }
 
   &:focus-within {
@@ -48,15 +53,30 @@
     span {
       opacity: 1;
     }
-    .slider{
+
+    .slider {
       height: 100%;
       @include shadow($size: 'small');
       transform: scaleX(1);
+      // animation: slider-show 400ms linear;
+      transition:
+        height 150ms $curve-decel,
+        transform 100ms $curve-ease,
+        box-shadow 100ms $curve-ease;
     }
   }
 
-  .item:focus, .item.mark {
+  .item:focus,
+  .item.mark {
     opacity: 1;
+  }
+
+  @keyframes slider-show {
+    @for $i from 0 through 100 {
+      #{$i * 1%} {
+        height: lerp(4px, 70px, spring-wobbly($i / 100));
+      }
+    }
   }
 }
 
