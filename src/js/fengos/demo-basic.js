@@ -1,4 +1,3 @@
-import { node } from 'webpack'
 import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
