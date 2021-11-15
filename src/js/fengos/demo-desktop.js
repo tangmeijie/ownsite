@@ -8,7 +8,8 @@ import {
   fnFocusable,
   fnSiblingsFocusable,
   fnAddActions,
-  fnInitFocus
+  fnInitFocus,
+  fnCloneItem
 } from './demo-basic.js'
 
 // 频道栏
@@ -50,6 +51,9 @@ const oBtnSearch = document.getElementById('btn-search')
 const oHotWord = document.getElementById('hot-words')
 const aHotWords = oHotWord.getElementsByClassName('item')
 
+fnCloneItem('hot-words', 7)
+fnFillHotWords()
+
 function fnFillHotWords() {
   let start = 0
   for (let i of Object.keys(aHotWords)) {
@@ -57,7 +61,6 @@ function fnFillHotWords() {
     aHotWords[i].innerHTML = aMovies[j].name
   }
 }
-fnFillHotWords()
 
 function fnSearchFocusable() {
   fnFocusable(oBtnSearch, {

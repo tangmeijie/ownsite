@@ -1,10 +1,12 @@
+import { node } from 'webpack'
 import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
   fnFocusable,
   fnSiblingsFocusable,
   fnAddActions,
-  fnInitFocus
+  fnInitFocus,
+  fnCloneItem
 }
 
 // 对所有页面执行：
@@ -141,7 +143,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
     if (fnBefore) {
       fnBefore()
     }
-    
+
     switch (e.code) {
       // →
       case 'ArrowRight':
@@ -221,7 +223,7 @@ function fnGetFocus(id) {
     lastbox = lastfocus.parentNode
     lastfocus.blur()
   }
-  
+
   const newfocus = document.getElementById(id)
   const newbox = newfocus.parentNode
 
@@ -262,3 +264,14 @@ function fnNodeIndex(nodelist, node) {
 // a.ontouchstart = function() {
 //   console.log(this)
 // }
+
+// 内容填充
+function fnCloneItem(parentid, n) {
+  const parent = document.getElementById(parentid)
+  const itemOrigin = parent.getElementsByClassName('item')[0]
+
+  for (let i = 0; i < n - 1; i++) {
+    let item = itemOrigin.cloneNode(true)
+    parent.appendChild(item)
+  }
+}
