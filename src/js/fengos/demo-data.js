@@ -5,6 +5,17 @@ export {
 
 // id 规则：艺人 1，电影 2，电视剧 3，综艺 4，纪录片 5，动漫 6
 
+const aArtistsTest = new Map([
+  [101, {
+    name: 'Leo',
+    career: ['演员', '导演']
+  }],
+  [102, {
+    name: 'Mike',
+    career: ['演员']
+  }]
+])
+
 const aArtists = [{
   id: 101,
   name: '',
