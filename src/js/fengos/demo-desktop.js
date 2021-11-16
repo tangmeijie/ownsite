@@ -2,7 +2,8 @@ import '../../styles/fengos/demo-desktop.scss'
 
 import anime from 'animejs/lib/anime.es.js'
 import {
-  aMovies
+  aMovies,
+  test
 } from './demo-data.js'
 import {
   fnFocusable,
@@ -11,6 +12,8 @@ import {
   fnInitFocus,
   fnCloneItem
 } from './demo-basic.js'
+
+console.log(test.keys())
 
 // 频道栏
 const oChannel = document.getElementById('channel')
