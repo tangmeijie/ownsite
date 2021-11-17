@@ -2,8 +2,8 @@ import '../../styles/fengos/demo-desktop.scss'
 
 import anime from 'animejs/lib/anime.es.js'
 import {
-  aMovies,
-  test
+  dSource,
+  dArtist
 } from './demo-data.js'
 import {
   fnFocusable,
@@ -12,8 +12,6 @@ import {
   fnInitFocus,
   fnCloneItem
 } from './demo-basic.js'
-
-console.log(test.keys())
 
 // 频道栏
 const oChannel = document.getElementById('channel')
@@ -50,28 +48,33 @@ function fnChannalFocusable() {
 }
 
 // 搜索区
-const oBtnSearch = document.getElementById('btn-search')
-const oHotWord = document.getElementById('hot-words')
-const aHotWords = oHotWord.getElementsByClassName('item')
+const oSearch = document.getElementById('btn-search')
+const oHot = document.getElementById('hot-words')
+const aHotWords = oHot.getElementsByClassName('item')
 
 fnCloneItem('hot-words', 7)
-fnFillHotWords()
+fnFillHot()
 
-function fnFillHotWords() {
-  let start = 0
+function fnFillHot(start = 0) {
+  let dWords = new Array()
+
+  for(let hot of dSource) {
+    dWords.push(hot[1].name)
+  }
+  
   for (let i of Object.keys(aHotWords)) {
-    let j = (i + start) % aMovies.length
-    aHotWords[i].innerHTML = aMovies[j].name
+    let j = (i + start) % dWords.length
+    aHotWords[i].innerHTML = dWords[j]
   }
 }
 
 function fnSearchFocusable() {
-  fnFocusable(oBtnSearch, {
+  fnFocusable(oSearch, {
     'idup': 'chann-0',
     'iddown': 'word-0'
   })
 
-  fnSiblingsFocusable(oHotWord, 'word-')
+  fnSiblingsFocusable(oHot, 'word-')
   for (let item of aHotWords) {
     fnFocusable(item, {
       'idup': 'btn-search'
