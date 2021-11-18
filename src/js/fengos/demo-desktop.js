@@ -48,20 +48,20 @@ function fnChannalFocusable() {
 }
 
 // 搜索区
-const oSearch = document.getElementById('btn-search')
-const oHot = document.getElementById('hot-words')
+const oSearchBtn = document.getElementById('btn-search')
+const oHot = document.getElementById('hot-word')
 const aHotWords = oHot.getElementsByClassName('item')
 
-fnCloneItem('hot-words', 7)
+fnCloneItem('hot-word', 7)
 fnFillHot()
 
 function fnFillHot(start = 0) {
   let dWords = new Array()
 
-  for(let hot of dSource) {
+  for (let hot of dSource) {
     dWords.push(hot[1].name)
   }
-  
+
   for (let i of Object.keys(aHotWords)) {
     let j = (i + start) % dWords.length
     aHotWords[i].innerHTML = dWords[j]
@@ -69,7 +69,7 @@ function fnFillHot(start = 0) {
 }
 
 function fnSearchFocusable() {
-  fnFocusable(oSearch, {
+  fnFocusable(oSearchBtn, {
     'idup': 'chann-0',
     'iddown': 'word-0'
   })
@@ -79,6 +79,25 @@ function fnSearchFocusable() {
     fnFocusable(item, {
       'idup': 'btn-search'
     })
+  }
+}
+
+// 排行榜
+const oRankRecom = document.getElementById('rank-recommend')
+fnCloneItem('rank-recommend', 25)
+fnFillRankRecom()
+
+function fnFillRankRecom(start = 0) {
+  const aRecomItems = oRankRecom.getElementsByClassName('item')
+  let dTitle = new Array()
+
+  for (let title of dSource) {
+    dTitle.push(title[1].assets.title)
+  }
+
+  for (let i of Object.keys(aRecomItems)) {
+    let j = (i + start) % dTitle.length
+    aRecomItems[i].getElementsByTagName('img')[0].src = dTitle[j]
   }
 }
 

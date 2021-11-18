@@ -18,9 +18,9 @@
     </section>
 
     <section id="channel" class="channel">
-      <div class="bar">
-        <img class="item" src="/fengos/demo/images/channel-search.png" />
-        <span class="item" autofocus>电影</span>
+      <div class="box">
+        <img autofocus class="item" src="/fengos/demo/images/channel-search.png" />
+        <span class="item">电影</span>
         <span class="item">电视剧</span>
         <span class="item">综艺</span>
         <span class="item">世界杯</span>
@@ -32,59 +32,73 @@
     </section>
 
     <main>
-      <div id="search" class="container">
-        <button id="btn-search" class="btn-search">
-          <svg>
-            <use xlink:href="/fengos/demo/icons.svg#search"></use>
-          </svg>
-          <span>搜索电影、电视剧、演员</span>
-        </button>
-        <ol id="hot-words" class="tag">
-          <li class="item"></li>
-        </ol>
-        <div id="ranks">
-          <section id="rank-recommend">
-            <h1 class="rank-title"></h1>
-            <ul class="rank-list">
-              <li class="item">
+      <div id="search">
+        <div class="container">
+          <button id="btn-search" class="btn-search">
+            <svg>
+              <use xlink:href="/fengos/demo/icons.svg#search"></use>
+            </svg>
+            <span>搜索电影、电视剧、演员</span>
+          </button>
 
-              </li>
-            </ul>
-          </section>
-          <section id="rank-hot">
-            <h1 class="rank-title"></h1>
-            <ul class="rank-list">
-              <li></li>
-            </ul>
-          </section>
-          <section id="rank-collection">
-            <h1 class="rank-title"></h1>
-            <ul class="rank-list">
-              <li></li>
-            </ul>
-          </section>
-          <section id="rank-actor">
-            <h1 class="rank-title"></h1>
-            <ul class="rank-list">
-              <li></li>
-            </ul>
-          </section>
-          <section id="rank-actress">
-            <h1 class="rank-title"></h1>
-            <ul class="rank-list">
-              <li></li>
-            </ul>
-          </section>
+          <ol id="hot-word" class="tag">
+            <li class="item"></li>
+          </ol>
+
+          <div class="rank">
+            <section id="rank-recommend">
+              <h1>你可能会喜欢</h1>
+              <ul>
+                <li class="item">
+                  <div class="title"><img /></div>
+                </li>
+              </ul>
+            </section>
+            <section id="rank-hot">
+              <h1>热播榜</h1>
+              <ul>
+                <li></li>
+              </ul>
+            </section>
+            <section id="rank-collection">
+              <h1>收藏榜</h1>
+              <ul>
+                <li></li>
+              </ul>
+            </section>
+            <section id="rank-topic">
+              <h1>专题榜</h1>
+              <ul>
+                <li></li>
+              </ul>
+            </section>
+            <section id="rank-actor">
+              <h1>男艺人榜</h1>
+              <ul>
+                <li></li>
+              </ul>
+            </section>
+            <section id="rank-actress">
+              <h1>女艺人榜</h1>
+              <ul>
+                <li></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+
+        <div id="rank-bg">
+
         </div>
       </div>
 
-      <div id="movie" class="container"></div>
-      <div id="tv" class="container"></div>
-      <div id="variety" class="container"></div>
-      <div id="football" class="container"></div>
-      <div id="documentary" class="container"></div>
-      <div id="cartoon" class="container"></div>
-      <div id="more" class="container"></div>
+      <div id="movie"></div>
+      <div id="tv"></div>
+      <div id="variety"></div>
+      <div id="football"></div>
+      <div id="documentary"></div>
+      <div id="cartoon"></div>
+      <div id="more"></div>
     </main>
   </div>
 </body>

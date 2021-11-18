@@ -18,8 +18,8 @@
   src: local('PingFang SC'), local('Microsoft YaHei');
 }
 
-@mixin font-height($size, $isMulti: false) {
-  @if $isMulti==true {
+@mixin font-height($size, $isPara: false) {
+  @if $isPara==true {
     font-size: $size;
     line-height: $size * 1.5;
   }
@@ -64,17 +64,17 @@ $corner: 10px;
 }
 
 // 卡片形状
-@mixin shape($width: 100px, $shape: 16/9) {
+@mixin card($width: 100px, $ratio: 16/9) {
   width: $width;
 
-  @if type-of($shape)=='number' {
-    height: math.floor($width / $shape);
+  @if type-of($ratio)=='number' {
+    height: math.floor($width / $ratio);
   }
 
-  @else if type-of($shape)=='string' {
-    @if str-index($shape, 'metal')==1 {
+  @else if type-of($ratio)=='string' {
+    @if str-index($ratio, 'metal')==1 {
       @for $i from 1 through 10 {
-        @if $shape=='metal-'+#{$i} {
+        @if $ratio=='metal-'+#{$i} {
           height: math.floor($width / metallic-ratio($i));
         }
       }

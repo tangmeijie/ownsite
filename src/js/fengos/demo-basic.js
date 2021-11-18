@@ -268,9 +268,10 @@ function fnNodeIndex(nodelist, node) {
 function fnCloneItem(parentid, n) {
   const parent = document.getElementById(parentid)
   const itemOrigin = parent.getElementsByClassName('item')[0]
+  const box = itemOrigin.parentNode
 
   for (let i = 0; i < n - 1; i++) {
     let item = itemOrigin.cloneNode(true)
-    parent.appendChild(item)
+    box.appendChild(item)
   }
 }

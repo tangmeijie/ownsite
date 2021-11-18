@@ -13,7 +13,7 @@
   z-index: 9;
   transition: background 200ms $curve-ease;
 
-  .bar {
+  .box {
     display: inline-flex;
     align-items: center;
   }
@@ -96,9 +96,8 @@
   svg {
     width: 40px;
     height: 40px;
-    stroke: $color-white;
+    stroke: rgba($color-white, .6);
     margin-right: 20px;
-    opacity: .6;
   }
 
   span {
@@ -140,6 +139,33 @@
       color: $color-black;
       background: $color-white;
       @include shadow($size: 'small');
+    }
+  }
+}
+
+.rank {
+  margin-top: 150px;
+  display: inline-flex;
+
+  section {
+    width: ($page-w - $safe-v*2)/3;
+  }
+
+  li {
+    margin-top: 50px;
+  }
+
+  h1 {
+    @include font-height(34px);
+    color: rgba($color-white, .6);
+    margin-bottom: 50px;
+  }
+
+  .title {
+    height: 70px;
+
+    img {
+      height: 100%;
     }
   }
 }
