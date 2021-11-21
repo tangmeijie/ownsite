@@ -215,25 +215,25 @@ function fnInitFocus(fn) {
 }
 
 function fnGetFocus(id) {
-  let lastfocus, newfocus
+  let lastfocus, nextfocus
 
   if (document.activeElement !== document.body) {
     lastfocus = document.activeElement
     lastfocus.blur()
   }
 
-  const newclass = document.getElementById(id).className
+  const nextclass = document.getElementById(id).className
 
-  if (newclass.includes('item')) {
-    newfocus = document.getElementById(id)
+  if (nextclass.includes('item')) {
+    nextfocus = document.getElementById(id)
   } else {
-    newfocus = fnFindMark(id)
+    nextfocus = fnFindMark(id)
+    nextfocus.classList.remove('mark')
   }
-  newfocus.focus()
+  nextfocus.focus()
 
-  if (lastfocus && lastfocus.parentNode !== newfocus.parentNode) {
+  if (lastfocus && lastfocus.parentNode !== nextfocus.parentNode) {
     lastfocus.classList.add('mark')
-    newfocus.classList.remove('mark')
   }
 }
 
@@ -241,10 +241,10 @@ function fnFindMark(boxID) {
   let mark
   const box = document.getElementById(boxID)
 
-  if (box.getElementsByClassName('mark')[0]) {
-    mark = box.getElementsByClassName('mark')[0]
+  if (box.querySelector('.mark')) {
+    mark = box.querySelector('.mark')
   } else {
-    mark = box.getElementsByClassName('item')[0]
+    mark = box.querySelector('.item')
   }
 
   return mark
