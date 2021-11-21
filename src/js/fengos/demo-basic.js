@@ -1,7 +1,7 @@
 import scssVars from '../../styles/fengos/demo-kit.scss'
 
 export {
-  fnFocusable,
+  fnItemFocusable,
   fnSiblingsFocusable,
   fnAddActions,
   fnInitFocus,
@@ -81,11 +81,11 @@ function fnSiblingsFocusable(parent, prefix, isX = true, isLoop = false) {
   let lastid, nextid
 
   if (isX) {
-    lastid = 'idleft'
-    nextid = 'idright'
+    lastid = 'data-left'
+    nextid = 'data-right'
   } else {
-    lastid = 'idup'
-    nextid = 'iddown'
+    lastid = 'data-up'
+    nextid = 'data-down'
   }
 
   for (let i = 0; i < siblings.length; i++) {
@@ -93,17 +93,17 @@ function fnSiblingsFocusable(parent, prefix, isX = true, isLoop = false) {
 
     switch (i) {
       case 0:
-        fnFocusable(siblings[i], {
+        fnItemFocusable(siblings[i], {
           [nextid]: prefix + (i + 1)
         })
         break
       case siblings.length - 1:
-        fnFocusable(siblings[i], {
+        fnItemFocusable(siblings[i], {
           [lastid]: prefix + (i - 1)
         })
         break
       default:
-        fnFocusable(siblings[i], {
+        fnItemFocusable(siblings[i], {
           [nextid]: prefix + (i + 1),
           [lastid]: prefix + (i - 1)
         })
@@ -111,16 +111,16 @@ function fnSiblingsFocusable(parent, prefix, isX = true, isLoop = false) {
   }
 
   if (isLoop) {
-    fnFocusable(siblings[0], {
+    fnItemFocusable(siblings[0], {
       [lastid]: prefix + (siblings.length - 1)
     })
-    fnFocusable(siblings[siblings.length - 1], {
+    fnItemFocusable(siblings[siblings.length - 1], {
       [nextid]: prefix + 0
     })
   }
 }
 
-function fnFocusable(obj, attrs) {
+function fnItemFocusable(obj, attrs) {
   obj.setAttribute('tabindex', '-1')
   obj.classList.add('item')
 
@@ -134,10 +134,10 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
 
-    const idR = focus.getAttribute('idright')
-    const idL = focus.getAttribute('idleft')
-    const idD = focus.getAttribute('iddown')
-    const idU = focus.getAttribute('idup')
+    const idR = focus.getAttribute('data-right')
+    const idL = focus.getAttribute('data-left')
+    const idD = focus.getAttribute('data-down')
+    const idU = focus.getAttribute('data-up')
 
     if (fnBefore) {
       fnBefore()
@@ -259,6 +259,7 @@ function fnNodeIndex(nodelist, node) {
     return false
   }
 }
+
 // let a = document.getElementById('chan0')
 // a.ontouchstart = function() {
 //   console.log(this)

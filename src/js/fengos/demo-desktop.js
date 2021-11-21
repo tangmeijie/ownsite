@@ -6,7 +6,7 @@ import {
   dArtist
 } from './demo-data.js'
 import {
-  fnFocusable,
+  fnItemFocusable,
   fnSiblingsFocusable,
   fnAddActions,
   fnInitFocus,
@@ -42,8 +42,8 @@ function fnChannelSilder() {
 function fnChannalFocusable() {
   fnSiblingsFocusable(oChannel, 'chann-')
 
-  fnFocusable(aItems[0], {
-    'iddown': 'btn-search'
+  fnItemFocusable(aItems[0], {
+    'data-down': 'btn-search'
   })
 }
 
@@ -69,15 +69,15 @@ function fnFillHot(start = 0) {
 }
 
 function fnSearchFocusable() {
-  fnFocusable(oSearchBtn, {
-    'idup': 'chann-0',
-    'iddown': 'word-0'
+  fnItemFocusable(oSearchBtn, {
+    'data-up': 'chann-0',
+    'data-down': 'word-0'
   })
 
   fnSiblingsFocusable(oHot, 'word-')
   for (let item of aHotWords) {
-    fnFocusable(item, {
-      'idup': 'btn-search'
+    fnItemFocusable(item, {
+      'data-up': 'btn-search'
     })
   }
 }
