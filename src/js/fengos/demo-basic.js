@@ -309,7 +309,7 @@ function fnFillData(elems, data, type, start = 0) {
         elems[i].src = data[j]
         break
       default:
-        return
+        console.log('Fill Error Data')
     }
   }
 }

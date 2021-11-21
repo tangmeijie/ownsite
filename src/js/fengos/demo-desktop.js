@@ -15,11 +15,11 @@ import {
 } from './demo-basic.js'
 
 // 所需数据
-let dNames = new Array(), dTitleImg = new Array()
-
-for (let source of dSource) {
-  dNames.push(source[1].name)
-  dTitleImg.push(source[1].assets.title)
+let dNames = new Array()
+let dImgTitle = new Array()
+for (let value of dSource.values()) {
+  dNames.push(value.name)
+  dImgTitle.push(value.assets.title)
 }
 
 // 频道栏
@@ -77,7 +77,7 @@ fnCloneItem('rank-recommend', 25)
 
 const oRankRecom = document.getElementById('rank-recommend')
 const aRecomItems = oRankRecom.getElementsByTagName('img')
-fnFillData(aRecomItems, dTitleImg, 'img')
+fnFillData(aRecomItems, dImgTitle, 'img')
 
 // 添加焦点事件
 fnInitFocus(function () {
