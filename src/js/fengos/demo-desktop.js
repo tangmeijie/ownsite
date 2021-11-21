@@ -10,12 +10,26 @@ import {
   fnSiblingsFocusable,
   fnAddActions,
   fnInitFocus,
-  fnCloneItem
+  fnCloneItem,
+  fnFillData
 } from './demo-basic.js'
+
+// 所需数据
+let dNames = new Array(), dTitleImg = new Array()
+
+for (let source of dSource) {
+  dNames.push(source[1].name)
+  dTitleImg.push(source[1].assets.title)
+}
 
 // 频道栏
 const oChannel = document.getElementById('channel')
 const aItems = oChannel.getElementsByClassName('item')
+
+fnSiblingsFocusable(oChannel, 'chann-')
+fnItemFocusable(aItems[0], {
+  'data-down': 'btn-search'
+})
 
 function fnChannelSilder() {
   const oFocus = document.activeElement
@@ -39,72 +53,33 @@ function fnChannelSilder() {
   sliderAnime.play()
 }
 
-function fnChannalFocusable() {
-  fnSiblingsFocusable(oChannel, 'chann-')
-
-  fnItemFocusable(aItems[0], {
-    'data-down': 'btn-search'
-  })
-}
-
 // 搜索区
 const oSearchBtn = document.getElementById('btn-search')
 const oHot = document.getElementById('hot-word')
 const aHotWords = oHot.getElementsByClassName('item')
 
 fnCloneItem('hot-word', 7)
-fnFillHot()
+fnFillData(aHotWords, dNames, 'txt')
 
-function fnFillHot(start = 0) {
-  let dWords = new Array()
-
-  for (let hot of dSource) {
-    dWords.push(hot[1].name)
-  }
-
-  for (let i = 0; i < aHotWords.length; i++) {
-    let j = (i + start) % dWords.length
-    aHotWords[i].innerHTML = dWords[j]
-  }
-}
-
-function fnSearchFocusable() {
-  fnItemFocusable(oSearchBtn, {
-    'data-up': 'channel',
-    'data-down': 'hot-word'
+fnItemFocusable(oSearchBtn, {
+  'data-up': 'channel',
+  'data-down': 'hot-word'
+})
+fnSiblingsFocusable(oHot, 'word-')
+for (let item of aHotWords) {
+  fnItemFocusable(item, {
+    'data-up': 'btn-search'
   })
-
-  fnSiblingsFocusable(oHot, 'word-')
-  for (let item of aHotWords) {
-    fnItemFocusable(item, {
-      'data-up': 'btn-search'
-    })
-  }
 }
 
 // 排行榜
-const oRankRecom = document.getElementById('rank-recommend')
 fnCloneItem('rank-recommend', 25)
-fnFillRankRecom()
 
-function fnFillRankRecom(start = 0) {
-  const aRecomItems = oRankRecom.getElementsByClassName('item')
-  let dTitle = new Array()
-
-  for (let title of dSource) {
-    dTitle.push(title[1].assets.title)
-  }
-
-  for (let i = 0; i < aRecomItems.length; i++) {
-    let j = (i + start) % dTitle.length
-    aRecomItems[i].getElementsByTagName('img')[0].src = dTitle[j]
-  }
-}
+const oRankRecom = document.getElementById('rank-recommend')
+const aRecomItems = oRankRecom.getElementsByTagName('img')
+fnFillData(aRecomItems, dTitleImg, 'img')
 
 // 添加焦点事件
-fnChannalFocusable()
-fnSearchFocusable()
-
 fnInitFocus(function () {
   fnChannelSilder()
 })

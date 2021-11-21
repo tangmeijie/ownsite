@@ -5,7 +5,8 @@ export {
   fnSiblingsFocusable,
   fnAddActions,
   fnInitFocus,
-  fnCloneItem
+  fnCloneItem,
+  fnFillData
 }
 
 // 对所有页面执行：
@@ -274,5 +275,22 @@ function fnCloneItem(parentid, n) {
   for (let i = 0; i < n - 1; i++) {
     let item = itemOrigin.cloneNode(true)
     box.appendChild(item)
+  }
+}
+
+function fnFillData(elems, data, type, start = 0) {
+  for (let i = 0; i < elems.length; i++) {
+    let j = (i + start) % data.length
+
+    switch (type) {
+      case 'txt':
+        elems[i].innerHTML = data[j]
+        break
+      case 'img':
+        elems[i].src = data[j]
+        break
+      default:
+        return
+    }
   }
 }
