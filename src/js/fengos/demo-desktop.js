@@ -70,8 +70,8 @@ function fnFillHot(start = 0) {
 
 function fnSearchFocusable() {
   fnItemFocusable(oSearchBtn, {
-    'data-up': 'chann-0',
-    'data-down': 'word-0'
+    'data-up': 'channel',
+    'data-down': 'hot-word'
   })
 
   fnSiblingsFocusable(oHot, 'word-')

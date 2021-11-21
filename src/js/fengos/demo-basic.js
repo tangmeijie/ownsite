@@ -215,31 +215,31 @@ function fnInitFocus(fn) {
 }
 
 function fnGetFocus(id) {
-  let lastfocus, lastbox
+  let lastfocus, newfocus
 
   if (document.activeElement !== document.body) {
     lastfocus = document.activeElement
-    lastbox = lastfocus.parentNode
     lastfocus.blur()
   }
 
-  const newfocus = document.getElementById(id)
-  const newbox = newfocus.parentNode
+  const newclass = document.getElementById(id).className
 
-  if (lastfocus && lastbox !== newbox) {
-    const mark = fnFindMark(id)
-    mark.focus()
-
-    mark.classList.remove('mark')
-    lastfocus.classList.add('mark')
+  if (newclass.includes('item')) {
+    newfocus = document.getElementById(id)
   } else {
-    newfocus.focus()
+    newfocus = fnFindMark(id)
+  }
+  newfocus.focus()
+
+  if (lastfocus && lastfocus.parentNode !== newfocus.parentNode) {
+    lastfocus.classList.add('mark')
+    newfocus.classList.remove('mark')
   }
 }
 
-function fnFindMark(id) {
+function fnFindMark(boxID) {
   let mark
-  const box = document.getElementById(id).parentNode
+  const box = document.getElementById(boxID)
 
   if (box.getElementsByClassName('mark')[0]) {
     mark = box.getElementsByClassName('mark')[0]
