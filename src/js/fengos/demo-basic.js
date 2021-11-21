@@ -131,7 +131,7 @@ function fnItemFocusable(obj, attrs) {
 }
 
 function fnAddActions(fnBefore, fnAfter, fnNoChange) {
-
+  // 键盘事件
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
 
@@ -204,6 +204,27 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
     }
 
   })
+  // 鼠标事件
+  const aItems = document.getElementsByClassName('item')
+  for (let item of aItems) {
+    item.addEventListener('click', function () {
+      if (fnBefore) {
+        fnBefore()
+      }
+
+      fnGetFocus(this.id)
+
+      if (document.activeElement === focus) {
+        if (fnNoChange) {
+          fnNoChange()
+        }
+      } else {
+        if (fnAfter) {
+          fnAfter()
+        }
+      }
+    })
+  }
 }
 
 function fnInitFocus(fn) {
@@ -235,12 +256,15 @@ function fnGetFocus(id) {
 
   if (lastfocus && lastfocus.parentNode !== nextfocus.parentNode) {
     lastfocus.classList.add('mark')
+    if (nextfocus.parentNode.querySelector('.mark')) {
+      nextfocus.parentNode.querySelector('.mark').classList.remove('mark')
+    }
   }
 }
 
-function fnFindMark(boxID) {
+function fnFindMark(idbox) {
   let mark
-  const box = document.getElementById(boxID)
+  const box = document.getElementById(idbox)
 
   if (box.querySelector('.mark')) {
     mark = box.querySelector('.mark')
@@ -260,11 +284,6 @@ function fnNodeIndex(nodelist, node) {
     return false
   }
 }
-
-// let a = document.getElementById('chan0')
-// a.ontouchstart = function() {
-//   console.log(this)
-// }
 
 // 内容填充
 function fnCloneItem(parentid, n) {
