@@ -74,10 +74,19 @@ for (let item of aHotWords) {
 
 // 排行榜
 fnCloneItem('rank-recommend', 25)
+fnCloneItem('rank-hot', 25)
 
 const oRankRecom = document.getElementById('rank-recommend')
-const aRecomItems = oRankRecom.getElementsByTagName('img')
-fnFillData(aRecomItems, dImgTitle, 'img')
+const aRecomImgs = oRankRecom.getElementsByTagName('img')
+fnFillData(aRecomImgs, dImgTitle, 'img')
+
+const oRankHot = document.getElementById('rank-hot')
+const aHotNums = oRankHot.getElementsByClassName('num')
+const aHotImgs = oRankHot.getElementsByTagName('img')
+fnFillData(aHotImgs, dImgTitle, 'img', 1)
+for (let i = 0; i < aHotNums.length; i++) {
+  aHotNums[i].innerHTML = i + 1
+}
 
 // 添加焦点事件
 fnInitFocus(function () {
