@@ -62,7 +62,7 @@ function fnFillHot(start = 0) {
     dWords.push(hot[1].name)
   }
 
-  for (let i of Object.keys(aHotWords)) {
+  for (let i = 0; i < aHotWords.length; i++) {
     let j = (i + start) % dWords.length
     aHotWords[i].innerHTML = dWords[j]
   }
@@ -95,7 +95,7 @@ function fnFillRankRecom(start = 0) {
     dTitle.push(title[1].assets.title)
   }
 
-  for (let i of Object.keys(aRecomItems)) {
+  for (let i = 0; i < aRecomItems.length; i++) {
     let j = (i + start) % dTitle.length
     aRecomItems[i].getElementsByTagName('img')[0].src = dTitle[j]
   }
