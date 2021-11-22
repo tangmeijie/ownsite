@@ -73,19 +73,57 @@ for (let item of aHotWords) {
 }
 
 // 排行榜
-fnCloneItem('rank-recommend', 25)
-fnCloneItem('rank-hot', 25)
-
 const oRankRecom = document.getElementById('rank-recommend')
-const aRecomImgs = oRankRecom.getElementsByTagName('img')
-fnFillData(aRecomImgs, dImgTitle, 'img')
-
 const oRankHot = document.getElementById('rank-hot')
-const aHotNums = oRankHot.getElementsByClassName('num')
-const aHotImgs = oRankHot.getElementsByTagName('img')
-fnFillData(aHotImgs, dImgTitle, 'img', 1)
-for (let i = 0; i < aHotNums.length; i++) {
-  aHotNums[i].innerHTML = i + 1
+const oRankCollect = document.getElementById('rank-collect')
+
+fnCloneRank({
+  'rank-recommend': 10,
+  'rank-hot': 10,
+  'rank-collect': 10
+})
+
+fnFillRankOrder(['rank-hot', 'rank-collect'])
+
+fnFillRankData([{
+  elems: oRankRecom.getElementsByTagName('img'),
+  data: dImgTitle,
+  type: 'img'
+}, {
+  elems: oRankHot.getElementsByTagName('img'),
+  data: dImgTitle,
+  type: 'img',
+  start: 1
+},{
+  elems: oRankCollect.getElementsByTagName('img'),
+  data: dImgTitle,
+  type: 'img',
+  start: 0
+}])
+
+function fnCloneRank(oRankLength) {
+  for (let [id, length] of Object.entries(oRankLength)) {
+    fnCloneItem(id, length)
+  }
+}
+
+function fnFillRankOrder(aRankID) {
+  for (let id of aRankID) {
+    const oRank = document.getElementById(id)
+    const aRankOrder = oRank.getElementsByClassName('num')
+    for (let i = 0; i < aRankOrder.length; i++) {
+      aRankOrder[i].innerHTML = i + 1
+    }
+  }
+}
+
+function fnFillRankData(aElemData) {
+  for (let x of aElemData) {
+    if (!x.start) {
+      x.start = 0
+    }
+    fnFillData(x.elems, x.data, x.type, x.start)
+  }
 }
 
 // 添加焦点事件

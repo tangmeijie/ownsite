@@ -149,12 +149,12 @@
 
   section {
     width: ($page-w - $safe-v*2)/3;
+  }
 
-    h1 {
-      @include font-height(34px);
-      color: rgba($color-white, .6);
-      margin-bottom: 50px;
-    }
+  h1 {
+    @include font-height(34px);
+    color: rgba($color-white, .6);
+    margin-bottom: 50px;
   }
 
   li {

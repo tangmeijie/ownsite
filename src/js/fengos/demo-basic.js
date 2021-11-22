@@ -262,9 +262,9 @@ function fnGetFocus(id) {
   }
 }
 
-function fnFindMark(idbox) {
+function fnFindMark(boxID) {
   let mark
-  const box = document.getElementById(idbox)
+  const box = document.getElementById(boxID)
 
   if (box.querySelector('.mark')) {
     mark = box.querySelector('.mark')
