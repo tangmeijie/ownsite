@@ -146,6 +146,8 @@
 .rank {
   margin-top: 150px;
   display: inline-flex;
+  // transform: translateX(-1920px);
+  // overflow-x: scroll;
 
   section {
     width: ($page-w - $safe-v*2)/3;
@@ -160,19 +162,32 @@
   li {
     margin-top: 50px;
     display: flex;
+  }
 
-    .num {
-      @include font-height(34px);
-      color: rgba($color-white, .7);
-      margin-right: 20px;
-    }
+  .num {
+    @include font-height(50px);
+    color: rgba($color-white, .7);
+    margin-right: 20px;
   }
 
   .title {
     height: 70px;
+  }
 
-    img {
-      height: 100%;
+  .avatar {
+    @include card(70px, 1);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .artist {
+    display: flex;
+    align-items: center;
+
+    h2 {
+      font-size: 30px;
+      color: $color-white;
+      margin-left: 20px;
     }
   }
 }
