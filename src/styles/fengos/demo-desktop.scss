@@ -146,7 +146,6 @@
 .rank {
   margin-top: 150px;
   display: inline-flex;
-  // transform: translateX(-1920px);
   // overflow-x: scroll;
 
   section {
@@ -154,7 +153,9 @@
   }
 
   h1 {
-    @include font-height(34px);
+    font-family: TITLE;
+    font-weight: bold;
+    @include font-height(38px);
     color: rgba($color-white, .6);
     margin-bottom: 50px;
   }
@@ -165,8 +166,10 @@
   }
 
   .num {
-    @include font-height(50px);
-    color: rgba($color-white, .7);
+    font-family: NUM;
+    font-weight: bold;
+    @include font-height(40px);
+    color: rgba($color-white, .4);
     margin-right: 20px;
   }
 

@@ -3,19 +3,22 @@
 // 文字
 @font-face {
   font-family: EN;
-  font-weight: 400;
   src: url('../../../public/fengos/demo/fonts/Lato-Regular.ttf');
 }
 
 @font-face {
-  font-family: EN;
-  font-weight: 700;
-  src: url('../../../public/fengos/demo/fonts/Lato-Bold.ttf');
+  font-family: NUM;
+  src: url('../../../public/fonts/Lexend-Regular.ttf');
 }
 
 @font-face {
   font-family: CN;
   src: local('PingFang SC'), local('Microsoft YaHei');
+}
+
+@font-face {
+  font-family: TITLE;
+  src: local('STKaiti'), local('KaiTi');
 }
 
 @mixin font-height($size, $isPara: false) {
@@ -134,7 +137,6 @@ $curve-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
 
   .time {
     @include font-height(34px);
-    font-weight: 700;
     color: rgba($color-white, .7);
     margin: 0 40px 0 10px;
   }

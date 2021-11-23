@@ -87,7 +87,8 @@ fnRankContent({
   id: 'rank-hot',
   ctx: [{
     selector: 'img',
-    data: dTitleImg
+    data: dTitleImg,
+    start: 1
   }]
 }, {
   id: 'rank-collect',
