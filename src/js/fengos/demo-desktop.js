@@ -30,10 +30,10 @@ for (let value of dArtist.values()) {
 
 // 频道栏
 const oChannel = document.getElementById('channel')
-const aItems = oChannel.getElementsByClassName('item')
+const aChannelItems = oChannel.getElementsByClassName('item')
 
 fnSiblingsFocusable(oChannel, 'chann-')
-fnItemFocusable(aItems[0], {
+fnItemFocusable(aChannelItems[0], {
   'data-down': 'btn-search'
 })
 
@@ -61,15 +61,15 @@ function fnChannelSilder() {
 
 // 搜索区
 const oSearchBtn = document.getElementById('btn-search')
-const oHot = document.getElementById('hot-word')
+const oHot = document.getElementById('search-word')
 const aHotWords = oHot.getElementsByClassName('item')
 
-fnCloneItem('hot-word', 7)
+fnCloneItem('search-word', 7)
 fnFillData(aHotWords, dTitle, 'txt')
 
 fnItemFocusable(oSearchBtn, {
   'data-up': 'channel',
-  'data-down': 'hot-word'
+  'data-down': 'search-word'
 })
 fnSiblingsFocusable(oHot, 'word-')
 for (let item of aHotWords) {
@@ -80,86 +80,84 @@ for (let item of aHotWords) {
 }
 
 // 排行榜
-const oRankRecom = document.getElementById('rank-recommend')
-const oRankHot = document.getElementById('rank-hot')
-const oRankCollect = document.getElementById('rank-collect')
-const oRankTopic = document.getElementById('rank-topic')
-const oRankActor = document.getElementById('rank-actor')
-const oRankActress = document.getElementById('rank-actress')
-
-fnCloneRank({
-  'rank-recommend': 10,
-  'rank-hot': 10,
-  'rank-collect': 10,
-  'rank-topic': 10,
-  'rank-actor': 10,
-  'rank-actress': 10
+fnRankContent({
+  id: 'rank-recommend',
+  ctx: [{
+    selector: 'img',
+    data: dTitleImg,
+    type: 'img'
+  }]
+},{
+  id: 'rank-hot',
+  ctx: [{
+    selector: 'img',
+    data: dTitleImg,
+    type: 'img'
+  }]
+},{
+  id: 'rank-collect',
+  ctx: [{
+    selector: 'img',
+    data: dTitleImg,
+    type: 'img'
+  }]
+},{
+  id: 'rank-topic',
+  ctx: [{
+    selector: 'img',
+    data: dTitleImg,
+    type: 'img'
+  }]
+},{
+  id: 'rank-actor',
+  ctx: [{
+    selector: 'img',
+    data: dAvatar,
+    type: 'img'
+  },{
+    selector: 'h2',
+    data: dName,
+    type: 'txt'
+  }]
+},{
+  id: 'rank-actress',
+  ctx: [{
+    selector: 'img',
+    data: dAvatar,
+    type: 'img'
+  },{
+    selector: 'h2',
+    data: dName,
+    type: 'txt'
+  }]
 })
 
-fnFillRankOrder(['rank-hot', 'rank-collect', 'rank-topic', 'rank-actor', 'rank-actress'])
+function fnRankContent(...ranks) {
+  for (let rank of ranks) {
+    const oRank = document.getElementById(rank.id)
 
-fnFillRankData([{
-  elems: oRankRecom.getElementsByTagName('img'),
-  data: dTitleImg,
-  type: 'img'
-}, {
-  elems: oRankHot.getElementsByTagName('img'),
-  data: dTitleImg,
-  type: 'img',
-  start: 1
-}, {
-  elems: oRankCollect.getElementsByTagName('img'),
-  data: dTitleImg,
-  type: 'img',
-  start: 0
-}, {
-  elems: oRankTopic.getElementsByTagName('img'),
-  data: dTitleImg,
-  type: 'img'
-}, {
-  elems: oRankActor.getElementsByTagName('img'),
-  data: dAvatar,
-  type: 'img'
-}, {
-  elems: oRankActor.getElementsByTagName('h2'),
-  data: dName,
-  type: 'txt'
-}, {
-  elems: oRankActress.getElementsByTagName('img'),
-  data: dAvatar,
-  type: 'img'
-}, {
-  elems: oRankActress.getElementsByTagName('h2'),
-  data: dName,
-  type: 'txt'
-}])
-
-function fnCloneRank(oRankLength) {
-  for (let [id, length] of Object.entries(oRankLength)) {
-    fnCloneItem(id, length)
-  }
-}
-
-function fnFillRankOrder(aRankID) {
-  for (let id of aRankID) {
-    const oRank = document.getElementById(id)
-    const aRankOrder = oRank.getElementsByClassName('num')
-    for (let i = 0; i < aRankOrder.length; i++) {
-      aRankOrder[i].innerHTML = i + 1
+    if (!rank.len) {
+      rank.len = 10
     }
-  }
-}
+    fnCloneItem(rank.id, rank.len)
 
-function fnFillRankData(aElemData) {
-  for (let x of aElemData) {
-    if (!x.start) {
-      x.start = 0
+    const aRankNum = oRank.getElementsByClassName('num')
+    for (let i = 0; i < aRankNum.length; i++) {
+      aRankNum[i].innerHTML = i + 1
     }
-    fnFillData(x.elems, x.data, x.type, x.start)
+
+    for (let x of rank.ctx) {
+      if (!x.start) {
+        x.start = 0
+      }
+      const elems = oRank.querySelectorAll(x.selector)
+      fnFillData(elems, x.data, x.type, x.start)
+    }
   }
 }
 
 // fnSiblingsFocusable(oRankRecom, 'recom-', false)
+// fnSiblingsFocusable(oRankHot, 'hot-', false)
 
 // 添加焦点事件
 fnInitFocus(function () {
