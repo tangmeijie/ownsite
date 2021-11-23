@@ -9,7 +9,6 @@ import {
   fnItemFocusable,
   fnSiblingsFocusable,
   fnAddActions,
-  fnInitFocus,
   fnCloneItem,
   fnFillData
 } from './demo-basic.js'
@@ -29,10 +28,9 @@ for (let value of dArtist.values()) {
 }
 
 // 频道栏
-const oChannel = document.getElementById('channel')
-const aChannelItems = oChannel.getElementsByClassName('item')
+const aChannelItems = document.getElementById('channel').getElementsByClassName('item')
 
-fnSiblingsFocusable(oChannel, 'chann-')
+fnSiblingsFocusable('channel', 'chann-')
 fnItemFocusable(aChannelItems[0], {
   'data-down': 'btn-search'
 })
@@ -61,8 +59,7 @@ function fnChannelSilder() {
 
 // 搜索区
 const oSearchBtn = document.getElementById('btn-search')
-const oHot = document.getElementById('search-word')
-const aHotWords = oHot.getElementsByClassName('item')
+const aHotWords = document.getElementById('search-word').getElementsByClassName('item')
 
 fnCloneItem('search-word', 7)
 fnFillData(aHotWords, dTitle)
@@ -71,7 +68,7 @@ fnItemFocusable(oSearchBtn, {
   'data-up': 'channel',
   'data-down': 'search-word'
 })
-fnSiblingsFocusable(oHot, 'word-')
+fnSiblingsFocusable('search-word', 'word-')
 for (let item of aHotWords) {
   fnItemFocusable(item, {
     'data-up': 'btn-search',
@@ -148,13 +145,14 @@ function fnRankContent(...ranks) {
   }
 }
 
-// fnSiblingsFocusable(oRankRecom, 'recom-', false)
-// fnSiblingsFocusable(oRankHot, 'hot-', false)
+fnSiblingsFocusable('rank-recommend', 'recom-', false)
+fnSiblingsFocusable('rank-hot', 'hot-', false)
+fnSiblingsFocusable('rank-collect', 'collect-', false)
+fnSiblingsFocusable('rank-topic', 'collect-', false)
+fnSiblingsFocusable('rank-actor', 'collect-', false)
+fnSiblingsFocusable('rank-actress', 'collect-', false)
 
 // 添加焦点事件
-fnInitFocus(function () {
-  fnChannelSilder()
-})
 fnAddActions(null, function () {
   fnChannelSilder()
 })

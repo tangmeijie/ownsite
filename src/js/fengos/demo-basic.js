@@ -4,7 +4,6 @@ export {
   fnItemFocusable,
   fnSiblingsFocusable,
   fnAddActions,
-  fnInitFocus,
   fnCloneItem,
   fnFillData
 }
@@ -77,7 +76,8 @@ window.onmousedown = function (e) {
   return false
 }
 
-function fnSiblingsFocusable(parent, prefix, isX = true, isLoop = false) {
+function fnSiblingsFocusable(id, prefix, isX = true, isLoop = false) {
+  const parent = document.getElementById(id)
   const siblings = parent.getElementsByClassName('item')
   let lastid, nextid
 
@@ -131,6 +131,9 @@ function fnItemFocusable(obj, attrs) {
 }
 
 function fnAddActions(fnBefore, fnAfter, fnNoChange) {
+  // 初始化焦点
+  fnInitFocus(fnBefore, fnAfter)
+
   // 键盘事件
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
@@ -204,6 +207,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
     }
 
   })
+
   // 鼠标事件
   const aItems = document.getElementsByClassName('item')
   for (let item of aItems) {
@@ -227,12 +231,16 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
   }
 }
 
-function fnInitFocus(fn) {
+function fnInitFocus(fnBefore, fnAfter) {
+  if (fnBefore) {
+    fnBefore()
+  }
+
   const autoFocus = document.querySelector('[autofocus]')
   fnGetFocus(autoFocus.id)
 
-  if (fn) {
-    fn()
+  if (fnAfter) {
+    fnAfter()
   }
 }
 
