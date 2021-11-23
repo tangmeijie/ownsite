@@ -65,7 +65,7 @@ const oHot = document.getElementById('search-word')
 const aHotWords = oHot.getElementsByClassName('item')
 
 fnCloneItem('search-word', 7)
-fnFillData(aHotWords, dTitle, 'txt')
+fnFillData(aHotWords, dTitle)
 
 fnItemFocusable(oSearchBtn, {
   'data-up': 'channel',
@@ -84,51 +84,43 @@ fnRankContent({
   id: 'rank-recommend',
   ctx: [{
     selector: 'img',
-    data: dTitleImg,
-    type: 'img'
+    data: dTitleImg
   }]
-},{
+}, {
   id: 'rank-hot',
   ctx: [{
     selector: 'img',
-    data: dTitleImg,
-    type: 'img'
+    data: dTitleImg
   }]
-},{
+}, {
   id: 'rank-collect',
   ctx: [{
     selector: 'img',
-    data: dTitleImg,
-    type: 'img'
+    data: dTitleImg
   }]
-},{
+}, {
   id: 'rank-topic',
   ctx: [{
     selector: 'img',
-    data: dTitleImg,
-    type: 'img'
+    data: dTitleImg
   }]
-},{
+}, {
   id: 'rank-actor',
   ctx: [{
     selector: 'img',
-    data: dAvatar,
-    type: 'img'
-  },{
+    data: dAvatar
+  }, {
     selector: 'h2',
-    data: dName,
-    type: 'txt'
+    data: dName
   }]
-},{
+}, {
   id: 'rank-actress',
   ctx: [{
     selector: 'img',
-    data: dAvatar,
-    type: 'img'
-  },{
+    data: dAvatar
+  }, {
     selector: 'h2',
-    data: dName,
-    type: 'txt'
+    data: dName
   }]
 })
 
@@ -151,7 +143,7 @@ function fnRankContent(...ranks) {
         x.start = 0
       }
       const elems = oRank.querySelectorAll(x.selector)
-      fnFillData(elems, x.data, x.type, x.start)
+      fnFillData(elems, x.data, x.start)
     }
   }
 }
