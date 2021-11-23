@@ -126,7 +126,7 @@ $curve-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
   overflow: hidden;
 }
 
-.status {
+#status {
   width: 100%;
   height: $safe-h;
   display: flex;
@@ -135,7 +135,7 @@ $curve-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
   position: absolute;
   z-index: 9;
 
-  .time {
+  #time {
     @include font-height(34px);
     color: rgba($color-white, .7);
     margin: 0 40px 0 10px;

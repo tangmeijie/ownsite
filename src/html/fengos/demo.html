@@ -7,17 +7,17 @@
 
 <body>
   <div id="desktop" class="page desktop">
-    <section id="status" class="status">
+    <section id="status">
       <svg>
         <use xlink:href="/fengos/demo/icons.svg#bluetooth"></use>
       </svg>
       <svg>
         <use xlink:href="/fengos/demo/icons.svg#wifi"></use>
       </svg>
-      <span id="time" class="time"></span>
+      <span id="time"></span>
     </section>
 
-    <section id="channel" class="channel">
+    <section id="channel">
       <div class="box">
         <img autofocus class="item" src="/fengos/demo/images/channel-search.png" />
         <span class="item">电影</span>
@@ -28,24 +28,24 @@
         <span class="item">纪录片</span>
         <span class="item">更多</span>
       </div>
-      <div id="channel-slider" class="slider"></div>
+      <div id="channel-slider"></div>
     </section>
 
     <main>
       <div id="search">
         <div class="container">
-          <button id="btn-search" class="btn-search">
+          <button id="search-btn">
             <svg>
               <use xlink:href="/fengos/demo/icons.svg#search"></use>
             </svg>
             <span>搜索电影、电视剧、演员</span>
           </button>
 
-          <ol id="search-word" class="tag">
+          <ol id="search-hot">
             <li class="item"></li>
           </ol>
 
-          <div class="rank">
+          <div id="rank">
             <section id="rank-recommend">
               <h1>你可能会喜欢</h1>
               <ul>

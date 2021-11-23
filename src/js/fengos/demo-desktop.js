@@ -32,7 +32,7 @@ const aChannelItems = document.getElementById('channel').getElementsByClassName(
 
 fnSiblingsFocusable('channel', 'chann-')
 fnItemFocusable(aChannelItems[0], {
-  'data-down': 'btn-search'
+  'data-down': 'search-btn'
 })
 
 function fnChannelSilder() {
@@ -58,26 +58,26 @@ function fnChannelSilder() {
 }
 
 // 搜索区
-const oSearchBtn = document.getElementById('btn-search')
-const aHotWords = document.getElementById('search-word').getElementsByClassName('item')
+const oSearchBtn = document.getElementById('search-btn')
+const aHotWords = document.getElementById('search-hot').getElementsByClassName('item')
 
-fnCloneItem('search-word', 7)
+fnCloneItem('search-hot', 7)
 fnFillData(aHotWords, dTitle)
 
 fnItemFocusable(oSearchBtn, {
   'data-up': 'channel',
-  'data-down': 'search-word'
+  'data-down': 'search-hot'
 })
-fnSiblingsFocusable('search-word', 'word-')
+fnSiblingsFocusable('search-hot', 'word-')
 for (let item of aHotWords) {
   fnItemFocusable(item, {
-    'data-up': 'btn-search',
+    'data-up': 'search-btn',
     'data-down': 'rank-recommend'
   })
 }
 
 // 排行榜
-fnRankContent({
+fnRankData({
   id: 'rank-recommend',
   ctx: [{
     selector: 'img',
@@ -122,7 +122,7 @@ fnRankContent({
   }]
 })
 
-function fnRankContent(...ranks) {
+function fnRankData(...ranks) {
   for (let rank of ranks) {
     const oRank = document.getElementById(rank.id)
 
@@ -149,11 +149,24 @@ function fnRankContent(...ranks) {
 fnSiblingsFocusable('rank-recommend', 'recom-', false)
 fnSiblingsFocusable('rank-hot', 'hot-', false)
 fnSiblingsFocusable('rank-collect', 'collect-', false)
-fnSiblingsFocusable('rank-topic', 'collect-', false)
-fnSiblingsFocusable('rank-actor', 'collect-', false)
-fnSiblingsFocusable('rank-actress', 'collect-', false)
+fnSiblingsFocusable('rank-topic', 'topic-', false)
+fnSiblingsFocusable('rank-actor', 'actor-', false)
+fnSiblingsFocusable('rank-actress', 'actress-', false)
+
+function fnRankFullscreen() {
+  const oFocus = document.activeElement
+  const oSearch = document.getElementById('search')
+
+  if (!oFocus.closest('#rank')) {
+    oSearch.classList.remove('fullscreen')
+    return false
+  } else {
+    oSearch.classList.add('fullsreen')
+  }
+}
 
 // 添加焦点事件
 fnAddActions(null, function () {
   fnChannelSilder()
+  fnRankFullscreen()
 })

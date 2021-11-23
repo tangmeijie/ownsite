@@ -1,7 +1,8 @@
 @import '../clear.scss';
 @import './demo-kit.scss';
 
-.channel {
+// 频道栏
+#channel {
   height: 70px;
   position: absolute;
   top: $safe-h;
@@ -31,7 +32,7 @@
     mix-blend-mode: difference;
   }
 
-  .slider {
+  #channel-slider {
     height: 4px;
     position: absolute;
     bottom: 0;
@@ -54,11 +55,10 @@
       opacity: 1;
     }
 
-    .slider {
+    #channel-slider {
       height: 100%;
       @include shadow($size: 'small');
       transform: scaleX(1);
-      // animation: slider-show 400ms linear;
       transition:
         height 150ms $curve-decel,
         transform 100ms $curve-ease,
@@ -70,17 +70,10 @@
   .item.mark {
     opacity: 1;
   }
-
-  @keyframes slider-show {
-    @for $i from 0 through 100 {
-      #{$i * 1%} {
-        height: lerp(4px, 70px, spring-wobbly($i / 100));
-      }
-    }
-  }
 }
 
-.btn-search {
+// 搜索
+#search-btn {
   width: 580px;
   height: 80px;
   display: flex;
@@ -120,12 +113,12 @@
   }
 }
 
-.tag {
+#search-hot {
   margin-top: 60px;
   display: flex;
   justify-content: center;
 
-  li {
+  .item {
     font-size: 26px;
     line-height: 60px;
     padding: 0 30px;
@@ -143,54 +136,101 @@
   }
 }
 
-.rank {
+// 排行榜
+#rank {
   margin-top: 150px;
   display: inline-flex;
-  // overflow-x: scroll;
+  transition: transform 400ms $curve-decel;
+  transform: translateX(-2000px);
+
+  &:focus-within {
+    transform: translateY(-420px);
+
+    section:focus-within {
+      .item {
+        opacity: .5;
+
+        .title {
+          height: 60px;
+        }
+
+        .avatar {
+          @include card(90px, 1);
+        }
+
+        h2 {
+          font-size: 34px;
+        }
+
+        &:focus {
+          opacity: 1;
+
+          .title {
+            height: 120px;
+          }
+
+          .avatar {
+            @include card(180px, 1);
+          }
+        }
+      }
+
+      h1 {
+        opacity: .9;
+      }
+    }
+  }
 
   section {
     width: ($page-w - $safe-v*2)/3;
+
+    h1 {
+      font-family: TITLE;
+      font-weight: bold;
+      @include font-height(38px);
+      color: $color-white;
+      margin-bottom: 50px;
+      opacity: .7;
+      transition: opacity 250ms $curve-ease;
+    }
   }
 
-  h1 {
-    font-family: TITLE;
-    font-weight: bold;
-    @include font-height(38px);
-    color: rgba($color-white, .6);
-    margin-bottom: 50px;
-  }
-
-  li {
+  .item {
     margin-top: 50px;
     display: flex;
-  }
+    transition: opacity 250ms $curve-ease;
 
-  .num {
-    font-family: NUM;
-    font-weight: bold;
-    @include font-height(40px);
-    color: rgba($color-white, .4);
-    margin-right: 20px;
-  }
+    .num {
+      font-family: NUM;
+      font-weight: bold;
+      @include font-height(40px);
+      color: $color-white;
+      margin-right: 20px;
+      opacity: .7;
+    }
 
-  .title {
-    height: 70px;
-  }
+    .title {
+      height: 70px;
+      transition: height 250ms $curve-decel;
+    }
 
-  .avatar {
-    @include card(70px, 1);
-    border-radius: 50%;
-    overflow: hidden;
-  }
-
-  .artist {
-    display: flex;
-    align-items: center;
+    .avatar {
+      @include card(70px, 1);
+      border-radius: 50%;
+      overflow: hidden;
+      transition: width 250ms $curve-decel, height 250ms $curve-decel;
+    }
 
     h2 {
       font-size: 30px;
       color: $color-white;
       margin-left: 20px;
+      transition: font-size 250ms $curve-ease;
     }
+  }
+
+  .artist {
+    display: flex;
+    align-items: center;
   }
 }
