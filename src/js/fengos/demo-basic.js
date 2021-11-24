@@ -307,21 +307,24 @@ function fnCloneItem(parentid, n) {
 
 function fnFillData(elems, data, start = 0) {
   for (let i = 0; i < elems.length; i++) {
-    let j = (i + start) % data.length
+    const j = (i + start) % data.length
 
     const tag = elems[i].tagName
     if (tag.includes('H')) {
       elems[i].innerHTML = data[j]
     } else {
       switch (tag) {
+
         case 'P':
         case 'SPAN':
         case 'LI':
           elems[i].innerHTML = data[j]
           break
+
         case 'IMG':
           elems[i].src = data[j]
           break
+
         default:
           return
       }

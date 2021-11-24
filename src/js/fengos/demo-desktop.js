@@ -30,10 +30,16 @@ for (let value of dArtist.values()) {
 // 频道栏
 const aChannelItems = document.getElementById('channel').getElementsByClassName('item')
 
-fnSiblingsFocusable('channel', 'chann-')
-fnItemFocusable(aChannelItems[0], {
-  'data-down': 'search-btn'
-})
+fnChannelFocusable()
+
+function fnChannelFocusable() {
+  // 左右切换频道
+  fnSiblingsFocusable('channel', 'chann-')
+
+  fnItemFocusable(aChannelItems[0], {
+    'data-down': 'search-btn'
+  })
+}
 
 function fnChannelSilder() {
   const oFocus = document.activeElement
@@ -64,60 +70,67 @@ const aHotWords = document.getElementById('search-hot').getElementsByClassName('
 fnCloneItem('search-hot', 7)
 fnFillData(aHotWords, dTitle)
 
-fnItemFocusable(oSearchBtn, {
-  'data-up': 'channel',
-  'data-down': 'search-hot'
-})
-fnSiblingsFocusable('search-hot', 'word-')
-for (let item of aHotWords) {
-  fnItemFocusable(item, {
-    'data-up': 'search-btn',
-    'data-down': 'rank-recommend'
+fnSearchFocusable()
+
+function fnSearchFocusable() {
+  // 搜索按钮
+  fnItemFocusable(oSearchBtn, {
+    'data-up': 'channel',
+    'data-down': 'search-hot'
   })
+
+  // 热搜词
+  fnSiblingsFocusable('search-hot', 'word-')
+  for (let item of aHotWords) {
+    fnItemFocusable(item, {
+      'data-up': 'search-btn',
+      'data-down': 'recommend-0'
+    })
+  }
 }
 
 // 排行榜
 fnRankData({
   id: 'rank-recommend',
   ctx: [{
-    selector: 'img',
+    tag: 'img',
     data: dTitleImg
   }]
 }, {
   id: 'rank-hot',
   ctx: [{
-    selector: 'img',
+    tag: 'img',
     data: dTitleImg,
     start: 1
   }]
 }, {
   id: 'rank-collect',
   ctx: [{
-    selector: 'img',
+    tag: 'img',
     data: dTitleImg
   }]
 }, {
   id: 'rank-topic',
   ctx: [{
-    selector: 'img',
+    tag: 'img',
     data: dTitleImg
   }]
 }, {
   id: 'rank-actor',
   ctx: [{
-    selector: 'img',
+    tag: 'img',
     data: dAvatar
   }, {
-    selector: 'h2',
+    tag: 'h2',
     data: dName
   }]
 }, {
   id: 'rank-actress',
   ctx: [{
-    selector: 'img',
+    tag: 'img',
     data: dAvatar
   }, {
-    selector: 'h2',
+    tag: 'h2',
     data: dName
   }]
 })
@@ -131,7 +144,7 @@ function fnRankData(...ranks) {
     }
     fnCloneItem(rank.id, rank.len)
 
-    const aRankNum = oRank.getElementsByClassName('num')
+    const aRankNum = oRank.getElementsByTagName('span')
     for (let i = 0; i < aRankNum.length; i++) {
       aRankNum[i].innerHTML = i + 1
     }
@@ -140,18 +153,58 @@ function fnRankData(...ranks) {
       if (!x.start) {
         x.start = 0
       }
-      const elems = oRank.querySelectorAll(x.selector)
+      const elems = oRank.getElementsByTagName(x.tag)
       fnFillData(elems, x.data, x.start)
     }
   }
 }
 
-fnSiblingsFocusable('rank-recommend', 'recom-', false)
-fnSiblingsFocusable('rank-hot', 'hot-', false)
-fnSiblingsFocusable('rank-collect', 'collect-', false)
-fnSiblingsFocusable('rank-topic', 'topic-', false)
-fnSiblingsFocusable('rank-actor', 'actor-', false)
-fnSiblingsFocusable('rank-actress', 'actress-', false)
+fnRankFocusable([
+  'rank-recommend',
+  'rank-hot',
+  'rank-collect',
+  'rank-topic',
+  'rank-actor',
+  'rank-actress'
+])
+
+function fnRankFocusable(aRankId) {
+  for (let i = 0; i < aRankId.length; i++) {
+    const oRank = document.getElementById(aRankId[i])
+
+    // 纵向切换
+    const sPrefix = aRankId[i].slice(5) + '-'
+    fnSiblingsFocusable(aRankId[i], sPrefix, false)
+
+    // 横向切换
+    const aItems = oRank.getElementsByClassName('item')
+    for (let item of aItems) {
+      switch (i) {
+        case 0:
+          fnItemFocusable(item, {
+            'data-right': aRankId[i + 1]
+          })
+          break
+        case aRankId.length - 1:
+          fnItemFocusable(item, {
+            'data-left': aRankId[0]
+          })
+          break
+        default:
+          fnItemFocusable(item, {
+            'data-right': aRankId[i + 1],
+            'data-left': aRankId[i - 1]
+          })
+      }
+    }
+
+    // 榜单第一项
+    const oFirstItem = oRank.getElementsByClassName('item')[0]
+    fnItemFocusable(oFirstItem, {
+      'data-up': 'chann-0'
+    })
+  }
+}
 
 function fnRankFullscreen() {
   const oFocus = document.activeElement
@@ -159,9 +212,8 @@ function fnRankFullscreen() {
 
   if (!oFocus.closest('#rank')) {
     oSearch.classList.remove('fullscreen')
-    return false
   } else {
-    oSearch.classList.add('fullsreen')
+    oSearch.classList.add('fullscreen')
   }
 }
 

@@ -124,7 +124,7 @@
     padding: 0 30px;
     color: $color-white;
     background: rgba($color-white, .1);
-    border-radius: $corner * 3;
+    border-radius: $corner*3;
     margin: 0 15px;
     transition: box-shadow 200ms $curve-ease;
 
@@ -137,100 +137,155 @@
 }
 
 // 排行榜
-#rank {
-  margin-top: 150px;
-  display: inline-flex;
-  transition: transform 400ms $curve-decel;
-  transform: translateX(-2000px);
+#search {
+  $time: 250ms;
 
-  &:focus-within {
-    transform: translateY(-420px);
+  .container {
+    transition: transform $time*1.4 $curve-decel;
+  }
 
-    section:focus-within {
-      .item {
+  #search-btn,
+  #search-hot {
+    transition: opacity $time*2 $curve-ease;
+  }
+
+  &.fullscreen {
+    .container {
+      transform: translateY(-420px);
+    }
+
+    #search-btn,
+    #search-hot {
+      opacity: 0;
+      transition: opacity $time/5 $curve-ease;
+    }
+  }
+
+  #rank {
+    margin-top: 150px;
+    display: inline-flex;
+
+    &:focus-within {
+      section {
+        width: calc(1700px - #{$safe-v});
         opacity: .5;
 
-        .title {
-          height: 60px;
+        &:nth-child(2),
+        &:nth-child(3) {
+          justify-content: start;
         }
 
-        .avatar {
-          @include card(90px, 1);
+        &:nth-child(n+4) {
+          display: flex;
         }
 
-        h2 {
-          font-size: 34px;
-        }
-
-        &:focus {
+        &:focus-within {
           opacity: 1;
 
-          .title {
-            height: 120px;
+          h1 {
+            opacity: .9;
           }
 
-          .avatar {
-            @include card(180px, 1);
+          .item {
+            opacity: .5;
+
+            .title {
+              height: 60px;
+            }
+
+            .avatar {
+              @include card(90px, 1);
+            }
+
+            h2 {
+              font-size: 34px;
+            }
+
+            &:focus {
+              opacity: 1;
+
+              .title {
+                height: 120px;
+              }
+
+              .avatar {
+                @include card(180px, 1);
+              }
+            }
           }
         }
       }
+    }
+
+    section {
+      width: ($page-w - $safe-v*2)/3;
+      display: flex;
+      transition: width $time*1.4 $curve-decel, opacity $time $curve-ease;
 
       h1 {
-        opacity: .9;
+        font-family: TITLE;
+        font-weight: bold;
+        @include font-height(38px);
+        color: $color-white;
+        margin-bottom: 50px;
+        opacity: .7;
+        transition: opacity $time $curve-ease;
+      }
+
+      &:nth-child(2) {
+        justify-content: center;
+      }
+
+      &:nth-child(3) {
+        justify-content: end;
+      }
+
+      &:nth-child(n+4) {
+        display: none;
+      }
+
+      .box {
+        display: inline-block;
       }
     }
-  }
 
-  section {
-    width: ($page-w - $safe-v*2)/3;
+    .item {
+      margin-top: 50px;
+      display: flex;
+      transition: opacity $time $curve-ease;
 
-    h1 {
-      font-family: TITLE;
-      font-weight: bold;
-      @include font-height(38px);
-      color: $color-white;
-      margin-bottom: 50px;
-      opacity: .7;
-      transition: opacity 250ms $curve-ease;
-    }
-  }
+      .num {
+        font-family: NUM;
+        font-weight: bold;
+        @include font-height(40px);
+        color: $color-white;
+        margin-right: 20px;
+        opacity: .7;
+      }
 
-  .item {
-    margin-top: 50px;
-    display: flex;
-    transition: opacity 250ms $curve-ease;
+      .title {
+        height: 70px;
+        transition: height $time $curve-decel;
+      }
 
-    .num {
-      font-family: NUM;
-      font-weight: bold;
-      @include font-height(40px);
-      color: $color-white;
-      margin-right: 20px;
-      opacity: .7;
-    }
+      .avatar {
+        @include card(70px, 1);
+        border-radius: 50%;
+        overflow: hidden;
+        transition: all $time $curve-decel;
+      }
 
-    .title {
-      height: 70px;
-      transition: height 250ms $curve-decel;
-    }
-
-    .avatar {
-      @include card(70px, 1);
-      border-radius: 50%;
-      overflow: hidden;
-      transition: width 250ms $curve-decel, height 250ms $curve-decel;
+      .name {
+        font-size: 30px;
+        color: $color-white;
+        margin-left: 20px;
+        transition: font-size $time $curve-ease;
+      }
     }
 
-    h2 {
-      font-size: 30px;
-      color: $color-white;
-      margin-left: 20px;
-      transition: font-size 250ms $curve-ease;
+    .artist {
+      display: flex;
+      align-items: center;
     }
-  }
-
-  .artist {
-    display: flex;
-    align-items: center;
   }
 }
