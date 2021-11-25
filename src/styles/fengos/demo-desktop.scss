@@ -12,7 +12,7 @@
   border-radius: $corner;
   isolation: isolate;
   z-index: 9;
-  transition: background 200ms $curve-ease;
+  transition: all 400ms $curve-ease;
 
   .box {
     display: inline-flex;
@@ -179,6 +179,10 @@
           display: flex;
         }
 
+        .item:nth-child(n+5) {
+          display: flex;
+        }
+
         &:focus-within {
           opacity: 1;
 
@@ -256,7 +260,7 @@
 
       .num {
         font-family: NUM;
-        @include font-height(40px);
+        @include font-height(50px);
         color: $color-white;
         margin-right: 20px;
         opacity: .7;
@@ -279,6 +283,10 @@
         color: $color-white;
         margin-left: 20px;
         transition: font-size $time $curve-ease;
+      }
+
+      &:nth-child(n+5) {
+        display: none;
       }
     }
 
