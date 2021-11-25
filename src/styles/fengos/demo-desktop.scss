@@ -256,7 +256,6 @@
 
       .num {
         font-family: NUM;
-        font-weight: bold;
         @include font-height(40px);
         color: $color-white;
         margin-right: 20px;
