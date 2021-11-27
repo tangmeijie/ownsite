@@ -126,11 +126,14 @@
     background: rgba($color-white, .1);
     border-radius: $corner*3;
     margin: 0 15px;
-    transition: box-shadow 200ms $curve-ease;
+    transition:
+      transform 200ms $curve-decel,
+      box-shadow 200ms $curve-ease;
 
     &:focus {
       color: $color-black;
       background: $color-white;
+      transform: scale(1.2);
       @include shadow($size: 'small');
     }
   }
@@ -139,13 +142,13 @@
 // 排行榜
 #search {
   $time: 250ms;
+  $section-width: 1620px;
 
   .container {
     transition: transform $time*1.4 $curve-decel;
   }
 
-  #search-btn,
-  #search-hot {
+  .searcharea {
     transition: opacity $time*2 $curve-ease;
   }
 
@@ -154,10 +157,44 @@
       transform: translateY(-420px);
     }
 
-    #search-btn,
-    #search-hot {
+    .searcharea {
       opacity: 0;
       transition: opacity $time/5 $curve-ease;
+    }
+
+    #rank {
+      section {
+        width: $section-width;
+        opacity: .5;
+        // filter: grayscale(0.5);
+
+        &:nth-child(n+4),
+        .item:nth-child(n+5) {
+          display: flex;
+        }
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          justify-content: start;
+        }
+      }
+
+      .item {
+        opacity: .5;
+        // filter: grayscale(0.5);
+
+        .title {
+          height: 60px;
+        }
+
+        .avatar {
+          @include card(90px, 1);
+        }
+
+        h2 {
+          font-size: 34px;
+        }
+      }
     }
   }
 
@@ -165,66 +202,9 @@
     margin-top: 150px;
     display: inline-flex;
 
-    &:focus-within {
-      section {
-        width: calc(1700px - #{$safe-v});
-        opacity: .5;
-
-        &:nth-child(2),
-        &:nth-child(3) {
-          justify-content: start;
-        }
-
-        &:nth-child(n+4) {
-          display: flex;
-        }
-
-        .item:nth-child(n+5) {
-          display: flex;
-        }
-
-        &:focus-within {
-          opacity: 1;
-
-          h1 {
-            opacity: .9;
-          }
-
-          .item {
-            opacity: .5;
-
-            .title {
-              height: 60px;
-            }
-
-            .avatar {
-              @include card(90px, 1);
-            }
-
-            h2 {
-              font-size: 34px;
-            }
-
-            &:focus {
-              opacity: 1;
-
-              .title {
-                height: 120px;
-              }
-
-              .avatar {
-                @include card(180px, 1);
-              }
-            }
-          }
-        }
-      }
-    }
-
     section {
       width: ($page-w - $safe-v*2)/3;
       display: flex;
-      transition: width $time*1.4 $curve-decel, opacity $time $curve-ease;
 
       h1 {
         font-family: TITLE;
@@ -236,16 +216,16 @@
         transition: opacity $time $curve-ease;
       }
 
+      &:nth-child(n+4) {
+        display: none;
+      }
+
       &:nth-child(2) {
         justify-content: center;
       }
 
       &:nth-child(3) {
         justify-content: end;
-      }
-
-      &:nth-child(n+4) {
-        display: none;
       }
 
       .box {
@@ -256,7 +236,6 @@
     .item {
       margin-top: 50px;
       display: flex;
-      transition: opacity $time $curve-ease;
 
       .num {
         font-family: NUM;
@@ -266,23 +245,25 @@
         opacity: .7;
       }
 
+      .artist {
+        display: flex;
+        align-items: center;
+      }
+
       .title {
         height: 70px;
-        transition: height $time $curve-decel;
       }
 
       .avatar {
         @include card(70px, 1);
         border-radius: 50%;
         overflow: hidden;
-        transition: all $time $curve-decel;
       }
 
       .name {
         font-size: 30px;
         color: $color-white;
         margin-left: 20px;
-        transition: font-size $time $curve-ease;
       }
 
       &:nth-child(n+5) {
@@ -290,9 +271,49 @@
       }
     }
 
-    .artist {
-      display: flex;
-      align-items: center;
+    &:focus-within {
+      section:focus-within {
+        opacity: 1;
+
+        h1 {
+          opacity: .9;
+        }
+      }
+
+      .item:focus {
+        opacity: 1;
+
+        .title {
+          height: 120px;
+        }
+
+        .avatar {
+          @include card(180px, 1);
+        }
+      }
+    }
+  }
+
+  // 动画
+  #rank {
+    section {
+      transition: width $time*1.4 $curve-decel, opacity $time $curve-ease;
+    }
+
+    .item {
+      transition: opacity $time $curve-ease;
+    }
+
+    .title {
+      transition: height $time $curve-decel;
+    }
+
+    .avatar {
+      transition: all $time $curve-decel;
+    }
+
+    .name {
+      transition: font-size $time $curve-ease;
     }
   }
 }
