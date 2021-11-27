@@ -21,17 +21,11 @@
   src: local('STKaiti'), local('KaiTi');
 }
 
-@mixin font-height($size, $isPara: false) {
-  @if $isPara==true {
-    font-size: $size;
-    line-height: $size * 1.5;
-  }
-
-  @else {
-    font-size: $size;
-    line-height: $size;
-  }
+@mixin font-ladder($i: 2) {
+  font-size: math.floor(24px * math.pow(1.6, $i/4));
 }
+
+$line-h: 1.6;
 
 // 颜色
 $color-bg: linear-gradient(to bottom, #525662, #3f444e);
@@ -136,7 +130,7 @@ $curve-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
   z-index: 9;
 
   #time {
-    @include font-height(34px);
+    @include font-ladder(3);
     color: rgba($color-white, .7);
     margin: 0 40px 0 10px;
   }
