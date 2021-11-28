@@ -1,4 +1,4 @@
-import scssVars from '../../styles/fengos/demo-kit.scss'
+import scssVars from '../../styles/fengos/demo-vars.scss'
 
 export {
   fnItemFocusable,
