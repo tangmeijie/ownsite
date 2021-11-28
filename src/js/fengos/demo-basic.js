@@ -5,7 +5,8 @@ export {
   fnSiblingsFocusable,
   fnAddActions,
   fnCloneItem,
-  fnFillData
+  fnFillData,
+  fnRandomArray
 }
 
 // 对所有页面执行：
@@ -166,6 +167,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
 
         // OK
       case 'Enter':
+        console.log(dataKey.enter)
         break
 
         // Back
@@ -279,8 +281,8 @@ function fnNodeIndex(nodelist, node) {
 }
 
 // 内容填充
-function fnCloneItem(parentid, n) {
-  const parent = document.getElementById(parentid)
+function fnCloneItem(id, n) {
+  const parent = document.getElementById(id)
   const itemOrigin = parent.getElementsByClassName('item')[0]
   const box = itemOrigin.parentNode
 
@@ -290,9 +292,16 @@ function fnCloneItem(parentid, n) {
   }
 }
 
-function fnFillData(elems, data, start = 0) {
+function fnItemEnter(items, ids) {
+  for (let i = 0; i < items.length; i++) {
+    const j = i % ids.length
+    items[i].setAttribute('data-enter', ids[j])
+  }
+}
+
+function fnFillData(elems, data) {
   for (let i = 0; i < elems.length; i++) {
-    const j = (i + start) % data.length
+    const j = i % data.length
 
     const tag = elems[i].tagName
     if (tag.includes('H')) {
@@ -315,4 +324,30 @@ function fnFillData(elems, data, start = 0) {
       }
     }
   }
+}
+
+function fnRandomArray(n, max = 20, min = 0) {
+  // 不含最大值，含最小值
+  if (n > max - min) {
+    return false
+  }
+
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  let arr = []
+
+  for (let i = 0; i < n; i++) {
+    const random = Math.floor(Math.random() * (max - min)) + min
+    let same = false
+
+    for (let num of arr.values()) {
+      if (num === random) {
+        same = true
+        break
+      }
+    }
+    same ? i-- : arr.push(random)
+  }
+
+  return arr
 }

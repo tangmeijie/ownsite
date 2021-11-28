@@ -10,7 +10,8 @@ import {
   fnSiblingsFocusable,
   fnAddActions,
   fnCloneItem,
-  fnFillData
+  fnFillData,
+  fnRandomArray
 } from './demo-basic.js'
 
 // 数据整理
@@ -31,7 +32,8 @@ for (let value of dArtist.values()) {
 const oChannel = document.getElementById('channel')
 const aChannelItems = oChannel.getElementsByClassName('item')
 
-;(function fnChannelFocusable() {
+;
+(function fnChannelFocusable() {
   // 左右切换频道
   fnSiblingsFocusable('channel', 'chann-')
 
@@ -71,10 +73,23 @@ const oSearch = document.getElementById('page-search')
 const oSearchBtn = document.getElementById('search-btn')
 const aHotWords = document.getElementById('search-hot').getElementsByClassName('item')
 
-fnCloneItem('search-hot', 7)
-fnFillData(aHotWords, dTitle)
+;
+(function fnFillSearch(n) {
+  fnCloneItem('search-hot', n)
 
-;(function fnSearchFocusable() {
+  const aRandom = fnRandomArray(n)
+  const aSearchHot = [...dSource]
+  for(let [i, word] of Object.entries(aHotWords)){
+    const j = aRandom[i] % dSource.size
+    const id = aSearchHot[j][0]
+
+    word.setAttribute('data-enter', id)
+    word.innerHTML = dSource.get(id).title
+  }
+})(7)
+
+;
+(function fnSearchFocusable() {
   // 搜索按钮
   fnItemFocusable(oSearchBtn, {
     'data-up': 'chann-0',
@@ -94,47 +109,47 @@ fnFillData(aHotWords, dTitle)
 // 排行榜
 const oRank = document.getElementById('rank')
 const oRankGuider = document.getElementById('rank-guider')
+
 fnRankData({
   id: 'rank-recommend',
   ctx: [{
-    tag: 'img',
+    class: 'title',
     data: dTitleImg
   }]
 }, {
   id: 'rank-hot',
   ctx: [{
-    tag: 'img',
-    data: dTitleImg,
-    start: 1
+    class: 'title',
+    data: dTitleImg
   }]
 }, {
   id: 'rank-collect',
   ctx: [{
-    tag: 'img',
+    class: 'title',
     data: dTitleImg
   }]
 }, {
   id: 'rank-topic',
   ctx: [{
-    tag: 'img',
+    class: 'title',
     data: dTitleImg
   }]
 }, {
   id: 'rank-actor',
   ctx: [{
-    tag: 'img',
+    class: 'avatar',
     data: dAvatar
   }, {
-    tag: 'h2',
+    class: 'name',
     data: dName
   }]
 }, {
   id: 'rank-actress',
   ctx: [{
-    tag: 'img',
+    class: 'avatar',
     data: dAvatar
   }, {
-    tag: 'h2',
+    class: 'name',
     data: dName
   }]
 })
@@ -144,24 +159,19 @@ function fnRankData(...ranks) {
     const rank = document.getElementById(rankctx.id)
 
     // 每个榜单项目数
-    if (!rankctx.len) {
-      rankctx.len = 10
-    }
-    fnCloneItem(rankctx.id, rankctx.len)
+    const amount = rankctx.amount || 10
+    fnCloneItem(rankctx.id, amount)
 
     // 序号
-    const aRankNum = rank.getElementsByTagName('span')
+    const aRankNum = rank.getElementsByClassName('num')
     for (let i = 0; i < aRankNum.length; i++) {
       aRankNum[i].innerHTML = i + 1
     }
 
     // 内容
     for (let x of rankctx.ctx) {
-      if (!x.start) {
-        x.start = 0
-      }
-      const elems = rank.getElementsByTagName(x.tag)
-      fnFillData(elems, x.data, x.start)
+      const elems = rank.getElementsByClassName(x.class)
+      fnFillData(elems, x.data)
     }
 
     // 添加指示器
@@ -170,7 +180,8 @@ function fnRankData(...ranks) {
   }
 }
 
-;(function fnRankFocusable() {
+;
+(function fnRankFocusable() {
   // 获取所有榜单id
   let aRankId = new Array()
   const sections = oRank.getElementsByTagName('section')
@@ -225,6 +236,8 @@ function fnRankToggle() {
   } else {
     oSearch.classList.add('fullscreen')
   }
+
+
 }
 
 // 添加焦点事件
