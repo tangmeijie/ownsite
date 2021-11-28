@@ -73,74 +73,78 @@
 }
 
 // 搜索
-#search-btn {
-  width: 580px;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 250px auto 0;
-  background: rgba($color-white, .1);
-  border-radius: $corner;
-  transition:
-    transform 200ms $curve-decel,
-    box-shadow 200ms $curve-ease;
+.search {
+  margin-top: 250px;
 
-  svg {
-    width: 40px;
-    height: 40px;
-    stroke: rgba($color-white, .6);
-    margin-right: 20px;
-  }
-
-  span {
-    @include font-ladder;
-    color: rgba($color-white, .7);
-  }
-
-  &:focus {
-    background: $color-white;
-    transform: scale(grid-scale(580px));
-    @include shadow;
-
-    svg {
-      stroke: $color-black;
-    }
-
-    span {
-      color: $color-black;
-    }
-  }
-}
-
-#search-hot {
-  margin-top: 60px;
-  display: flex;
-  justify-content: center;
-
-  .item {
-    @include font-ladder(1);
-    line-height: 60px;
-    padding: 0 30px;
-    color: $color-white;
+  button {
+    width: 580px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
     background: rgba($color-white, .1);
-    border-radius: $corner*3;
-    margin: 0 15px;
+    border-radius: $corner;
     transition:
       transform 200ms $curve-decel,
       box-shadow 200ms $curve-ease;
 
+    svg {
+      width: 40px;
+      height: 40px;
+      stroke: rgba($color-white, .6);
+      margin-right: 20px;
+    }
+
+    span {
+      @include font-ladder;
+      color: rgba($color-white, .7);
+    }
+
     &:focus {
-      color: $color-black;
       background: $color-white;
-      transform: scale(1.1);
-      @include shadow($size: 'small');
+      transform: scale(grid-scale(580px));
+      @include shadow;
+
+      svg {
+        stroke: $color-black;
+      }
+
+      span {
+        color: $color-black;
+      }
+    }
+  }
+
+  ol {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+
+    .item {
+      @include font-ladder(1);
+      line-height: 60px;
+      padding: 0 30px;
+      color: $color-white;
+      background: rgba($color-white, .1);
+      border-radius: $corner*3;
+      margin: 0 15px;
+      transition:
+        transform 200ms $curve-decel,
+        box-shadow 200ms $curve-ease;
+
+      &:focus {
+        color: $color-black;
+        background: $color-white;
+        transform: scale(1.1);
+        @include shadow($size: 'small');
+      }
     }
   }
 }
 
 // 排行榜
-#search {
+#page-search {
   $time: 250ms;
   $section-width: 1620px;
 
@@ -148,7 +152,7 @@
     transition: transform $time*1.4 $curve-decel;
   }
 
-  .searcharea {
+  .search {
     transition: opacity $time*2 $curve-ease;
   }
 
@@ -157,7 +161,7 @@
       transform: translateY(-420px);
     }
 
-    .searcharea {
+    .search {
       opacity: 0;
       transition: opacity $time/5 $curve-ease;
     }
@@ -195,6 +199,10 @@
           @include font-ladder(3);
         }
       }
+    }
+
+    #rank-guider {
+      display: block;
     }
   }
 
@@ -292,6 +300,18 @@
           @include card(180px, 1);
         }
       }
+    }
+  }
+
+  #rank-guider {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    display: none;
+
+    span {
+      @extend .guider;
     }
   }
 

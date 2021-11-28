@@ -28,21 +28,21 @@ for (let value of dArtist.values()) {
 }
 
 // 频道栏
-const aChannelItems = document.getElementById('channel').getElementsByClassName('item')
+const oChannel = document.getElementById('channel')
+const aChannelItems = oChannel.getElementsByClassName('item')
 
-void
-function fnChannelFocusable() {
-  // 左右切换频道
-  fnSiblingsFocusable('channel', 'chann-')
+  !(function fnChannelFocusable() {
+    // 左右切换频道
+    fnSiblingsFocusable('channel', 'chann-')
 
-  // 向下进入频道
-  fnItemFocusable(aChannelItems[0], {
-    'data-down': 'search-btn'
-  })
-  fnItemFocusable(aChannelItems[1], {
-    'data-down': ''
-  })
-}()
+    // 向下进入频道
+    fnItemFocusable(aChannelItems[0], {
+      'data-down': 'search-btn'
+    })
+    fnItemFocusable(aChannelItems[1], {
+      'data-down': ''
+    })
+  })()
 
 function fnChannelSilder() {
   const oFocus = document.activeElement
@@ -67,31 +67,33 @@ function fnChannelSilder() {
 }
 
 // 搜索区
+const oSearch = document.getElementById('page-search')
 const oSearchBtn = document.getElementById('search-btn')
 const aHotWords = document.getElementById('search-hot').getElementsByClassName('item')
 
 fnCloneItem('search-hot', 7)
 fnFillData(aHotWords, dTitle)
 
-void
-function fnSearchFocusable() {
-  // 搜索按钮
-  fnItemFocusable(oSearchBtn, {
-    'data-up': 'channel',
-    'data-down': 'search-hot'
-  })
-
-  // 热搜词
-  fnSiblingsFocusable('search-hot', 'word-')
-  for (let item of aHotWords) {
-    fnItemFocusable(item, {
-      'data-up': 'search-btn',
-      'data-down': 'recommend-0'
+  !(function fnSearchFocusable() {
+    // 搜索按钮
+    fnItemFocusable(oSearchBtn, {
+      'data-up': 'channel',
+      'data-down': 'search-hot'
     })
-  }
-}()
+
+    // 热搜词
+    fnSiblingsFocusable('search-hot', 'word-')
+    for (let item of aHotWords) {
+      fnItemFocusable(item, {
+        'data-up': 'search-btn',
+        'data-down': 'recommend-0'
+      })
+    }
+  })()
 
 // 排行榜
+const oRank = document.getElementById('rank')
+const oRankGuider = document.getElementById('rank-guider')
 fnRankData({
   id: 'rank-recommend',
   ctx: [{
@@ -138,49 +140,54 @@ fnRankData({
 })
 
 function fnRankData(...ranks) {
-  for (let rank of ranks) {
-    const oRank = document.getElementById(rank.id)
+  for (let rankctx of ranks) {
+    const rank = document.getElementById(rankctx.id)
 
-    if (!rank.len) {
-      rank.len = 10
+    // 每个榜单项目数
+    if (!rankctx.len) {
+      rankctx.len = 10
     }
-    fnCloneItem(rank.id, rank.len)
+    fnCloneItem(rankctx.id, rankctx.len)
 
-    const aRankNum = oRank.getElementsByTagName('span')
+    // 序号
+    const aRankNum = rank.getElementsByTagName('span')
     for (let i = 0; i < aRankNum.length; i++) {
       aRankNum[i].innerHTML = i + 1
     }
 
-    for (let x of rank.ctx) {
+    // 内容
+    for (let x of rankctx.ctx) {
       if (!x.start) {
         x.start = 0
       }
-      const elems = oRank.getElementsByTagName(x.tag)
+      const elems = rank.getElementsByTagName(x.tag)
       fnFillData(elems, x.data, x.start)
     }
+
+    // 添加指示器
+    const oGuider = document.createElement('span')
+    oRankGuider.appendChild(oGuider)
   }
 }
 
-void
-function fnRankFocusable() {
-  // 获取所有榜单
+!(function fnRankFocusable() {
+  // 获取所有榜单id
   let aRankId = new Array()
-
-  const aRanks = document.getElementById('rank').getElementsByTagName('section')
-  for (let rank of aRanks) {
+  const sections = oRank.getElementsByTagName('section')
+  for (let rank of sections) {
     aRankId.push(rank.id)
   }
 
   // 添加切换属性
-  for (let i = 0; i < aRankId.length; i++) {
-    const oRank = document.getElementById(aRankId[i])
+  for (let [i, id] of aRankId.entries()) {
+    const rank = document.getElementById(id)
 
     // 纵向切换
-    const sPrefix = aRankId[i].slice(5) + '-'
-    fnSiblingsFocusable(aRankId[i], sPrefix, false)
+    const sPrefix = id.slice(5) + '-'
+    fnSiblingsFocusable(id, sPrefix, false)
 
     // 横向切换
-    const aItems = oRank.getElementsByClassName('item')
+    const aItems = rank.getElementsByClassName('item')
     for (let item of aItems) {
       switch (i) {
         case 0:
@@ -202,16 +209,15 @@ function fnRankFocusable() {
     }
 
     // 榜单第一项
-    const oFirstItem = oRank.getElementsByClassName('item')[0]
+    const oFirstItem = rank.getElementsByClassName('item')[0]
     fnItemFocusable(oFirstItem, {
       'data-up': 'chann-0'
     })
   }
-}()
+})()
 
 function fnRankToggle() {
   const oFocus = document.activeElement
-  const oSearch = document.getElementById('search')
 
   // 切换时全屏展示
   if (!oFocus.closest('#rank')) {

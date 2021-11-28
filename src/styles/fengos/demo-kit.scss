@@ -55,6 +55,20 @@
   }
 }
 
+.guider {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $color-white;
+  opacity: .2;
+  margin: 0 20px;
+
+  &.highlight {
+    opacity: .8;
+  }
+}
+
 // 通用页面
 :focus {
   outline: none;
