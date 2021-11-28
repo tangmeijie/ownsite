@@ -30,16 +30,19 @@ for (let value of dArtist.values()) {
 // 频道栏
 const aChannelItems = document.getElementById('channel').getElementsByClassName('item')
 
-fnChannelFocusable()
-
+void
 function fnChannelFocusable() {
   // 左右切换频道
   fnSiblingsFocusable('channel', 'chann-')
 
+  // 向下进入频道
   fnItemFocusable(aChannelItems[0], {
     'data-down': 'search-btn'
   })
-}
+  fnItemFocusable(aChannelItems[1], {
+    'data-down': ''
+  })
+}()
 
 function fnChannelSilder() {
   const oFocus = document.activeElement
@@ -70,8 +73,7 @@ const aHotWords = document.getElementById('search-hot').getElementsByClassName('
 fnCloneItem('search-hot', 7)
 fnFillData(aHotWords, dTitle)
 
-fnSearchFocusable()
-
+void
 function fnSearchFocusable() {
   // 搜索按钮
   fnItemFocusable(oSearchBtn, {
@@ -87,7 +89,7 @@ function fnSearchFocusable() {
       'data-down': 'recommend-0'
     })
   }
-}
+}()
 
 // 排行榜
 fnRankData({
@@ -159,16 +161,17 @@ function fnRankData(...ranks) {
   }
 }
 
-fnRankFocusable([
-  'rank-recommend',
-  'rank-hot',
-  'rank-collect',
-  'rank-topic',
-  'rank-actor',
-  'rank-actress'
-])
+void
+function fnRankFocusable() {
+  // 获取所有榜单
+  let aRankId = new Array()
 
-function fnRankFocusable(aRankId) {
+  const aRanks = document.getElementById('rank').getElementsByTagName('section')
+  for (let rank of aRanks) {
+    aRankId.push(rank.id)
+  }
+
+  // 添加切换属性
   for (let i = 0; i < aRankId.length; i++) {
     const oRank = document.getElementById(aRankId[i])
 
@@ -204,12 +207,13 @@ function fnRankFocusable(aRankId) {
       'data-up': 'chann-0'
     })
   }
-}
+}()
 
-function fnRankFullscreen() {
+function fnRankToggle() {
   const oFocus = document.activeElement
   const oSearch = document.getElementById('search')
 
+  // 切换时全屏展示
   if (!oFocus.closest('#rank')) {
     oSearch.classList.remove('fullscreen')
   } else {
@@ -220,5 +224,5 @@ function fnRankFullscreen() {
 // 添加焦点事件
 fnAddActions(null, function () {
   fnChannelSilder()
-  fnRankFullscreen()
+  fnRankToggle()
 })
