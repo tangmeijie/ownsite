@@ -137,11 +137,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
   // 键盘事件
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
-
-    const idR = focus.getAttribute('data-right')
-    const idL = focus.getAttribute('data-left')
-    const idD = focus.getAttribute('data-down')
-    const idU = focus.getAttribute('data-up')
+    const dataKey = focus.dataset
 
     if (fnBefore) {
       fnBefore()
@@ -150,38 +146,22 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
     switch (e.code) {
       // →
       case 'ArrowRight':
-        if (idR) {
-          fnGetFocus(idR)
-        } else {
-          return
-        }
+        fnGetFocus(dataKey.right)
         break
 
         // ←
       case 'ArrowLeft':
-        if (idL) {
-          fnGetFocus(idL)
-        } else {
-          return
-        }
+        fnGetFocus(dataKey.left)
         break
 
         // ↓
       case 'ArrowDown':
-        if (idD) {
-          fnGetFocus(idD)
-        } else {
-          return
-        }
+        fnGetFocus(dataKey.down)
         break
 
         // ↑
       case 'ArrowUp':
-        if (idU) {
-          fnGetFocus(idU)
-        } else {
-          return
-        }
+        fnGetFocus(dataKey.up)
         break
 
         // OK
@@ -190,6 +170,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
 
         // Back
       case 'Space':
+        fnGetFocus(dataKey.back)
         break
 
       default:
@@ -245,6 +226,10 @@ function fnInitFocus(fnBefore, fnAfter) {
 }
 
 function fnGetFocus(id) {
+  if (!document.getElementById(id)) {
+    return false
+  }
+
   let lastfocus, nextfocus
 
   if (document.activeElement !== document.body) {

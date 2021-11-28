@@ -31,18 +31,18 @@ for (let value of dArtist.values()) {
 const oChannel = document.getElementById('channel')
 const aChannelItems = oChannel.getElementsByClassName('item')
 
-  !(function fnChannelFocusable() {
-    // 左右切换频道
-    fnSiblingsFocusable('channel', 'chann-')
+;(function fnChannelFocusable() {
+  // 左右切换频道
+  fnSiblingsFocusable('channel', 'chann-')
 
-    // 向下进入频道
-    fnItemFocusable(aChannelItems[0], {
-      'data-down': 'search-btn'
-    })
-    fnItemFocusable(aChannelItems[1], {
-      'data-down': ''
-    })
-  })()
+  // 向下进入频道
+  fnItemFocusable(aChannelItems[0], {
+    'data-down': 'search-btn'
+  })
+  fnItemFocusable(aChannelItems[1], {
+    'data-down': ''
+  })
+})()
 
 function fnChannelSilder() {
   const oFocus = document.activeElement
@@ -74,22 +74,22 @@ const aHotWords = document.getElementById('search-hot').getElementsByClassName('
 fnCloneItem('search-hot', 7)
 fnFillData(aHotWords, dTitle)
 
-  !(function fnSearchFocusable() {
-    // 搜索按钮
-    fnItemFocusable(oSearchBtn, {
-      'data-up': 'channel',
-      'data-down': 'search-hot'
-    })
+;(function fnSearchFocusable() {
+  // 搜索按钮
+  fnItemFocusable(oSearchBtn, {
+    'data-up': 'chann-0',
+    'data-down': 'search-hot'
+  })
 
-    // 热搜词
-    fnSiblingsFocusable('search-hot', 'word-')
-    for (let item of aHotWords) {
-      fnItemFocusable(item, {
-        'data-up': 'search-btn',
-        'data-down': 'recommend-0'
-      })
-    }
-  })()
+  // 热搜词
+  fnSiblingsFocusable('search-hot', 'word-')
+  for (let item of aHotWords) {
+    fnItemFocusable(item, {
+      'data-up': 'search-btn',
+      'data-down': 'recommend-0'
+    })
+  }
+})()
 
 // 排行榜
 const oRank = document.getElementById('rank')
@@ -170,7 +170,7 @@ function fnRankData(...ranks) {
   }
 }
 
-!(function fnRankFocusable() {
+;(function fnRankFocusable() {
   // 获取所有榜单id
   let aRankId = new Array()
   const sections = oRank.getElementsByTagName('section')
@@ -219,7 +219,7 @@ function fnRankData(...ranks) {
 function fnRankToggle() {
   const oFocus = document.activeElement
 
-  // 切换时全屏展示
+  // 全屏展示
   if (!oFocus.closest('#rank')) {
     oSearch.classList.remove('fullscreen')
   } else {
