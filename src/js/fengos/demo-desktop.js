@@ -27,6 +27,7 @@ for (let value of dArtist.values()) {
   dName.push(value.name)
   dAvatar.push(value.assets.avatar)
 }
+const aSourceID = [...dSource]
 
 // 频道栏
 const oChannel = document.getElementById('channel')
@@ -78,10 +79,9 @@ const aHotWords = document.getElementById('search-hot').getElementsByClassName('
   fnCloneItem('search-hot', n)
 
   const aRandom = fnRandomArray(n)
-  const aSearchHot = [...dSource]
-  for(let [i, word] of Object.entries(aHotWords)){
+  for (let [i, word] of Object.entries(aHotWords)) {
     const j = aRandom[i] % dSource.size
-    const id = aSearchHot[j][0]
+    const id = aSourceID[j][0]
 
     word.setAttribute('data-enter', id)
     word.innerHTML = dSource.get(id).title
@@ -158,20 +158,20 @@ function fnRankData(...ranks) {
   for (let rankctx of ranks) {
     const rank = document.getElementById(rankctx.id)
 
-    // 每个榜单项目数
+    // 克隆内容
     const amount = rankctx.amount || 10
     fnCloneItem(rankctx.id, amount)
 
-    // 序号
+    // 填充序号
     const aRankNum = rank.getElementsByClassName('num')
     for (let i = 0; i < aRankNum.length; i++) {
       aRankNum[i].innerHTML = i + 1
     }
 
-    // 内容
+    // 填充内容
     for (let x of rankctx.ctx) {
       const elems = rank.getElementsByClassName(x.class)
-      fnFillData(elems, x.data)
+      // fnFillData(elems, x.data)
     }
 
     // 添加指示器
@@ -179,6 +179,20 @@ function fnRankData(...ranks) {
     oRankGuider.appendChild(oGuider)
   }
 }
+
+;(function fnFillRank(n = 10) {
+  const aRecoms = document.getElementById('rank-recommend').getElementsByClassName('item')
+  const aRandom = fnRandomArray(n)
+  for (let [i, item] of Object.entries(aRecoms)) {
+    const j = aRandom[i] % dSource.size
+    const id = aSourceID[j][0]
+
+    item.setAttribute('data-enter', id)
+  }
+
+  const aHots = document.getElementById('rank-hot').getElementsByClassName('item')
+  // const aOrder = []
+})()
 
 ;
 (function fnRankFocusable() {
