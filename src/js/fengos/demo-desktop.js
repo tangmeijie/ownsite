@@ -27,7 +27,7 @@ for (let value of dArtist.values()) {
   dName.push(value.name)
   dAvatar.push(value.assets.avatar)
 }
-const aSourceID = [...dSource]
+const aSource = [...dSource]
 
 // 频道栏
 const oChannel = document.getElementById('channel')
@@ -81,7 +81,7 @@ const aHotWords = document.getElementById('search-hot').getElementsByClassName('
   const aRandom = fnRandomArray(n)
   for (let [i, word] of Object.entries(aHotWords)) {
     const j = aRandom[i] % dSource.size
-    const id = aSourceID[j][0]
+    const id = aSource[j][0]
 
     word.setAttribute('data-enter', id)
     word.innerHTML = dSource.get(id).title
@@ -110,68 +110,57 @@ const aHotWords = document.getElementById('search-hot').getElementsByClassName('
 const oRank = document.getElementById('rank')
 const oRankGuider = document.getElementById('rank-guider')
 
-fnRankData({
+fnFillRank({
   id: 'rank-recommend',
-  ctx: [{
-    class: 'title',
-    data: dTitleImg
+  // n: 9,
+  aid: fnRandomArray(10),
+  data: [{
+    selector: '.title',
+    path: ['assets', 'title']
   }]
 }, {
   id: 'rank-hot',
-  ctx: [{
-    class: 'title',
-    data: dTitleImg
+  aid: fnRandomArray(10),
+  data: [{
+    selector: '.title',
+    path: ['assets', 'title']
   }]
-}, {
-  id: 'rank-collect',
-  ctx: [{
-    class: 'title',
-    data: dTitleImg
-  }]
-}, {
-  id: 'rank-topic',
-  ctx: [{
-    class: 'title',
-    data: dTitleImg
-  }]
-}, {
-  id: 'rank-actor',
-  ctx: [{
-    class: 'avatar',
-    data: dAvatar
-  }, {
-    class: 'name',
-    data: dName
-  }]
-}, {
-  id: 'rank-actress',
-  ctx: [{
-    class: 'avatar',
-    data: dAvatar
-  }, {
-    class: 'name',
-    data: dName
-  }]
+// }, {
+//   id: 'rank-actor',
+//   data: [{
+//     class: 'avatar',
+//     ctx: dAvatar
+//   }, {
+//     class: 'name',
+//     ctx: dName
+//   }]
 })
 
-function fnRankData(...ranks) {
-  for (let rankctx of ranks) {
-    const rank = document.getElementById(rankctx.id)
+function fnFillRank(...ranks) {
+  for (let rank of ranks) {
+    const oRank = document.getElementById(rank.id)
 
     // 克隆内容
-    const amount = rankctx.amount || 10
-    fnCloneItem(rankctx.id, amount)
+    const n = rank.n || 10
+    fnCloneItem(rank.id, n)
 
     // 填充序号
-    const aRankNum = rank.getElementsByClassName('num')
-    for (let i = 0; i < aRankNum.length; i++) {
-      aRankNum[i].innerHTML = i + 1
+    const aNums = oRank.getElementsByClassName('num')
+    for (let i = 0; i < aNums.length; i++) {
+      aNums[i].innerHTML = i + 1
     }
 
     // 填充内容
-    for (let x of rankctx.ctx) {
-      const elems = rank.getElementsByClassName(x.class)
-      // fnFillData(elems, x.data)
+    const aItems = oRank.getElementsByClassName('item')
+    for (let [i, item] of Object.entries(aItems)) {
+      const j = rank.aid[i] % dSource.size
+      const enterid = aSource[j][0]
+      item.setAttribute('data-enter', enterid)
+
+      for(let data of rank.data) {
+        // item.querySelector(data.selector).src = dSource.get(enterid)
+      }
+      item.querySelector(rank.data[0].selector).src = dSource.get(enterid)[rank.data[0].path[0]][rank.data[0].path[1]]
     }
 
     // 添加指示器
@@ -179,20 +168,6 @@ function fnRankData(...ranks) {
     oRankGuider.appendChild(oGuider)
   }
 }
-
-;(function fnFillRank(n = 10) {
-  const aRecoms = document.getElementById('rank-recommend').getElementsByClassName('item')
-  const aRandom = fnRandomArray(n)
-  for (let [i, item] of Object.entries(aRecoms)) {
-    const j = aRandom[i] % dSource.size
-    const id = aSourceID[j][0]
-
-    item.setAttribute('data-enter', id)
-  }
-
-  const aHots = document.getElementById('rank-hot').getElementsByClassName('item')
-  // const aOrder = []
-})()
 
 ;
 (function fnRankFocusable() {

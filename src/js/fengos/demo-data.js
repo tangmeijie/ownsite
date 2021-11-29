@@ -3,7 +3,7 @@ export {
   dArtist
 }
 
-// id 规则：1 片源，2 艺人，3 奖项
+// id 规则：1 片源，2 艺人，3 奖项，4 专题
 
 const dSource = new Map([
   [101, {
