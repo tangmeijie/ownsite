@@ -122,7 +122,7 @@ function fnSiblingsFocusable(id, prefix, isX = true, isLoop = false) {
 }
 
 function fnItemFocusable(obj, attrs) {
-  obj.setAttribute('tabindex', '-1')
+  obj.setAttribute('tabindex', -1)
   obj.classList.add('item')
 
   for (let key of Object.keys(attrs)) {
@@ -291,7 +291,7 @@ function fnCloneItem(id, n) {
   }
 }
 
-function fnRandomArray(n, max = 20, min = 0) {
+function fnRandomArray(n, max = 11, min = 0) {
   // 不含最大值，含最小值
   if (n > max - min) {
     return false
@@ -302,7 +302,7 @@ function fnRandomArray(n, max = 20, min = 0) {
   let arr = []
 
   for (let i = 0; i < n; i++) {
-    const random = Math.floor(Math.random() * (max - min)) + min
+    let random = Math.floor(Math.random() * (max - min)) + min
     let same = false
 
     for (let num of arr.values()) {

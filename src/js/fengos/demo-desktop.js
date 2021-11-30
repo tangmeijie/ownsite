@@ -13,22 +13,6 @@ import {
   fnRandomArray
 } from './demo-basic.js'
 
-// 数据整理
-let dTitle = new Array()
-let dTitleImg = new Array()
-let dName = new Array()
-let dAvatar = new Array()
-for (let value of dSource.values()) {
-  dTitle.push(value.title)
-  dTitleImg.push(value.assets.title)
-}
-for (let value of dArtist.values()) {
-  dName.push(value.name)
-  dAvatar.push(value.assets.avatar)
-}
-const aSource = [...dSource]
-const aArtist = [...dArtist]
-
 // 频道栏
 const oChannel = document.getElementById('channel')
 const aChannelItems = oChannel.getElementsByClassName('item')
@@ -72,7 +56,7 @@ function fnChannelSilder() {
 // 搜索区
 const oSearch = document.getElementById('page-search')
 const oSearchBtn = document.getElementById('search-btn')
-const aHotWords = document.getElementById('search-hot').getElementsByClassName('item')
+const aHotWords = document.getElementById('search-hot').children
 
 ;
 (function fnFillSearch(n) {
@@ -80,10 +64,9 @@ const aHotWords = document.getElementById('search-hot').getElementsByClassName('
 
   const aRandom = fnRandomArray(n)
   for (let [i, word] of Object.entries(aHotWords)) {
-    const j = aRandom[i] % dSource.size
-    const id = aSource[j][0]
+    const id = aRandom[i] + 100
 
-    word.setAttribute('data-enter', id)
+    word.setAttribute('data-ctx', id)
     word.innerHTML = dSource.get(id).title
   }
 })(7)
@@ -109,44 +92,52 @@ const aHotWords = document.getElementById('search-hot').getElementsByClassName('
 // 排行榜
 const oRank = document.getElementById('rank')
 const oRankGuider = document.getElementById('rank-guider')
+const oRankBg = document.getElementById('rank-bg').children[0]
 
 fnFillRank({
   id: 'rank-recommend',
   data: dSource,
-  fill: [{
-    selector: '.title',
-    path: ['assets', 'title']
-  }]
+  range: [100, 100 + 12],
+  fill: {
+    '.title': ['assets', 'title']
+  }
 }, {
   id: 'rank-hot',
   data: dSource,
-  fill: [{
-    selector: '.title',
-    path: ['assets', 'title']
-  }]
+  range: [100, 100 + 12],
+  fill: {
+    '.title': ['assets', 'title']
+  }
 }, {
   id: 'rank-collect',
   data: dSource,
-  fill: [{
-    selector: '.title',
-    path: ['assets', 'title']
-  }]
+  range: [100, 100 + 12],
+  fill: {
+    '.title': ['assets', 'title']
+  }
 }, {
   id: 'rank-topic',
   data: dSource,
-  fill: [{
-    selector: '.title',
-    path: ['assets', 'title']
-  }]
-// }, {
-//   id: 'rank-actor',
-//   data: [{
-//     selector: '.avatar',
-//     path: ['assets', 'avatar']
-//   }, {
-//     selector: '.name',
-//     path: ['name']
-//   }]
+  range: [100, 100 + 12],
+  fill: {
+    '.title': ['assets', 'title']
+  }
+}, {
+  id: 'rank-actor',
+  data: dArtist,
+  range: [200, 200 + 12],
+  fill: {
+    '.avatar': ['assets', 'avatar'],
+    '.name': []
+  }
+}, {
+  id: 'rank-actress',
+  data: dArtist,
+  range: [200, 200 + 12],
+  fill: {
+    '.avatar': ['assets', 'avatar'],
+    '.name': ['name']
+  }
 })
 
 function fnFillRank(...ranks) {
@@ -164,22 +155,31 @@ function fnFillRank(...ranks) {
     }
 
     // 填充内容
+    const random = rank.random || true
+    let aIds = []
+
+    if (random) {
+      aIds = fnRandomArray(n, rank.range[1], rank.range[0])
+    } else {
+      for (let i = rank.range[0]; i < rank.range[1]; i++) {
+        aIds.push(i)
+      }
+    }
+
     const aItems = oRank.getElementsByClassName('item')
-    const aIds = rank.ids || fnRandomArray(n)
     for (let [i, item] of Object.entries(aItems)) {
-      const k = i % aIds.length
-      const j = aIds[k] % dSource.size
-      const enterid = aSource[j][0]
-      item.setAttribute('data-enter', enterid)
+      const j = i % aIds.length
+      const ctxid = aIds[j]
+      item.setAttribute('data-ctx', ctxid)
 
-      for (let data of rank.data) {
-        let asset = dSource.get(enterid)
+      for (let [selector, path] of Object.entries(rank.fill)) {
+        let asset = rank.data.get(ctxid)
 
-        for (let path of data.path) {
-          asset = asset[path]
+        for (let part of path) {
+          asset = asset[part]
         }
 
-        const elem = item.querySelector(data.selector)
+        const elem = item.querySelector(selector)
         switch (elem.tagName) {
           case 'IMG':
             elem.src = asset
@@ -195,6 +195,15 @@ function fnFillRank(...ranks) {
     oRankGuider.appendChild(oGuider)
   }
 }
+
+;
+(function fnInitBg() {
+  const oChannelSearch = document.getElementById('chann-0')
+  const oRankFirst = document.getElementById('rank-recommend')
+  const oItemFirst = oRankFirst.getElementsByClassName('item')[0]
+  const ctx = oItemFirst.getAttribute('data-ctx')
+  oChannelSearch.setAttribute('data-ctx', ctx)
+})()
 
 ;
 (function fnRankFocusable() {
@@ -253,7 +262,9 @@ function fnRankToggle() {
     oSearch.classList.add('fullscreen')
   }
 
-
+  const ctxid = parseInt(oFocus.getAttribute('data-ctx'))
+  oRankBg.src = dSource.get(ctxid).assets.poster
+  
 }
 
 // 添加焦点事件
