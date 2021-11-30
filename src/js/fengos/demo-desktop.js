@@ -10,7 +10,6 @@ import {
   fnSiblingsFocusable,
   fnAddActions,
   fnCloneItem,
-  fnFillData,
   fnRandomArray
 } from './demo-basic.js'
 
@@ -28,6 +27,7 @@ for (let value of dArtist.values()) {
   dAvatar.push(value.assets.avatar)
 }
 const aSource = [...dSource]
+const aArtist = [...dArtist]
 
 // 频道栏
 const oChannel = document.getElementById('channel')
@@ -112,27 +112,40 @@ const oRankGuider = document.getElementById('rank-guider')
 
 fnFillRank({
   id: 'rank-recommend',
-  // n: 9,
-  aid: fnRandomArray(10),
-  data: [{
+  data: dSource,
+  fill: [{
     selector: '.title',
     path: ['assets', 'title']
   }]
 }, {
   id: 'rank-hot',
-  aid: fnRandomArray(10),
-  data: [{
+  data: dSource,
+  fill: [{
+    selector: '.title',
+    path: ['assets', 'title']
+  }]
+}, {
+  id: 'rank-collect',
+  data: dSource,
+  fill: [{
+    selector: '.title',
+    path: ['assets', 'title']
+  }]
+}, {
+  id: 'rank-topic',
+  data: dSource,
+  fill: [{
     selector: '.title',
     path: ['assets', 'title']
   }]
 // }, {
 //   id: 'rank-actor',
 //   data: [{
-//     class: 'avatar',
-//     ctx: dAvatar
+//     selector: '.avatar',
+//     path: ['assets', 'avatar']
 //   }, {
-//     class: 'name',
-//     ctx: dName
+//     selector: '.name',
+//     path: ['name']
 //   }]
 })
 
@@ -152,15 +165,29 @@ function fnFillRank(...ranks) {
 
     // 填充内容
     const aItems = oRank.getElementsByClassName('item')
+    const aIds = rank.ids || fnRandomArray(n)
     for (let [i, item] of Object.entries(aItems)) {
-      const j = rank.aid[i] % dSource.size
+      const k = i % aIds.length
+      const j = aIds[k] % dSource.size
       const enterid = aSource[j][0]
       item.setAttribute('data-enter', enterid)
 
-      for(let data of rank.data) {
-        // item.querySelector(data.selector).src = dSource.get(enterid)
+      for (let data of rank.data) {
+        let asset = dSource.get(enterid)
+
+        for (let path of data.path) {
+          asset = asset[path]
+        }
+
+        const elem = item.querySelector(data.selector)
+        switch (elem.tagName) {
+          case 'IMG':
+            elem.src = asset
+            break
+          default:
+            elem.innerHTML = asset
+        }
       }
-      item.querySelector(rank.data[0].selector).src = dSource.get(enterid)[rank.data[0].path[0]][rank.data[0].path[1]]
     }
 
     // 添加指示器

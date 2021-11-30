@@ -5,7 +5,6 @@ export {
   fnSiblingsFocusable,
   fnAddActions,
   fnCloneItem,
-  fnFillData,
   fnRandomArray
 }
 
@@ -289,40 +288,6 @@ function fnCloneItem(id, n) {
   for (let i = 0; i < n - 1; i++) {
     let item = itemOrigin.cloneNode(true)
     box.appendChild(item)
-  }
-}
-
-function fnItemEnter(items, ids) {
-  for (let i = 0; i < items.length; i++) {
-    const j = i % ids.length
-    items[i].setAttribute('data-enter', ids[j])
-  }
-}
-
-function fnFillData(elems, data) {
-  for (let i = 0; i < elems.length; i++) {
-    const j = i % data.length
-
-    const tag = elems[i].tagName
-    if (tag.includes('H')) {
-      elems[i].innerHTML = data[j]
-    } else {
-      switch (tag) {
-
-        case 'P':
-        case 'SPAN':
-        case 'LI':
-          elems[i].innerHTML = data[j]
-          break
-
-        case 'IMG':
-          elems[i].src = data[j]
-          break
-
-        default:
-          return
-      }
-    }
   }
 }
 
