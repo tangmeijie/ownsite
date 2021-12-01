@@ -92,7 +92,8 @@ const aHotWords = document.getElementById('search-hot').children
 // 排行榜
 const oRank = document.getElementById('rank')
 const oRankGuider = document.getElementById('rank-guider')
-const oRankBg = document.getElementById('rank-bg').children[0]
+const oRankBg = document.getElementById('rank-bg')
+const oRankPoster = oRankBg.getElementsByTagName('img')[0]
 
 fnFillRank({
   id: 'rank-recommend',
@@ -263,7 +264,7 @@ function fnRankToggle() {
   }
 
   const ctxid = parseInt(oFocus.getAttribute('data-ctx'))
-  oRankBg.src = dSource.get(ctxid).assets.poster
+  oRankPoster.src = dSource.get(ctxid).assets.poster
   
 }
 
