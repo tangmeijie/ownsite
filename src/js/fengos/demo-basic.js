@@ -269,16 +269,6 @@ function fnFindMark(boxID) {
   return mark
 }
 
-function fnNodeIndex(nodelist, node) {
-  const array = Array.from(nodelist)
-  const index = array.indexOf(node)
-  if (index >= 0) {
-    return index
-  } else {
-    return false
-  }
-}
-
 // 内容填充
 function fnCloneItem(id, n) {
   const parent = document.getElementById(id)

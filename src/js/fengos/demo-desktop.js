@@ -66,7 +66,7 @@ const aHotWords = document.getElementById('search-hot').children
   for (let [i, word] of Object.entries(aHotWords)) {
     const id = aRandom[i] + 100
 
-    word.setAttribute('data-ctx', id)
+    word.setAttribute('data-id', id)
     word.innerHTML = dSource.get(id).title
   }
 })(7)
@@ -171,7 +171,7 @@ function fnFillRank(...ranks) {
     for (let [i, item] of Object.entries(aItems)) {
       const j = i % aIds.length
       const ctxid = aIds[j]
-      item.setAttribute('data-ctx', ctxid)
+      item.setAttribute('data-id', ctxid)
 
       for (let [selector, path] of Object.entries(rank.fill)) {
         let asset = rank.data.get(ctxid)
@@ -197,14 +197,14 @@ function fnFillRank(...ranks) {
   }
 }
 
-;
-(function fnInitBg() {
+function fnInitSearchBg() {
   const oChannelSearch = document.getElementById('chann-0')
   const oRankFirst = document.getElementById('rank-recommend')
   const oItemFirst = oRankFirst.getElementsByClassName('item')[0]
-  const ctx = oItemFirst.getAttribute('data-ctx')
-  oChannelSearch.setAttribute('data-ctx', ctx)
-})()
+  const ctx = parseInt(oItemFirst.getAttribute('data-id'))
+  oChannelSearch.setAttribute('data-id', ctx)
+  oRankPoster.src = dSource.get(ctx).assets.poster
+}
 
 ;
 (function fnRankFocusable() {
@@ -256,16 +256,16 @@ function fnFillRank(...ranks) {
 function fnRankToggle() {
   const oFocus = document.activeElement
 
-  // 全屏展示
   if (!oFocus.closest('#rank')) {
+    // 模糊
     oSearch.classList.remove('fullscreen')
+    fnInitSearchBg()
   } else {
+    // 全屏
     oSearch.classList.add('fullscreen')
+    const ctxid = parseInt(oFocus.getAttribute('data-id'))
+    oRankPoster.src = dSource.get(ctxid).assets.poster
   }
-
-  const ctxid = parseInt(oFocus.getAttribute('data-ctx'))
-  oRankPoster.src = dSource.get(ctxid).assets.poster
-  
 }
 
 // 添加焦点事件
