@@ -306,3 +306,8 @@ function fnRandomArray(n, max = 11, min = 0) {
 
   return arr
 }
+
+// 内容切换
+function fnToggleBg() {
+  
+}

@@ -93,7 +93,6 @@ const aHotWords = document.getElementById('search-hot').children
 const oRank = document.getElementById('rank')
 const oRankGuider = document.getElementById('rank-guider')
 const oRankBg = document.getElementById('rank-bg')
-const oRankPoster = oRankBg.getElementsByTagName('img')[0]
 
 fnFillRank({
   id: 'rank-recommend',
@@ -197,15 +196,6 @@ function fnFillRank(...ranks) {
   }
 }
 
-function fnInitSearchBg() {
-  const oChannelSearch = document.getElementById('chann-0')
-  const oRankFirst = document.getElementById('rank-recommend')
-  const oItemFirst = oRankFirst.getElementsByClassName('item')[0]
-  const ctx = parseInt(oItemFirst.getAttribute('data-id'))
-  oChannelSearch.setAttribute('data-id', ctx)
-  oRankPoster.src = dSource.get(ctx).assets.poster
-}
-
 ;
 (function fnRankFocusable() {
   // 获取所有榜单id
@@ -264,8 +254,29 @@ function fnRankToggle() {
     // 全屏
     oSearch.classList.add('fullscreen')
     const ctxid = parseInt(oFocus.getAttribute('data-id'))
-    oRankPoster.src = dSource.get(ctxid).assets.poster
+
+    // 切换海报和片花
+    const oPoster = oRankBg.getElementsByTagName('img')[0]
+    const oVideo = oRankBg.getElementsByTagName('video')[0]
+
+    if (ctxid < 200) {
+      oPoster.src = dSource.get(ctxid).assets.poster
+      oVideo.src = dSource.get(ctxid).assets.trailer
+    } else if (ctxid < 300) {
+      oPoster.src = dSource.get(ctxid).assets.poster
+    }
   }
+}
+
+function fnInitSearchBg() {
+  const oChannelSearch = document.getElementById('chann-0')
+  const oItemFirst = document.getElementById('rank-recommend').getElementsByClassName('item')[0]
+
+  const ctxid = parseInt(oItemFirst.getAttribute('data-id'))
+  oChannelSearch.setAttribute('data-id', ctxid)
+
+  const oPoster = oRankBg.getElementsByTagName('img')[0]
+  oPoster.src = dSource.get(ctxid).assets.poster
 }
 
 // 添加焦点事件

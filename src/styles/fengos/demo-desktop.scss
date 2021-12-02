@@ -74,7 +74,7 @@
 
 // 搜索
 .search {
-  margin-top: 250px;
+  padding-top: 230px;
 
   button {
     width: 580px;
@@ -149,7 +149,7 @@
   $section-width: 1620px;
 
   .container {
-    transition: transform $time*1.4 $curve-decel;
+    transition: transform $time*1.8 $curve-decel;
   }
 
   .search {
@@ -204,15 +204,20 @@
     #rank-guider {
       display: block;
     }
+
+    #rank-bg .poster::before {
+      opacity: 0;
+    }
   }
 
   #rank {
-    margin-top: 150px;
+    margin-top: 160px;
     display: inline-flex;
 
     section {
       width: ($page-w - $safe-v*2)/3;
       display: flex;
+      transition: width $time*1.5 $curve-decel, opacity $time $curve-ease;
 
       h1 {
         font-family: TITLE;
@@ -244,6 +249,7 @@
     .item {
       margin-top: 50px;
       display: flex;
+      transition: opacity $time $curve-ease;
 
       .num {
         font-family: NUM;
@@ -261,18 +267,21 @@
 
       .title {
         height: 70px;
+        transition: height $time $curve-decel;
       }
 
       .avatar {
         @include card(70px, 1);
         border-radius: 50%;
         overflow: hidden;
+        transition: all $time $curve-decel;
       }
 
       .name {
         @include font-ladder;
         color: $color-white;
         margin-left: 20px;
+        transition: font-size $time $curve-ease;
       }
 
       &:nth-child(n+5) {
@@ -315,32 +324,29 @@
     }
   }
 
-  // 动画
-  #rank {
-    section {
-      transition: width $time*1.4 $curve-decel, opacity $time $curve-ease;
-    }
+  #rank-bg {
+    width: $page-w;
+    height: $page-h;
+    position: absolute;
+    top: 0;
+    z-index: -1;
 
-    .item {
-      transition: opacity $time $curve-ease;
-    }
+    .poster {
+      position: absolute;
 
-    .title {
-      transition: height $time $curve-decel;
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba($color-black, .2);
+        backdrop-filter: blur(200px);
+        transition: opacity $time*1.8 $curve-ease;
+      }
     }
-
-    .avatar {
-      transition: all $time $curve-decel;
-    }
-
-    .name {
-      transition: font-size $time $curve-ease;
+    video{
+      height: 100%;
     }
   }
-}
-
-#rank-bg {
-  position: absolute;
-  top: 0;
-  z-index: -1;
 }
