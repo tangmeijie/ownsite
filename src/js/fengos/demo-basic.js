@@ -335,7 +335,7 @@ function fnChangeBg(boxID) {
 }
 
 // 片花
-function fnVideoPlay(boxID, isplay = true) {
+function fnVideoPlay(boxID, isplay = true, timer) {
   const box = document.getElementById(boxID)
 
   switch (isplay) {
@@ -346,6 +346,7 @@ function fnVideoPlay(boxID, isplay = true) {
     case false:
       box.getElementsByTagName('video')[0].pause()
       box.classList.remove('playing')
+      clearTimeout(timer)
       break
     default:
       return false

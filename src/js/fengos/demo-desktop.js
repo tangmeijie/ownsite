@@ -18,7 +18,7 @@ import {
 } from './demo-basic.js'
 
 // 全局变量
-let autoplay, videoSwitch = false
+let autoplay, videoSwitch = true
 
 // 搜索区
 const oSearch = document.getElementById('page-search')
@@ -150,7 +150,7 @@ const oRankGuider = document.getElementById('rank-guider')
   start: 200,
   fill: {
     '.avatar': ['assets', 'avatar'],
-    '.name': []
+    '.name': ['name']
   }
 }, {
   id: 'rank-actress',
@@ -219,10 +219,10 @@ function fnRankToggle() {
     fnChangeGuider()
 
     if (videoSwitch) {
-      fnVideoPlay('rank-bg', false)
-      clearTimeout(autoplay)
+      fnVideoPlay('page-search', false, autoplay)
+
       autoplay = setTimeout(function () {
-        fnVideoPlay('rank-bg')
+        fnVideoPlay('page-search')
       }, 2000)
     }
 
@@ -230,8 +230,7 @@ function fnRankToggle() {
     // 模糊
     oSearch.classList.remove('fullscreen')
     if (videoSwitch) {
-      fnVideoPlay('rank-bg', false)
-      clearTimeout(autoplay)
+      fnVideoPlay('page-search', false, autoplay)
     }
 
   } else {

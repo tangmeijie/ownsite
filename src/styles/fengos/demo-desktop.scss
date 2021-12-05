@@ -350,4 +350,24 @@
       height: 100%;
     }
   }
+
+  &.playing.fullscreen #rank {
+
+    section:not(:focus-within) {
+      opacity: .3;
+      transition: opacity 1s $curve-accel 2s;
+    }
+
+    section:focus-within {
+      h1 {
+        opacity: .3;
+        transition: opacity 1s $curve-accel 2s;
+      }
+
+      .item:not(:focus) {
+        opacity: .2;
+        transition: opacity 1s $curve-accel 2s;
+      }
+    }
+  }
 }
