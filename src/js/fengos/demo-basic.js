@@ -1,11 +1,19 @@
 import scssVars from '../../styles/fengos/demo-vars.scss'
+import {
+  dArtist,
+  dSource
+} from './demo-data'
 
 export {
   fnItemFocusable,
   fnSiblingsFocusable,
   fnAddActions,
   fnCloneItem,
-  fnRandomArray
+  fnRandomArray,
+  fnFindIndex,
+  fnChangeBg,
+  fnVideoPlay,
+  fnVideoPlayEnd,
 }
 
 // 对所有页面执行：
@@ -130,18 +138,14 @@ function fnItemFocusable(obj, attrs) {
   }
 }
 
-function fnAddActions(fnBefore, fnAfter, fnNoChange) {
+function fnAddActions(fnAfter, fnNoChange) {
   // 初始化焦点
-  fnInitFocus(fnBefore, fnAfter)
+  fnInitFocus(fnAfter)
 
   // 键盘事件
   document.addEventListener('keydown', function (e) {
     const focus = document.activeElement
     const dataKey = focus.dataset
-
-    if (fnBefore) {
-      fnBefore()
-    }
 
     switch (e.code) {
       // →
@@ -194,10 +198,6 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
   const aItems = document.getElementsByClassName('item')
   for (let item of aItems) {
     item.addEventListener('click', function () {
-      if (fnBefore) {
-        fnBefore()
-      }
-
       fnGetFocus(this.id)
 
       if (document.activeElement === focus) {
@@ -213,11 +213,7 @@ function fnAddActions(fnBefore, fnAfter, fnNoChange) {
   }
 }
 
-function fnInitFocus(fnBefore, fnAfter) {
-  if (fnBefore) {
-    fnBefore()
-  }
-
+function fnInitFocus(fnAfter) {
   const autoFocus = document.querySelector('[autofocus]')
   fnGetFocus(autoFocus.id)
 
@@ -250,7 +246,9 @@ function fnGetFocus(id) {
 
   if (lastfocus && lastfocus.parentNode !== nextfocus.parentNode) {
     lastfocus.classList.add('mark')
+
     if (nextfocus.parentNode.querySelector('.mark')) {
+      // 鼠标或手指交互时要去掉焦点兄弟元素的mark，以免多个mark出现
       nextfocus.parentNode.querySelector('.mark').classList.remove('mark')
     }
   }
@@ -284,6 +282,7 @@ function fnCloneItem(id, n) {
 function fnRandomArray(n, max = 11, min = 0) {
   // 不含最大值，含最小值
   if (n > max - min) {
+    console.log('随机数组范围过小')
     return false
   }
 
@@ -308,6 +307,61 @@ function fnRandomArray(n, max = 11, min = 0) {
 }
 
 // 内容切换
-function fnToggleBg() {
-  
+function fnFindIndex(node, nodetree) {
+  const array = Array.from(nodetree)
+  const index = array.indexOf(node)
+  if (index >= 0) {
+    return index
+  } else {
+    console.log('节点不存在')
+    return false
+  }
+}
+
+function fnChangeBg(boxID) {
+  const focus = document.activeElement
+  const dataID = parseInt(focus.getAttribute('data-id'))
+
+  const box = document.getElementById(boxID)
+  const image = box.getElementsByTagName('img')[0]
+  const video = box.getElementsByTagName('video')[0]
+
+  if (dataID < 200) {
+    image.src = dSource.get(dataID).assets.poster
+    video.src = dSource.get(dataID).assets.trailer
+  } else if (dataID < 300) {
+    image.src = dArtist.get(dataID).assets.poster
+  }
+}
+
+// 片花
+function fnVideoPlay(boxID, isplay = true) {
+  const box = document.getElementById(boxID)
+
+  switch (isplay) {
+    case true:
+      box.getElementsByTagName('video')[0].play()
+      box.classList.add('playing')
+      break
+    case false:
+      box.getElementsByTagName('video')[0].pause()
+      box.classList.remove('playing')
+      break
+    default:
+      return false
+  }
+}
+
+function fnVideoPlayEnd(fnAfter) {
+  const aVideos = document.getElementsByTagName('video')
+
+  for (let video of aVideos) {
+    video.addEventListener('ended', function () {
+      this.closest('.playing').classList.remove('playing')
+
+      if (fnAfter) {
+        fnAfter()
+      }
+    })
+  }
 }

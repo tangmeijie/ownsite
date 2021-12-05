@@ -63,10 +63,21 @@
   background: $color-white;
   opacity: .2;
   margin: 0 20px;
+  transition: opacity 200ms $curve-ease;
 
   &.highlight {
     opacity: .8;
   }
+}
+
+.poster {
+  transition: all 500ms $curve-decel;
+}
+
+.playing .poster {
+  transform: scale(1.2);
+  opacity: 0;
+  transition: all 1s $curve-accel 2s;
 }
 
 // 通用页面
