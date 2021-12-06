@@ -199,6 +199,20 @@
           @include font-ladder(3);
         }
       }
+
+      overflow-x: scroll;
+
+      ul {
+        overflow-y: scroll;
+        height: 812px;
+        scroll-snap-type: y proximity;
+        scroll-behavior: smooth;
+        -webkit-mask-image: linear-gradient(transparent 0px, black 50px);
+
+        li {
+          // scroll-snap-align: center;
+        }
+      }
     }
 
     #rank-guider {
@@ -224,9 +238,12 @@
         font-weight: bold;
         @include font-ladder(4);
         color: $color-white;
-        margin-bottom: 50px;
         opacity: .7;
         transition: opacity $time $curve-ease;
+      }
+
+      ul {
+        padding-bottom: $safe-h;
       }
 
       &:nth-child(n+4) {
@@ -333,6 +350,7 @@
 
     .poster {
       position: absolute;
+      transition: all 500ms $curve-decel;
 
       &::before {
         content: '';
@@ -351,23 +369,31 @@
     }
   }
 
-  &.playing.fullscreen #rank {
+  &.playing {
+    &.fullscreen #rank {
 
-    section:not(:focus-within) {
-      opacity: .3;
-      transition: opacity 1s $curve-accel 2s;
-    }
-
-    section:focus-within {
-      h1 {
+      section:not(:focus-within) {
         opacity: .3;
         transition: opacity 1s $curve-accel 2s;
       }
 
-      .item:not(:focus) {
-        opacity: .2;
-        transition: opacity 1s $curve-accel 2s;
+      section:focus-within {
+        h1 {
+          opacity: .3;
+          transition: opacity 1s $curve-accel 2s;
+        }
+
+        .item:not(:focus) {
+          opacity: .2;
+          transition: opacity 1s $curve-accel 2s;
+        }
       }
+    }
+
+    .poster {
+      transform: scale(1.2);
+      opacity: 0;
+      transition: all 1s $curve-accel 2s;
     }
   }
 }

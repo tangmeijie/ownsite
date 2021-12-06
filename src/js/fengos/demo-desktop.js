@@ -18,7 +18,7 @@ import {
 } from './demo-basic.js'
 
 // 全局变量
-let autoplay, videoSwitch = true
+let autoplay, videoSwitch = false
 
 // 搜索区
 const oSearch = document.getElementById('page-search')
@@ -217,6 +217,10 @@ function fnRankToggle() {
 
     fnChangeBg('rank-bg')
     fnChangeGuider()
+    // oFocus.scrollIntoView({
+    //   behavior: 'smooth',
+    //   block: 'center'
+    // })
 
     if (videoSwitch) {
       fnVideoPlay('page-search', false, autoplay)

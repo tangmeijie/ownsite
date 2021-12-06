@@ -70,19 +70,13 @@
   }
 }
 
-.poster {
-  transition: all 500ms $curve-decel;
-}
-
-.playing .poster {
-  transform: scale(1.2);
-  opacity: 0;
-  transition: all 1s $curve-accel 2s;
-}
-
 // 通用页面
 :focus {
   outline: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .item {
