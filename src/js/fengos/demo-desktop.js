@@ -217,10 +217,6 @@ function fnRankToggle() {
 
     fnChangeBg('rank-bg')
     fnChangeGuider()
-    // oFocus.scrollIntoView({
-    //   behavior: 'smooth',
-    //   block: 'center'
-    // })
 
     if (videoSwitch) {
       fnVideoPlay('page-search', false, autoplay)

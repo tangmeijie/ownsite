@@ -247,9 +247,9 @@ function fnGetFocus(id) {
   if (lastfocus && lastfocus.parentNode !== nextfocus.parentNode) {
     lastfocus.classList.add('mark')
 
-    if (nextfocus.parentNode.querySelector('.mark')) {
+    if (nextfocus.parentNode.getElementsByClassName('mark')[0]) {
       // 鼠标或手指交互时要去掉焦点兄弟元素的mark，以免多个mark出现
-      nextfocus.parentNode.querySelector('.mark').classList.remove('mark')
+      nextfocus.parentNode.getElementsByClassName('mark')[0].classList.remove('mark')
     }
   }
 }
@@ -258,10 +258,10 @@ function fnFindMark(boxID) {
   let mark
   const box = document.getElementById(boxID)
 
-  if (box.querySelector('.mark')) {
-    mark = box.querySelector('.mark')
+  if (box.getElementsByClassName('mark')[0]) {
+    mark = box.getElementsByClassName('mark')[0]
   } else {
-    mark = box.querySelector('.item')
+    mark = box.getElementsByClassName('item')[0]
   }
 
   return mark

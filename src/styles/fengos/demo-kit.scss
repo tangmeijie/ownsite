@@ -31,6 +31,11 @@
   overflow: hidden;
 }
 
+.mask {
+  mask-image: linear-gradient(transparent 0px, black 50px);
+  -webkit-mask-image: linear-gradient(transparent 0px, black 50px);
+}
+
 #status {
   width: 100%;
   height: $safe-h;
@@ -95,10 +100,6 @@ html {
   position: relative;
   overflow: hidden;
   transform-origin: 0 0;
-}
-
-.container {
-  padding: 0 $safe-v;
 }
 
 // 动效放大倍数
