@@ -212,10 +212,6 @@
         scroll-snap-type: y proximity;
         scroll-behavior: smooth;
         @extend .mask;
-
-        li {
-          scroll-snap-align: center;
-        }
       }
 
       .box {
@@ -411,3 +407,5 @@
     }
   }
 }
+
+// 海报页
