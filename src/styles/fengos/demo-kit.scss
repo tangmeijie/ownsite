@@ -102,6 +102,10 @@ html {
   transform-origin: 0 0;
 }
 
+.container {
+  padding: 0 $safe-v;
+}
+
 // 动效放大倍数
 @function grid-scale($width) {
   $scale: ($width + ($grid-gap - $grid-min) * 2) / $width;

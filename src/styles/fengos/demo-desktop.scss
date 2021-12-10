@@ -150,11 +150,6 @@
 
   .container {
     transition: transform $time*1.8 $curve-decel;
-
-    .scroll-ranks {
-      padding: 0 $safe-v;
-      width: calc(100% - $safe-v*2);
-    }
   }
 
   .search {
@@ -175,7 +170,6 @@
       section {
         width: $section-width;
         opacity: .5;
-        scroll-snap-align: start;
         // filter: grayscale(0.5);
 
         &:nth-child(n+4),
@@ -205,24 +199,6 @@
           @include font-ladder(3);
         }
       }
-
-      ul {
-        height: 812px;
-        overflow-y: scroll;
-        scroll-snap-type: y proximity;
-        scroll-behavior: smooth;
-        @extend .mask;
-      }
-
-      .box {
-        padding-left: $safe-v;
-      }
-    }
-
-    .scroll-ranks {
-      overflow-x: scroll;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
     }
 
     #rank-guider {
