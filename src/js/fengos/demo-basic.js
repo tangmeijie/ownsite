@@ -14,7 +14,12 @@ export {
   fnChangeBg,
   fnVideoPlay,
   fnVideoPlayEnd,
+  fnBoxScroll,
 }
+
+// css变量
+const iPageWidth = Number.parseInt(scssVars.pageWidth)
+const iPageHeight = Number.parseInt(scssVars.pageHeight)
 
 // 对所有页面执行：
 fnFitScreen()
@@ -25,9 +30,6 @@ fnShowTime(30)
 function fnFitScreen() {
   const iScreenWidth = document.body.clientWidth
   const iScreenHeight = document.body.clientHeight
-
-  const iPageWidth = Number.parseInt(scssVars.pageWidth)
-  const iPageHeight = Number.parseInt(scssVars.pageHeight)
 
   const iWidth = iScreenWidth / iPageWidth
   const iHeight = iScreenHeight / iPageHeight
@@ -318,13 +320,13 @@ function fnFindIndex(node, nodetree) {
   }
 }
 
-function fnChangeBg(boxID) {
+function fnChangeBg(bgID) {
   const focus = document.activeElement
   const dataID = parseInt(focus.getAttribute('data-id'))
 
-  const box = document.getElementById(boxID)
-  const image = box.getElementsByTagName('img')[0]
-  const video = box.getElementsByTagName('video')[0]
+  const bg = document.getElementById(bgID)
+  const image = bg.getElementsByTagName('img')[0]
+  const video = bg.getElementsByTagName('video')[0]
 
   if (dataID < 200) {
     image.src = dSource.get(dataID).assets.poster
@@ -334,11 +336,65 @@ function fnChangeBg(boxID) {
   }
 }
 
+function fnBoxScroll(selector, isY = true, align = 'center', offset = 0) {
+  const focus = document.activeElement
+  const focusbox = focus.closest(selector)
+
+  const boxes = focusbox.parentNode.querySelectorAll(selector)
+  const index = fnFindIndex(focusbox, boxes)
+
+  let d, D, scroll, visual
+
+  if (isY) {
+    const scrollY = focusbox.closest('.scroll-y')
+    const h = focusbox.offsetHeight
+    const mt = parseInt(window.getComputedStyle(focusbox).marginTop)
+    const mb = parseInt(window.getComputedStyle(focusbox).marginBottom)
+    const H = h + mt + mb
+
+    const scrollH = scrollY.offsetHeight
+    const visualH = scrollY.parentNode.offsetHeight
+    let y
+
+    if (H * (index + 1 / 2) < visualH / 2) {
+      y = 0
+    } else if (scrollH - H * (index + 1 / 2) < visualH / 2) {
+      y = scrollH - visualH
+    } else {
+      y = H * (index + 1 / 2) - visualH / 2
+    }
+
+    scrollY.style.transform = `translateY(${ -y }px)`
+  }else {
+    const scrollX = focusbox.closest('.scroll-x')
+    const w = focusbox.offsetWidth
+    const ml = parseInt(window.getComputedStyle(focusbox).marginLeft)
+    const mr = parseInt(window.getComputedStyle(focusbox).marginRight)
+    const W = w + ml + mr
+
+    const scrollW = scrollX.offsetWidth
+    const visualW = scrollX.parentNode.offsetWidth
+    let x
+
+    if (W * (index + 1 / 2) < visualW / 2) {
+      x = 0
+    } else if (scrollW - W * (index + 1 / 2) < visualW / 2) {
+      x = scrollW - visualW
+    } else {
+      x = W * (index + 1 / 2) - visualW / 2
+    }
+
+    scrollX.style.transform = `translateX(${ -x }px)`
+  }
+
+
+}
+
 // 片花
-function fnVideoPlay(boxID, isplay = true, timer) {
+function fnVideoPlay(boxID, isPlay = true, timer) {
   const box = document.getElementById(boxID)
 
-  switch (isplay) {
+  switch (isPlay) {
     case true:
       box.getElementsByTagName('video')[0].play()
       box.classList.add('playing')

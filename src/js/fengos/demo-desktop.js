@@ -15,6 +15,7 @@ import {
   fnChangeBg,
   fnVideoPlay,
   fnVideoPlayEnd,
+  fnBoxScroll,
 } from './demo-basic.js'
 
 // 全局变量
@@ -216,7 +217,9 @@ function fnRankToggle() {
     oSearch.classList.add('fullscreen')
 
     fnChangeBg('rank-bg')
-    fnChangeGuider()
+    fnChangeGuider('rank-guider')
+    fnBoxScroll('.item')
+    fnBoxScroll('section', false)
 
     if (videoSwitch) {
       fnVideoPlay('page-search', false, autoplay)
@@ -238,16 +241,16 @@ function fnRankToggle() {
   }
 }
 
-function fnChangeGuider() {
-  const aGuiders = document.getElementById('rank-guider').getElementsByTagName('span')
-  for (let guider of aGuiders) {
-    guider.classList.remove('highlight')
+function fnChangeGuider(id) {
+  const aDots = document.getElementById(id).getElementsByTagName('span')
+  for (let dot of aDots) {
+    dot.classList.remove('highlight')
   }
 
-  const oRankFoucs = document.activeElement.closest('section')
-  const aRanks = document.getElementById('rank').getElementsByTagName('section')
-  const index = fnFindIndex(oRankFoucs, aRanks)
-  aGuiders[index].classList.add('highlight')
+  const focusbox = document.activeElement.closest('section')
+  const boxes = document.getElementById('rank').getElementsByTagName('section')
+  const index = fnFindIndex(focusbox, boxes)
+  aDots[index].classList.add('highlight')
 }
 
 // 频道栏

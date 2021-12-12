@@ -15,12 +15,13 @@
   transition: all 400ms $curve-ease;
 
   .box {
+    height: 100%;
     display: inline-flex;
     align-items: center;
   }
 
   img {
-    height: 70px;
+    height: 100%;
     opacity: .4;
   }
 
@@ -170,7 +171,6 @@
       section {
         width: $section-width;
         opacity: .5;
-        // filter: grayscale(0.5);
 
         &:nth-child(n+4),
         .item:nth-child(n+5) {
@@ -181,11 +181,19 @@
         &:nth-child(3) {
           justify-content: start;
         }
+
+        .list {
+          height: 822px;
+          overflow-y: hidden;
+
+          .scroll-y {
+            transition: transform $time $curve-decel;
+          }
+        }
       }
 
       .item {
         opacity: .5;
-        // filter: grayscale(0.5);
 
         .title {
           height: 60px;
@@ -197,6 +205,28 @@
 
         h2 {
           @include font-ladder(3);
+        }
+      }
+
+      &:focus-within {
+        section:focus-within {
+          opacity: 1;
+
+          h1 {
+            opacity: .9;
+          }
+        }
+
+        .item:focus {
+          opacity: 1;
+
+          .title {
+            height: 120px;
+          }
+
+          .avatar {
+            @include card(180px, 1);
+          }
         }
       }
     }
@@ -228,8 +258,16 @@
         transition: opacity $time $curve-ease;
       }
 
-      ul {
-        padding-bottom: $safe-h;
+      .list {
+        @extend .fade;
+
+        ul {
+          padding-bottom: $safe-h + 60px;
+        }
+
+        li:first-child {
+          margin-top: 0;
+        }
       }
 
       &:nth-child(n+4) {
@@ -291,27 +329,14 @@
         display: none;
       }
     }
+  }
 
-    &:focus-within {
-      section:focus-within {
-        opacity: 1;
+  .ranks {
+    width: 100%;
+    padding: 0 $safe-v;
 
-        h1 {
-          opacity: .9;
-        }
-      }
-
-      .item:focus {
-        opacity: 1;
-
-        .title {
-          height: 120px;
-        }
-
-        .avatar {
-          @include card(180px, 1);
-        }
-      }
+    .scroll-x {
+      transition: transform $time*2 $curve-decel;
     }
   }
 
