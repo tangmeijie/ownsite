@@ -336,58 +336,62 @@ function fnChangeBg(bgID) {
   }
 }
 
-function fnBoxScroll(selector, isY = true, align = 'center', offset = 0) {
+function fnBoxScroll(selector, align = 'y-center', offset = 0) {
   const focus = document.activeElement
-  const focusbox = focus.closest(selector)
+  const focuscell = focus.closest(selector)
 
-  const boxes = focusbox.parentNode.querySelectorAll(selector)
-  const index = fnFindIndex(focusbox, boxes)
+  const cells = focuscell.parentNode.querySelectorAll(selector)
+  const index = fnFindIndex(focuscell, cells)
 
-  let d, D, scroll, visual
+  let size, scrollSize, visualSize
+  let scrollbox, scrollD
 
-  if (isY) {
-    const scrollY = focusbox.closest('.scroll-y')
-    const h = focusbox.offsetHeight
-    const mt = parseInt(window.getComputedStyle(focusbox).marginTop)
-    const mb = parseInt(window.getComputedStyle(focusbox).marginBottom)
-    const H = h + mt + mb
+  if (align.includes('y')) {
+    // 垂直
+    scrollbox = focuscell.closest('.scroll-y')
 
-    const scrollH = scrollY.offsetHeight
-    const visualH = scrollY.parentNode.offsetHeight
-    let y
+    const mt = parseInt(window.getComputedStyle(focuscell).marginTop)
+    const mb = parseInt(window.getComputedStyle(focuscell).marginBottom)
+    size = focuscell.offsetHeight + mt + mb
 
-    if (H * (index + 1 / 2) < visualH / 2) {
-      y = 0
-    } else if (scrollH - H * (index + 1 / 2) < visualH / 2) {
-      y = scrollH - visualH
-    } else {
-      y = H * (index + 1 / 2) - visualH / 2
-    }
+    scrollSize = scrollbox.offsetHeight
+    visualSize = scrollbox.parentNode.offsetHeight
+  } else if (align.includes('x')) {
+    // 水平
+    scrollbox = focuscell.closest('.scroll-x')
 
-    scrollY.style.transform = `translateY(${ -y }px)`
-  }else {
-    const scrollX = focusbox.closest('.scroll-x')
-    const w = focusbox.offsetWidth
-    const ml = parseInt(window.getComputedStyle(focusbox).marginLeft)
-    const mr = parseInt(window.getComputedStyle(focusbox).marginRight)
-    const W = w + ml + mr
+    const ml = parseInt(window.getComputedStyle(focuscell).marginLeft)
+    const mr = parseInt(window.getComputedStyle(focuscell).marginRight)
+    size = focuscell.offsetWidth + ml + mr
 
-    const scrollW = scrollX.offsetWidth
-    const visualW = scrollX.parentNode.offsetWidth
-    let x
-
-    if (W * (index + 1 / 2) < visualW / 2) {
-      x = 0
-    } else if (scrollW - W * (index + 1 / 2) < visualW / 2) {
-      x = scrollW - visualW
-    } else {
-      x = W * (index + 1 / 2) - visualW / 2
-    }
-
-    scrollX.style.transform = `translateX(${ -x }px)`
+    scrollSize = scrollbox.offsetWidth
+    visualSize = scrollbox.parentNode.offsetWidth
   }
 
+  switch (align.slice(2)) {
+    case 'center':
+      if (size * (index + 1 / 2) < visualSize / 2) {
+        scrollD = 0
+      } else if (scrollSize - size * (index + 1 / 2) < visualSize / 2) {
+        scrollD = scrollSize - visualSize
+      } else {
+        scrollD = size * (index + 1 / 2) - visualSize / 2
+      }
+      break
+    case 'start':
+      scrollD = size * index
+      break
+    case 'end':
+      break
+    default:
+      return false
+  }
 
+  if (align.includes('y')) {
+    scrollbox.style.transform = `translateY(${ -scrollD }px)`
+  } else if (align.includes('x')) {
+    scrollbox.style.transform = `translateX(${ -scrollD }px)`
+  }
 }
 
 // 片花

@@ -218,8 +218,8 @@ function fnRankToggle() {
 
     fnChangeBg('rank-bg')
     fnChangeGuider('rank-guider')
-    fnBoxScroll('.item')
-    fnBoxScroll('section', false)
+    fnBoxScroll('.item', 'y-center')
+    fnBoxScroll('section', 'x-start')
 
     if (videoSwitch) {
       fnVideoPlay('page-search', false, autoplay)
