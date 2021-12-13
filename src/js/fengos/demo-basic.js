@@ -15,6 +15,7 @@ export {
   fnVideoPlay,
   fnVideoPlayEnd,
   fnBoxScroll,
+  fnBoxScrollReset,
 }
 
 // css变量
@@ -70,7 +71,7 @@ function fnGetTime() {
 
 function fnShowTime(interval) {
   if (!document.getElementById('time')) {
-    return false
+    return
   }
 
   const time = document.getElementById('time')
@@ -83,7 +84,7 @@ function fnShowTime(interval) {
 // 焦点事件
 window.onmousedown = function (e) {
   e.preventDefault()
-  return false
+  return
 }
 
 function fnSiblingsFocusable(id, prefix, isX = true, isLoop = false) {
@@ -186,11 +187,11 @@ function fnAddActions(fnAfter, fnNoChange) {
 
     if (document.activeElement === focus) {
       if (fnNoChange) {
-        fnNoChange()
+        fnNoChange(e.code)
       }
     } else {
       if (fnAfter) {
-        fnAfter()
+        fnAfter(e.code)
       }
     }
 
@@ -226,7 +227,7 @@ function fnInitFocus(fnAfter) {
 
 function fnGetFocus(id) {
   if (!document.getElementById(id)) {
-    return false
+    return
   }
 
   let lastfocus, nextfocus
@@ -285,7 +286,7 @@ function fnRandomArray(n, max = 11, min = 0) {
   // 不含最大值，含最小值
   if (n > max - min) {
     console.log('随机数组范围过小')
-    return false
+    return
   }
 
   min = Math.ceil(min)
@@ -316,7 +317,7 @@ function fnFindIndex(node, nodetree) {
     return index
   } else {
     console.log('节点不存在')
-    return false
+    return
   }
 }
 
@@ -336,61 +337,66 @@ function fnChangeBg(bgID) {
   }
 }
 
-function fnBoxScroll(selector, align = 'y-center', offset = 0) {
+function fnBoxScroll(selector, type = 'y-center') {
   const focus = document.activeElement
   const focuscell = focus.closest(selector)
 
   const cells = focuscell.parentNode.querySelectorAll(selector)
-  const index = fnFindIndex(focuscell, cells)
+  const i = fnFindIndex(focuscell, cells)
 
-  let size, scrollSize, visualSize
-  let scrollbox, scrollD
+  const axis = type.split('-')[0]
+  const align = type.split('-')[1]
+  const scrollbox = focuscell.closest(`.scroll-${ axis }`)
 
-  if (align.includes('y')) {
-    // 垂直
-    scrollbox = focuscell.closest('.scroll-y')
+  let size, scrollSize, visualSize, d
 
-    const mt = parseInt(window.getComputedStyle(focuscell).marginTop)
-    const mb = parseInt(window.getComputedStyle(focuscell).marginBottom)
-    size = focuscell.offsetHeight + mt + mb
-
-    scrollSize = scrollbox.offsetHeight
-    visualSize = scrollbox.parentNode.offsetHeight
-  } else if (align.includes('x')) {
-    // 水平
-    scrollbox = focuscell.closest('.scroll-x')
-
-    const ml = parseInt(window.getComputedStyle(focuscell).marginLeft)
-    const mr = parseInt(window.getComputedStyle(focuscell).marginRight)
-    size = focuscell.offsetWidth + ml + mr
-
-    scrollSize = scrollbox.offsetWidth
-    visualSize = scrollbox.parentNode.offsetWidth
+  switch (axis) {
+    case 'y':
+      const mt = parseInt(window.getComputedStyle(focuscell).marginTop)
+      const mb = parseInt(window.getComputedStyle(focuscell).marginBottom)
+      size = focuscell.offsetHeight + mt + mb
+      scrollSize = scrollbox.offsetHeight
+      visualSize = scrollbox.parentNode.offsetHeight
+      break
+    case 'x':
+      const ml = parseInt(window.getComputedStyle(focuscell).marginLeft)
+      const mr = parseInt(window.getComputedStyle(focuscell).marginRight)
+      size = focuscell.offsetWidth + ml + mr
+      scrollSize = scrollbox.offsetWidth
+      visualSize = scrollbox.parentNode.offsetWidth
+      break
+    default:
+      return
   }
 
-  switch (align.slice(2)) {
+  switch (align) {
     case 'center':
-      if (size * (index + 1 / 2) < visualSize / 2) {
-        scrollD = 0
-      } else if (scrollSize - size * (index + 1 / 2) < visualSize / 2) {
-        scrollD = scrollSize - visualSize
+      if (size * (i + 1 / 2) < visualSize / 2) {
+        d = 0
+      } else if (scrollSize - size * (i + 1 / 2) < visualSize / 2) {
+        d = scrollSize - visualSize
       } else {
-        scrollD = size * (index + 1 / 2) - visualSize / 2
+        d = size * (i + 1 / 2) - visualSize / 2
       }
       break
     case 'start':
-      scrollD = size * index
+      d = size * i
       break
     case 'end':
       break
     default:
-      return false
+      return
   }
 
-  if (align.includes('y')) {
-    scrollbox.style.transform = `translateY(${ -scrollD }px)`
-  } else if (align.includes('x')) {
-    scrollbox.style.transform = `translateX(${ -scrollD }px)`
+  scrollbox.style.transform = `translate${ axis.toUpperCase() }(${ -d }px)`
+}
+
+function fnBoxScrollReset(boxID, axis = 'y') {
+  const box = document.getElementById(boxID)
+  const scrollbars = box.getElementsByClassName('scroll-' + axis)
+
+  for (let scrollbar of scrollbars) {
+    scrollbar.style.transform = `translate${ axis.toUpperCase() }(0)`
   }
 }
 
@@ -409,7 +415,7 @@ function fnVideoPlay(boxID, isPlay = true, timer) {
       clearTimeout(timer)
       break
     default:
-      return false
+      return
   }
 }
 

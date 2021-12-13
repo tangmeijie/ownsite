@@ -16,6 +16,7 @@ import {
   fnVideoPlay,
   fnVideoPlayEnd,
   fnBoxScroll,
+  fnBoxScrollReset,
 } from './demo-basic.js'
 
 // 全局变量
@@ -229,9 +230,14 @@ function fnRankToggle() {
       }, 2000)
     }
 
-  } else if (oFocus.closest('#chann-0')) {
+  } else if (oFocus.closest('#channel')) {
     // 模糊
     oSearch.classList.remove('fullscreen')
+
+    fnBoxScrollReset('rank', 'x')
+    fnBoxScrollReset('rank', 'y')
+    fnChangeBg('rank-bg')
+
     if (videoSwitch) {
       fnVideoPlay('page-search', false, autoplay)
     }

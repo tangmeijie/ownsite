@@ -241,8 +241,17 @@
   }
 
   #rank {
+    width: 100%;
+    padding: 0 $safe-v;
     margin-top: 160px;
-    display: inline-flex;
+
+    .ranks {
+      display: inline-flex;
+
+      &.scroll-x {
+        transition: transform $time*2 $curve-decel;
+      }
+    }
 
     section {
       width: ($page-w - $safe-v*2)/3;
@@ -328,15 +337,6 @@
       &:nth-child(n+5) {
         display: none;
       }
-    }
-  }
-
-  .ranks {
-    width: 100%;
-    padding: 0 $safe-v;
-
-    .scroll-x {
-      transition: transform $time*2 $curve-decel;
     }
   }
 
