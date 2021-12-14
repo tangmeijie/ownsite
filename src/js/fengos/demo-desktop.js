@@ -16,7 +16,6 @@ import {
   fnVideoPlay,
   fnVideoPlayEnd,
   fnBoxScroll,
-  fnBoxScrollReset,
 } from './demo-basic.js'
 
 // 全局变量
@@ -210,7 +209,7 @@ const oRankGuider = document.getElementById('rank-guider')
   }
 })()
 
-function fnRankToggle() {
+function fnRankToggle(isBro, keycode) {
   const oFocus = document.activeElement
 
   if (oFocus.closest('#rank')) {
@@ -219,8 +218,12 @@ function fnRankToggle() {
 
     fnChangeBg('rank-bg')
     fnChangeGuider('rank-guider')
-    fnBoxScroll('.item', 'y-center')
-    fnBoxScroll('section', 'x-start')
+
+    if (isBro) {
+      fnBoxScroll('.item', 'y-center')
+    } else {
+      fnBoxScroll('section', 'x-start')
+    }
 
     if (videoSwitch) {
       fnVideoPlay('page-search', false, autoplay)
@@ -234,9 +237,9 @@ function fnRankToggle() {
     // 模糊
     oSearch.classList.remove('fullscreen')
 
-    fnBoxScrollReset('rank', 'x')
-    fnBoxScrollReset('rank', 'y')
     fnChangeBg('rank-bg')
+    fnBoxScroll('rank', 'x-reset')
+    fnBoxScroll('rank', 'y-reset')
 
     if (videoSwitch) {
       fnVideoPlay('page-search', false, autoplay)
@@ -300,9 +303,9 @@ function fnChannelSilder() {
 }
 
 // 添加焦点事件
-fnAddActions(function () {
+fnAddActions(function (isBro, keycode) {
   fnChannelSilder()
-  fnRankToggle()
+  fnRankToggle(isBro, keycode)
 })
 
 ;

@@ -15,7 +15,6 @@ export {
   fnVideoPlay,
   fnVideoPlayEnd,
   fnBoxScroll,
-  fnBoxScrollReset,
 }
 
 // css变量
@@ -71,7 +70,7 @@ function fnGetTime() {
 
 function fnShowTime(interval) {
   if (!document.getElementById('time')) {
-    return
+    return false
   }
 
   const time = document.getElementById('time')
@@ -84,7 +83,7 @@ function fnShowTime(interval) {
 // 焦点事件
 window.onmousedown = function (e) {
   e.preventDefault()
-  return
+  return false
 }
 
 function fnSiblingsFocusable(id, prefix, isX = true, isLoop = false) {
@@ -144,6 +143,7 @@ function fnItemFocusable(obj, attrs) {
 function fnAddActions(fnAfter, fnNoChange) {
   // 初始化焦点
   fnInitFocus(fnAfter)
+  let isBro = false
 
   // 键盘事件
   document.addEventListener('keydown', function (e) {
@@ -153,22 +153,22 @@ function fnAddActions(fnAfter, fnNoChange) {
     switch (e.code) {
       // →
       case 'ArrowRight':
-        fnGetFocus(dataKey.right)
+        isBro = fnGetFocus(dataKey.right)
         break
 
         // ←
       case 'ArrowLeft':
-        fnGetFocus(dataKey.left)
+        isBro = fnGetFocus(dataKey.left)
         break
 
         // ↓
       case 'ArrowDown':
-        fnGetFocus(dataKey.down)
+        isBro = fnGetFocus(dataKey.down)
         break
 
         // ↑
       case 'ArrowUp':
-        fnGetFocus(dataKey.up)
+        isBro = fnGetFocus(dataKey.up)
         break
 
         // OK
@@ -178,7 +178,7 @@ function fnAddActions(fnAfter, fnNoChange) {
 
         // Back
       case 'Space':
-        fnGetFocus(dataKey.back)
+        isBro = fnGetFocus(dataKey.back)
         break
 
       default:
@@ -191,7 +191,7 @@ function fnAddActions(fnAfter, fnNoChange) {
       }
     } else {
       if (fnAfter) {
-        fnAfter(e.code)
+        fnAfter(isBro, e.code)
       }
     }
 
@@ -201,7 +201,7 @@ function fnAddActions(fnAfter, fnNoChange) {
   const aItems = document.getElementsByClassName('item')
   for (let item of aItems) {
     item.addEventListener('click', function () {
-      fnGetFocus(this.id)
+      isBro = fnGetFocus(this.id)
 
       if (document.activeElement === focus) {
         if (fnNoChange) {
@@ -209,7 +209,7 @@ function fnAddActions(fnAfter, fnNoChange) {
         }
       } else {
         if (fnAfter) {
-          fnAfter()
+          fnAfter(isBro)
         }
       }
     })
@@ -227,7 +227,7 @@ function fnInitFocus(fnAfter) {
 
 function fnGetFocus(id) {
   if (!document.getElementById(id)) {
-    return
+    return false
   }
 
   let lastfocus, nextfocus
@@ -251,9 +251,11 @@ function fnGetFocus(id) {
     lastfocus.classList.add('mark')
 
     if (nextfocus.parentNode.getElementsByClassName('mark')[0]) {
-      // 鼠标或手指交互时要去掉焦点兄弟元素的mark，以免多个mark出现
+      // 点击交互时要去掉焦点兄弟元素的mark，以免多个mark出现
       nextfocus.parentNode.getElementsByClassName('mark')[0].classList.remove('mark')
     }
+  } else {
+    return true
   }
 }
 
@@ -286,7 +288,7 @@ function fnRandomArray(n, max = 11, min = 0) {
   // 不含最大值，含最小值
   if (n > max - min) {
     console.log('随机数组范围过小')
-    return
+    return false
   }
 
   min = Math.ceil(min)
@@ -317,7 +319,7 @@ function fnFindIndex(node, nodetree) {
     return index
   } else {
     console.log('节点不存在')
-    return
+    return false
   }
 }
 
@@ -338,16 +340,27 @@ function fnChangeBg(bgID) {
 }
 
 function fnBoxScroll(selector, type = 'y-center') {
+  const axis = type.split('-')[0]
+  const align = type.split('-')[1]
+
+  if (align === 'reset') {
+    // 重置滚动
+    const box = document.getElementById(selector)
+    const scrollboxes = box.getElementsByClassName('scroll-' + axis)
+
+    for (let scroll of scrollboxes) {
+      scroll.style.transform = `translate${ axis.toUpperCase() }(0)`
+    }
+    return false
+  }
+
   const focus = document.activeElement
   const focuscell = focus.closest(selector)
 
   const cells = focuscell.parentNode.querySelectorAll(selector)
   const i = fnFindIndex(focuscell, cells)
 
-  const axis = type.split('-')[0]
-  const align = type.split('-')[1]
   const scrollbox = focuscell.closest(`.scroll-${ axis }`)
-
   let size, scrollSize, visualSize, d
 
   switch (axis) {
@@ -389,15 +402,6 @@ function fnBoxScroll(selector, type = 'y-center') {
   }
 
   scrollbox.style.transform = `translate${ axis.toUpperCase() }(${ -d }px)`
-}
-
-function fnBoxScrollReset(boxID, axis = 'y') {
-  const box = document.getElementById(boxID)
-  const scrollbars = box.getElementsByClassName('scroll-' + axis)
-
-  for (let scrollbar of scrollbars) {
-    scrollbar.style.transform = `translate${ axis.toUpperCase() }(0)`
-  }
 }
 
 // 片花
