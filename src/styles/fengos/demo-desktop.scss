@@ -1,6 +1,8 @@
 @import '../clear.scss';
 @import './demo-kit.scss';
 
+$focus-time: 250ms;
+
 // 频道栏
 #channel {
   height: 70px;
@@ -12,7 +14,7 @@
   border-radius: $corner;
   isolation: isolate;
   z-index: 9;
-  transition: all 400ms $curve-ease;
+  transition: all $focus-time*2 $curve-ease;
 
   .box {
     height: 100%;
@@ -87,8 +89,8 @@
     background: rgba($color-white, .1);
     border-radius: $corner;
     transition:
-      transform 200ms $curve-decel,
-      box-shadow 200ms $curve-ease;
+      transform $focus-time $curve-decel,
+      box-shadow $focus-time $curve-ease;
 
     svg {
       width: 40px;
@@ -131,8 +133,8 @@
       border-radius: $corner*3;
       margin: 0 15px;
       transition:
-        transform 200ms $curve-decel,
-        box-shadow 200ms $curve-ease;
+        transform $focus-time $curve-decel,
+        box-shadow $focus-time $curve-ease;
 
       &:focus {
         color: $color-black;
@@ -145,16 +147,18 @@
 }
 
 // 排行榜
+$rank-width: 1620px;
+$rank-title-focush: 120px;
+$rank-avatar-focush: 180px;
+
 #page-search {
-  $time: 250ms;
-  $section-width: 1620px;
 
   .container {
-    transition: transform $time*1.8 $curve-decel;
+    transition: transform $focus-time*1.8 $curve-decel;
   }
 
   .search {
-    transition: opacity $time*2 $curve-ease;
+    transition: opacity $focus-time*2 $curve-ease;
   }
 
   &.fullscreen {
@@ -164,12 +168,12 @@
 
     .search {
       opacity: 0;
-      transition: opacity $time/5 $curve-ease;
+      transition: opacity $focus-time/5 $curve-ease;
     }
 
     #rank {
       section {
-        width: $section-width;
+        width: $rank-width;
         opacity: .5;
 
         &:nth-child(n+4),
@@ -187,7 +191,7 @@
           overflow-y: hidden;
 
           .scroll-y {
-            transition: transform $time $curve-decel;
+            transition: transform $focus-time $curve-decel;
           }
         }
       }
@@ -221,11 +225,11 @@
           opacity: 1;
 
           .title {
-            height: 120px;
+            height: $rank-title-focush;
           }
 
           .avatar {
-            @include card(180px, 1);
+            @include card($rank-avatar-focush, 1);
           }
         }
       }
@@ -245,18 +249,18 @@
     padding: 0 $safe-v;
     margin-top: 160px;
 
-    .ranks {
+    .content {
       display: inline-flex;
 
       &.scroll-x {
-        transition: transform $time*2 $curve-decel;
+        transition: transform $focus-time*2 $curve-decel;
       }
     }
 
     section {
       width: ($page-w - $safe-v*2)/3;
       display: flex;
-      transition: width $time*1.5 $curve-decel, opacity $time $curve-ease;
+      transition: width $focus-time*1.5 $curve-decel, opacity $focus-time $curve-ease;
 
       h1 {
         font-family: TITLE;
@@ -264,7 +268,7 @@
         @include font-ladder(4);
         color: $color-white;
         opacity: .7;
-        transition: opacity $time $curve-ease;
+        transition: opacity $focus-time $curve-ease;
       }
 
       .list {
@@ -299,7 +303,7 @@
     .item {
       margin-top: 50px;
       display: flex;
-      transition: opacity $time $curve-ease;
+      transition: opacity $focus-time $curve-ease;
 
       .num {
         font-family: NUM;
@@ -317,21 +321,21 @@
 
       .title {
         height: 70px;
-        transition: height $time $curve-decel;
+        transition: height $focus-time $curve-decel;
       }
 
       .avatar {
         @include card(70px, 1);
         border-radius: 50%;
         overflow: hidden;
-        transition: all $time $curve-decel;
+        transition: all $focus-time $curve-decel;
       }
 
       .name {
         @include font-ladder;
         color: $color-white;
         margin-left: 20px;
-        transition: font-size $time $curve-ease;
+        transition: font-size $focus-time $curve-ease;
       }
 
       &:nth-child(n+5) {
@@ -361,7 +365,7 @@
 
     .poster {
       position: absolute;
-      transition: all 500ms $curve-decel;
+      transition: all $focus-time*2 $curve-decel;
 
       &::before {
         content: '';
@@ -371,7 +375,7 @@
         position: absolute;
         background: rgba($color-black, .2);
         backdrop-filter: blur(200px);
-        transition: opacity $time*1.8 $curve-ease;
+        transition: opacity $focus-time*1.8 $curve-ease;
       }
     }
 
@@ -410,3 +414,9 @@
 }
 
 // 海报页
+
+// css变量
+:root {
+  --rank-title-focush: #{$rank-title-focush};
+  --rank-avatar-focush: #{$rank-avatar-focush};
+}

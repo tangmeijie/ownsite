@@ -339,7 +339,7 @@ function fnChangeBg(bgID) {
   }
 }
 
-function fnBoxScroll(selector, type = 'y-center') {
+function fnBoxScroll(selector, type = 'y-center', offset) {
   const axis = type.split('-')[0]
   const align = type.split('-')[1]
 

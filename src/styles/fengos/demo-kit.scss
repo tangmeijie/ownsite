@@ -122,3 +122,9 @@ html {
   $scale: ($width + ($grid-gap - $grid-min) * 2) / $width;
   @return math.floor($scale * 100) / 100;
 }
+
+// css变量
+:root {
+  --page-width: #{$page-w};
+  --page-height: #{$page-h};
+}

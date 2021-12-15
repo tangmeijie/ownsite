@@ -209,7 +209,7 @@ const oRankGuider = document.getElementById('rank-guider')
   }
 })()
 
-function fnRankToggle(isBro, keycode) {
+function fnRankToggle(isBro) {
   const oFocus = document.activeElement
 
   if (oFocus.closest('#rank')) {
@@ -303,9 +303,9 @@ function fnChannelSilder() {
 }
 
 // 添加焦点事件
-fnAddActions(function (isBro, keycode) {
+fnAddActions(function (isBro) {
   fnChannelSilder()
-  fnRankToggle(isBro, keycode)
+  fnRankToggle(isBro)
 })
 
 ;
