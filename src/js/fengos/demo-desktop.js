@@ -1,5 +1,4 @@
 import '../../styles/fengos/demo-desktop.scss'
-
 import anime from 'animejs/lib/anime.es.js'
 import {
   dSource,
@@ -20,6 +19,11 @@ import {
 
 // 全局变量
 let autoplay, videoSwitch = false
+
+// css变量
+const iRankW = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--rank-w'))
+const iRankTitleFocusH = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--rank-title-focush'))
+const iRankAvatarFocusH = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--rank-avatar-focush'))
 
 // 搜索区
 const oSearch = document.getElementById('page-search')
@@ -220,9 +224,13 @@ function fnRankToggle(isBro) {
     fnChangeGuider('rank-guider')
 
     if (isBro) {
-      fnBoxScroll('.item', 'y-center')
+      if (oFocus.querySelector('.title')) {
+        fnBoxScroll('.item', 'y-center', iRankTitleFocusH)
+      } else if (oFocus.querySelector('.avatar')) {
+        fnBoxScroll('.item', 'y-center', iRankAvatarFocusH)
+      }
     } else {
-      fnBoxScroll('section', 'x-start')
+      fnBoxScroll('section', 'x-start', iRankW)
     }
 
     if (videoSwitch) {

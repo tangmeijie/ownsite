@@ -339,7 +339,7 @@ function fnChangeBg(bgID) {
   }
 }
 
-function fnBoxScroll(selector, type = 'y-center', offset) {
+function fnBoxScroll(selector, type = 'y-center', sizex) {
   const axis = type.split('-')[0]
   const align = type.split('-')[1]
 
@@ -382,14 +382,18 @@ function fnBoxScroll(selector, type = 'y-center', offset) {
       return
   }
 
+  const focusSize = sizex || size
+  scrollSize = scrollSize + focusSize - size
+  // console.log(size, scrollSize)
+
   switch (align) {
     case 'center':
-      if (size * (i + 1 / 2) < visualSize / 2) {
+      if (size * i + focusSize / 2 < visualSize / 2) {
         d = 0
-      } else if (scrollSize - size * (i + 1 / 2) < visualSize / 2) {
+      } else if (scrollSize - size * i + focusSize / 2 < visualSize / 2) {
         d = scrollSize - visualSize
       } else {
-        d = size * (i + 1 / 2) - visualSize / 2
+        d = size * i + focusSize / 2 - visualSize / 2
       }
       break
     case 'start':

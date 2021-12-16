@@ -260,7 +260,9 @@ $rank-avatar-focush: 180px;
     section {
       width: ($page-w - $safe-v*2)/3;
       display: flex;
-      transition: width $focus-time*1.5 $curve-decel, opacity $focus-time $curve-ease;
+      transition:
+        width $focus-time*1.5 $curve-decel,
+        opacity $focus-time $curve-ease;
 
       h1 {
         font-family: TITLE;
@@ -275,7 +277,7 @@ $rank-avatar-focush: 180px;
         @extend .fade;
 
         ul {
-          padding-bottom: $safe-h + 60px;
+          padding-bottom: $safe-h;
         }
 
         li:first-child {
@@ -417,6 +419,7 @@ $rank-avatar-focush: 180px;
 
 // css变量
 :root {
+  --rank-w: #{$rank-width};
   --rank-title-focush: #{$rank-title-focush};
   --rank-avatar-focush: #{$rank-avatar-focush};
 }
