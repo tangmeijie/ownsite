@@ -33,22 +33,9 @@
 
 .fade {
   $height: 50px;
-
-  padding-top: $height;
+  
   mask-image: linear-gradient(transparent 0px, black $height);
   -webkit-mask-image: linear-gradient(transparent 0px, black $height);
-
-  // position: relative;
-
-  // &::before {
-  //   content: '';
-  //   display: block;
-  //   position: absolute;
-  //   top: 0;
-  //   width: 100%;
-  //   height: 50%;
-  //   outline: 1px solid red;
-  // }
 }
 
 #status {

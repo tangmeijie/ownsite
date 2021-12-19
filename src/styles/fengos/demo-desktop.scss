@@ -148,8 +148,6 @@ $focus-time: 250ms;
 
 // 排行榜
 $rank-width: 1620px;
-$rank-title-focush: 120px;
-$rank-avatar-focush: 180px;
 
 #page-search {
 
@@ -187,7 +185,7 @@ $rank-avatar-focush: 180px;
         }
 
         .list {
-          height: 822px;
+          height: 872px;
           overflow-y: hidden;
 
           .scroll-y {
@@ -225,11 +223,11 @@ $rank-avatar-focush: 180px;
           opacity: 1;
 
           .title {
-            height: $rank-title-focush;
+            height: 120px;
           }
 
           .avatar {
-            @include card($rank-avatar-focush, 1);
+            @include card(180px, 1);
           }
         }
       }
@@ -279,10 +277,6 @@ $rank-avatar-focush: 180px;
         ul {
           padding-bottom: $safe-h;
         }
-
-        li:first-child {
-          margin-top: 0;
-        }
       }
 
       &:nth-child(n+4) {
@@ -303,7 +297,7 @@ $rank-avatar-focush: 180px;
     }
 
     .item {
-      margin-top: 50px;
+      padding-top: 50px;
       display: flex;
       transition: opacity $focus-time $curve-ease;
 
@@ -420,6 +414,4 @@ $rank-avatar-focush: 180px;
 // css变量
 :root {
   --rank-w: #{$rank-width};
-  --rank-title-focush: #{$rank-title-focush};
-  --rank-avatar-focush: #{$rank-avatar-focush};
 }

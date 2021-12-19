@@ -339,7 +339,7 @@ function fnChangeBg(bgID) {
   }
 }
 
-function fnBoxScroll(selector, type = 'y-center', sizex) {
+function fnBoxScroll(selector, type = 'y-center', sizedef, sizefocus, offset = 0) {
   const axis = type.split('-')[0]
   const align = type.split('-')[1]
 
@@ -348,59 +348,51 @@ function fnBoxScroll(selector, type = 'y-center', sizex) {
     const box = document.getElementById(selector)
     const scrollboxes = box.getElementsByClassName('scroll-' + axis)
 
-    for (let scroll of scrollboxes) {
-      scroll.style.transform = `translate${ axis.toUpperCase() }(0)`
+    for (let scrollbox of scrollboxes) {
+      scrollbox.style.transform = `translate${ axis.toUpperCase() }(0)`
     }
     return false
   }
 
-  const focus = document.activeElement
-  const focuscell = focus.closest(selector)
-
+  const focuscell = document.activeElement.closest(selector)
   const cells = focuscell.parentNode.querySelectorAll(selector)
   const i = fnFindIndex(focuscell, cells)
 
   const scrollbox = focuscell.closest(`.scroll-${ axis }`)
-  let size, scrollSize, visualSize, d
-
-  switch (axis) {
-    case 'y':
-      const mt = parseInt(window.getComputedStyle(focuscell).marginTop)
-      const mb = parseInt(window.getComputedStyle(focuscell).marginBottom)
-      size = focuscell.offsetHeight + mt + mb
-      scrollSize = scrollbox.offsetHeight
-      visualSize = scrollbox.parentNode.offsetHeight
-      break
-    case 'x':
-      const ml = parseInt(window.getComputedStyle(focuscell).marginLeft)
-      const mr = parseInt(window.getComputedStyle(focuscell).marginRight)
-      size = focuscell.offsetWidth + ml + mr
-      scrollSize = scrollbox.offsetWidth
-      visualSize = scrollbox.parentNode.offsetWidth
-      break
-    default:
-      return
-  }
-
-  const focusSize = sizex || size
-  scrollSize = scrollSize + focusSize - size
-  // console.log(size, scrollSize)
+  let d
 
   switch (align) {
     case 'center':
-      if (size * i + focusSize / 2 < visualSize / 2) {
+      const size = sizefocus || sizedef
+      const offsetSize = sizedef * i + size / 2 + offset
+      let scrollSize, visualSize
+
+      switch (axis) {
+        case 'y':
+          scrollSize = scrollbox.offsetHeight
+          visualSize = scrollbox.parentNode.offsetHeight
+          break
+        case 'x':
+          scrollSize = scrollbox.offsetWidth
+          visualSize = scrollbox.parentNode.offsetWidth
+          break
+        default:
+          return
+      }
+
+      if (offsetSize < visualSize / 2) {
         d = 0
-      } else if (scrollSize - size * i + focusSize / 2 < visualSize / 2) {
+      } else if (scrollSize - offsetSize < visualSize / 2) {
         d = scrollSize - visualSize
       } else {
-        d = size * i + focusSize / 2 - visualSize / 2
+        d = offsetSize - visualSize / 2
       }
       break
+
     case 'start':
-      d = size * i
+      d = sizedef * i
       break
-    case 'end':
-      break
+
     default:
       return
   }

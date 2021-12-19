@@ -22,8 +22,6 @@ let autoplay, videoSwitch = false
 
 // css变量
 const iRankW = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--rank-w'))
-const iRankTitleFocusH = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--rank-title-focush'))
-const iRankAvatarFocusH = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--rank-avatar-focush'))
 
 // 搜索区
 const oSearch = document.getElementById('page-search')
@@ -225,9 +223,9 @@ function fnRankToggle(isBro) {
 
     if (isBro) {
       if (oFocus.querySelector('.title')) {
-        fnBoxScroll('.item', 'y-center', iRankTitleFocusH)
+        fnBoxScroll('.item', 'y-center', 110, 170, 25)
       } else if (oFocus.querySelector('.avatar')) {
-        fnBoxScroll('.item', 'y-center', iRankAvatarFocusH)
+        fnBoxScroll('.item', 'y-center', 140, 230, 25)
       }
     } else {
       fnBoxScroll('section', 'x-start', iRankW)
