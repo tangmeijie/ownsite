@@ -1,4 +1,4 @@
-import scssVars from '../../styles/fengos/demo-vars.scss'
+import '../../styles/fengos/demo-kit.scss'
 import {
   dArtist,
   dSource
@@ -18,8 +18,8 @@ export {
 }
 
 // css变量
-const iPageWidth = Number.parseInt(scssVars.pageWidth)
-const iPageHeight = Number.parseInt(scssVars.pageHeight)
+const iPageWidth = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--page-width'))
+const iPageHeight = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--page-height'))
 
 // 对所有页面执行：
 fnFitScreen()
