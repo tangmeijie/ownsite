@@ -1,6 +1,17 @@
 @import '../clear.scss';
 @import './demo-kit.scss';
 
+// 手机弹窗
+#mobile-opts {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: rgba($color-veil, .7);
+  color: $color-white;
+  display: none;
+}
+
 $focus-time: 250ms;
 
 // 频道栏

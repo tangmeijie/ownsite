@@ -23,6 +23,17 @@ let autoplay, videoSwitch = false
 // css变量
 const iRankW = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--rank-w'))
 
+// 手机端弹窗选择
+;
+(function () {
+  var sUserAgent = navigator.userAgent
+  if (sUserAgent.includes('Android') || sUserAgent.includes('iPhone')) {
+    const popup = document.getElementById('mobile-opts')
+    popup.style.display = 'block'
+  }
+})()
+
+
 // 搜索区
 const oSearch = document.getElementById('page-search')
 const oSearchBtn = document.getElementById('search-btn')

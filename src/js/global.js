@@ -8,3 +8,7 @@ import '../styles/home.scss'
 //   duration: 800,
 //   loop: true
 // });
+
+function isMobile() { 
+  return ('ontouchstart' in document.documentElement); 
+}
