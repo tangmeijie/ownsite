@@ -26,7 +26,7 @@ const config = {
       controller: {
         html: './src/html/fengos/controller.html',
         js: [
-          './src/js/global.js'
+          './src/js/fengos/controller.js'
         ]
       }
     }

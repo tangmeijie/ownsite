@@ -23,12 +23,12 @@ let autoplay, videoSwitch = false
 // css变量
 const iRankW = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--rank-w'))
 
+
 // 手机端弹窗选择
 ;
-(function () {
-  var sUserAgent = navigator.userAgent
-  if (sUserAgent.includes('Android') || sUserAgent.includes('iPhone')) {
-    const popup = document.getElementById('mobile-opts')
+(function fnIsMobilePortrait() {
+  if (window.screen.width < 500) {
+    const popup = document.getElementById('mobile')
     popup.style.display = 'block'
   }
 })()

@@ -10,6 +10,21 @@
   background: rgba($color-veil, .7);
   color: $color-white;
   display: none;
+
+  h1 {
+    text-align: center;
+    font-size: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.6rem;
+    background: $color-white;
+    color: $color-black;
+    border-radius: 50%;
+  }
 }
 
 $focus-time: 250ms;
