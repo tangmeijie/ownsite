@@ -1,4 +1,5 @@
 @use 'sass:math';
+@import './demo-vars.scss';
 
 // 文字
 @font-face {
@@ -16,34 +17,16 @@
   src: local('PingFang SC'), local('Microsoft YaHei');
 }
 
-@font-face {
-  font-family: TITLE;
-  src: local('STKaiti'), local('KaiTi');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@800&display=swap');
+
+.font-title {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 800;
 }
 
 @mixin font-ladder($i: 2) {
   font-size: math.floor(24px * math.pow(1.6, $i/4));
 }
-
-$line-h: 1.6;
-
-// 颜色
-$color-bg: linear-gradient(to bottom, #525662, #3f444e);
-$color-white: #fff;
-$color-black: #292b2f;
-$color-veil: #000;
-$color-main: #26ebdb;
-
-// 栅格
-$page-w: 1920px;
-$page-h: 1080px;
-$safe-v: 80px;
-$safe-h: 60px;
-$grid-gap: 40px;
-$grid-min: 10px;
-
-// 圆角
-$corner: 10px;
 
 // 阴影
 @mixin shadow($depth: .7, $size: 'focus') {
@@ -85,25 +68,6 @@ $corner: 10px;
 
 @function metallic-ratio($n) {
   @return ($n + math.sqrt($n * $n + 4)) / 2;
-}
-
-// 动效曲线
-$curve-stand: cubic-bezier(0.4, 0.0, 0.2, 1);
-$curve-decel: cubic-bezier(0.0, 0.0, 0.2, 1);
-$curve-accel: cubic-bezier(0.4, 0.0, 1.0, 1);
-$curve-sharp: cubic-bezier(0.4, 0.0, 0.6, 1);
-$curve-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
-$curve-ease-in: cubic-bezier(0.42, 0, 1, 1);
-$curve-ease-out: cubic-bezier(0, 0, 0.58, 1);
-$curve-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
-
-@function spring-wobbly($t) {
-  $E: math.$e;
-  @return -0.5 * math.pow($E, (-6 * $t)) * (-2 * math.pow($E, (6 * $t)) + math.sin(12 * $t) + 2 * math.cos(12 * $t));
-}
-
-@function lerp($a, $b, $p) {
-  @return $a+$p * ($b - $a);
 }
 
 
@@ -193,10 +157,4 @@ html {
 @function grid-scale($width) {
   $scale: ($width + ($grid-gap - $grid-min) * 2) / $width;
   @return math.floor($scale * 100) / 100;
-}
-
-// css变量
-:root {
-  --page-width: #{$page-w};
-  --page-height: #{$page-h};
 }

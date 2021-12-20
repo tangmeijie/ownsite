@@ -4,24 +4,32 @@
   font-weight: 400;
   src: url('../../public/fonts/Lexend-Regular.ttf');
 }
+
 @font-face {
   font-family: EN;
   font-weight: 600;
   src: url('../../public/fonts/Lexend-SemiBold.ttf');
 }
+
 @font-face {
   font-family: EN;
   font-weight: 100;
   src: url('../../public/fonts/Lexend-Thin.ttf');
 }
+
 @font-face {
   font-family: EN;
   font-weight: 800;
   src: url('../../public/fonts/Lexend-ExtraBold.ttf');
 }
 
+@font-face {
+  font-family: CN;
+  src: local('PingFang SC'), local('Microsoft YaHei');
+}
+
 html {
-  font-family: EN, sans-serif;
+  font-family: EN, CN, sans-serif;
   font-size: 100px;
 }
 

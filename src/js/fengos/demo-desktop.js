@@ -27,9 +27,15 @@ const iRankW = parseInt(window.getComputedStyle(document.documentElement).getPro
 // 手机端弹窗选择
 ;
 (function fnIsMobilePortrait() {
+  const popup = document.getElementById('mobile')
+
   if (window.screen.width < 500) {
-    const popup = document.getElementById('mobile')
-    popup.style.display = 'block'
+    popup.classList.add('show')
+  }
+
+  const btn = document.getElementById('btn-demo')
+  btn.onclick = function () {
+    popup.classList.remove('show')
   }
 })()
 
