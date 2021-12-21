@@ -4,12 +4,12 @@
 // 文字
 @font-face {
   font-family: EN;
-  src: url('../../../public/fengos/demo/fonts/Lato-Regular.ttf');
+  src: url('/public/fengos/demo/fonts/Lato-Regular.ttf');
 }
 
 @font-face {
   font-family: NUM;
-  src: url('../../../public/fengos/demo/fonts/CabinCondensed-Regular.ttf');
+  src: url('/public/fengos/demo/fonts/CabinCondensed-Regular.ttf');
 }
 
 @font-face {
@@ -25,7 +25,7 @@
 }
 
 @mixin font-ladder($i: 2) {
-  font-size: math.floor(24px * math.pow(1.6, $i/4));
+  font-size: math.floor(24px * math.pow(1.6, math.div($i, 4)));
 }
 
 // 阴影
@@ -48,14 +48,14 @@
   width: $width;
 
   @if type-of($ratio)=='number' {
-    height: math.floor($width / $ratio);
+    height: math.floor(math.div($width, $ratio));
   }
 
   @else if type-of($ratio)=='string' {
     @if str-index($ratio, 'metal')==1 {
       @for $i from 1 through 10 {
         @if $ratio=='metal-'+#{$i} {
-          height: math.floor($width / metallic-ratio($i));
+          height: math.floor(math.div($width, metallic-ratio($i)));
         }
       }
     }
@@ -155,6 +155,6 @@ html {
 
 // 动效放大倍数
 @function grid-scale($width) {
-  $scale: ($width + ($grid-gap - $grid-min) * 2) / $width;
-  @return math.floor($scale * 100) / 100;
+  $scale: math.div($width + ($grid-gap - $grid-min) * 2, $width);
+  @return math.div(math.floor($scale * 100), 100);
 }

@@ -212,7 +212,7 @@ $rank-width: 1620px;
 
     .search {
       opacity: 0;
-      transition: opacity $focus-time/5 $curve-ease;
+      transition: opacity $focus-time*0.2 $curve-ease;
     }
 
     #rank {
@@ -302,7 +302,7 @@ $rank-width: 1620px;
     }
 
     section {
-      width: ($page-w - $safe-v*2)/3;
+      width: calc(($page-w - $safe-v*2) / 3);
       display: flex;
       transition:
         width $focus-time*1.5 $curve-decel,

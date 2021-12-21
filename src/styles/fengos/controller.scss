@@ -1,11 +1,86 @@
 @import '../clear.scss';
-// @import '../kit.scss';
+@import '../kit.scss';
+
+$color: #07DAB7;
+$color-light: #EEF4F3;
+$color-dark: #5B7B76;
 
 html {
   font-size: 100px;
-  background: #EEF4F3;
+  background: $color-light;
 }
 
 h1 {
-  font-size: 0.5rem;
+  font-size: 0.6rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+main {
+  width: 7rem;
+  margin: 2rem auto 0;
+}
+
+#direction {
+  height: 7rem;
+  background: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+
+  .panel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: rotate(45deg);
+
+    div {
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      transform-origin: 100% 100%;
+    }
+
+    #right {
+      transform: rotate(90deg);
+    }
+
+    #down {
+      transform: rotate(180deg);
+    }
+
+    #left {
+      transform: rotate(270deg);
+    }
+  }
+
+  svg {
+    width: 0.45rem;
+    height: 1.2rem;
+    transform: translate(-0.45rem + 1.3rem, -0.6rem + 1.3rem) rotate(-135deg);
+    transform-origin: 100% 50%;
+    opacity: .5;
+  }
+}
+
+.btn-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+#back {
+  margin: 1.8rem auto 0;
+}
+
+svg {
+  stroke: $color-dark;
 }
