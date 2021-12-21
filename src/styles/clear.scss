@@ -32,6 +32,8 @@ button {
   outline: 0;
   border: none;
   padding: 0;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
 }
 

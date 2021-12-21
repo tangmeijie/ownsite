@@ -6,38 +6,49 @@ $color-light: #EEF4F3;
 $color-dark: #5B7B76;
 
 html {
-  font-size: 100px;
   background: $color-light;
 }
 
 h1 {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem;
+  color: rgba($color-dark, .2);
   text-align: center;
-  margin-top: 0.5rem;
+  margin-top: 1.2rem;
 }
 
 main {
   width: 7rem;
-  margin: 2rem auto 0;
+  margin: 1.6rem auto 0;
 }
 
 #direction {
   height: 7rem;
-  background: #fff;
-  border-radius: 50%;
-  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .panel {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: absolute;
     transform: rotate(45deg);
 
-    div {
+    button {
       width: 50%;
       height: 50%;
       position: absolute;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      background: rgba($color, .1);
+      border-radius: 100% 0 0 0;
       transform-origin: 100% 100%;
+
+      &:active {
+        background: rgba($color, .2);
+      }
     }
 
     #right {
@@ -54,11 +65,32 @@ main {
   }
 
   svg {
-    width: 0.45rem;
-    height: 1.2rem;
-    transform: translate(-0.45rem + 1.3rem, -0.6rem + 1.3rem) rotate(-135deg);
+    width: 0.3rem;
+    height: 0.8rem;
+    transform: translate(-0.3rem + 1.3rem, -0.4rem + 1.3rem) rotate(-135deg);
     transform-origin: 100% 50%;
     opacity: .5;
+  }
+
+  #ok {
+    width: 3.2rem;
+    height: 3.2rem;
+    font-family: EN;
+    font-weight: 600;
+    font-size: 0.5rem;
+    color: rgba($color-dark, .2);
+    background: #fff;
+    border-radius: 50%;
+    box-shadow:
+      4px 4px 20px 0px rgba(0, 0, 0, 0.1),
+      -4px -4px 20px 0px rgba(255, 255, 255, 0.8);
+    z-index: 1;
+
+    &:active {
+      box-shadow:
+        4px 4px 20px 0px rgba(0, 0, 0, 0.15) inset,
+        -4px -4px 20px 0px rgba(255, 255, 255, 1) inset;
+    }
   }
 }
 
@@ -66,19 +98,24 @@ main {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background: #fff;
+  background: rgba($color, .1);
   display: flex;
   align-items: center;
   justify-content: center;
 
+  &:active {
+    background: rgba($color, .2);
+  }
+
   svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1rem;
+    height: 1rem;
+    opacity: .5;
   }
 }
 
 #back {
-  margin: 1.8rem auto 0;
+  margin: 1.6rem auto 0;
 }
 
 svg {
