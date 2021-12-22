@@ -1,6 +1,14 @@
 @import '../clear.scss';
 @import './demo-kit.scss';
 
+// 遥控器
+#controller{
+  position: absolute;
+  top: 2rem;
+  width: 5rem;
+  // height: 5rem;
+}
+
 // 手机弹窗
 #mobile {
   width: 100%;
@@ -194,6 +202,9 @@ $focus-time: 250ms;
 
 // 排行榜
 $rank-width: 1620px;
+:root {
+  --rank-w: #{$rank-width};
+}
 
 #page-search {
 
@@ -453,11 +464,4 @@ $rank-width: 1620px;
       transition: all 1s $curve-accel 2s;
     }
   }
-}
-
-// 海报页
-
-// css变量
-:root {
-  --rank-w: #{$rank-width};
 }
