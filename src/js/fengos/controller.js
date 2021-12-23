@@ -7,13 +7,13 @@ window.onmousedown = function (e) {
 }
 
 ;
-(function fnControllDemo() {
-  const oBack = document.getElementById('back')
+(function fnControllAction() {
+  const aBtns = document.getElementsByTagName('button')
 
-  oBack.onclick = function () {
-    parent.window.document.getElementById('channel-slider').style.background = 'red'
+  for (let btn of aBtns) {
+    btn.addEventListener('click', function () {
+      // console.log(this.id)
+      parent.window.fnControllerActions(this.id)
+    })
   }
 })()
-
-let webSocket
-webSocket = new WebSocket('ws://localhost:8080')

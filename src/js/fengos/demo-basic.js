@@ -2,12 +2,13 @@ import scssVars from '../../styles/fengos/demo-vars.scss'
 import {
   dArtist,
   dSource
-} from './demo-data'
+} from './demo-data.js'
 
 export {
   fnItemFocusable,
   fnSiblingsFocusable,
   fnAddActions,
+  fnControllerActions,
   fnCloneItem,
   fnRandomArray,
   fnFindIndex,
@@ -28,6 +29,10 @@ fnShowTime(30)
 
 // 自适应屏幕大小
 function fnFitScreen() {
+  if (!document.getElementsByClassName('page')[0]) {
+    return false
+  }
+
   const iScreenWidth = document.body.clientWidth
   const iScreenHeight = document.body.clientHeight
 
@@ -213,6 +218,50 @@ function fnAddActions(fnAfter, fnNoChange) {
         }
       }
     })
+  }
+}
+
+function fnControllerActions(key, fnAfter, fnNoChange) {
+  const focus = document.activeElement
+  const dataKey = focus.dataset
+
+  let isBro = false
+
+  switch (key) {
+    case 'right':
+      isBro = fnGetFocus(dataKey.right)
+      break
+
+    case 'left':
+      isBro = fnGetFocus(dataKey.left)
+      break
+
+    case 'down':
+      isBro = fnGetFocus(dataKey.down)
+      break
+
+    case 'up':
+      isBro = fnGetFocus(dataKey.up)
+      break
+
+    case 'ok':
+      break
+
+    case 'back':
+      break
+
+    default:
+      return
+  }
+
+  if (document.activeElement === focus) {
+    if (fnNoChange) {
+      fnNoChange()
+    }
+  } else {
+    if (fnAfter) {
+      fnAfter(isBro)
+    }
   }
 }
 

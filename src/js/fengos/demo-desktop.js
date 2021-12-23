@@ -8,6 +8,7 @@ import {
   fnItemFocusable,
   fnSiblingsFocusable,
   fnAddActions,
+  fnControllerActions,
   fnCloneItem,
   fnRandomArray,
   fnFindIndex,
@@ -330,6 +331,13 @@ fnAddActions(function (isBro) {
   fnChannelSilder()
   fnRankToggle(isBro)
 })
+
+function fnAddController(key) {
+  fnControllerActions(key, function (isBro) {
+    fnChannelSilder()
+    fnRankToggle(isBro)
+  })
+}
 
 ;
 (function fnInitChannel(aBoxIds) {
