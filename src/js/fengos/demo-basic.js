@@ -145,7 +145,7 @@ function fnItemFocusable(obj, attrs) {
   }
 }
 
-function fnAddActions(fnAfter, fnNoChange) {
+function fnAddActions(fnAfter) {
   // 初始化焦点
   fnInitFocus(fnAfter)
   let isBro = false
@@ -190,12 +190,10 @@ function fnAddActions(fnAfter, fnNoChange) {
         return
     }
 
-    if (document.activeElement === focus) {
-      if (fnNoChange) {
-        fnNoChange(e.code)
-      }
-    } else {
-      if (fnAfter) {
+    if (fnAfter) {
+      if (document.activeElement === focus) {
+        fnAfter('nochange', e.code)
+      } else {
         fnAfter(isBro, e.code)
       }
     }
