@@ -33,6 +33,37 @@ html {
   font-size: 100px;
 }
 
+// 栅格
+$maxW: 1440px; // 屏幕最大宽度，再宽、内容宽度不变
+$minW: 640px; // 屏幕最小宽度，再窄、横向滚动
+$maxP: 40px; // 宽的页边距
+$minP: 24px; // 窄的页边距
+
+main {
+  margin: 0 auto;
+}
+
+// PC最大宽度
+@media screen and (min-width: $maxW) {
+  main {
+    width: calc($maxW - 2*$maxP);
+  }
+}
+
+// Pad
+@media screen and (max-width: $maxW) and (min-width: $minW) {
+  main {
+    width: calc(100% - 2*$maxP);
+  }
+}
+
+// Phone最小宽度
+@media screen and (max-width: $minW) {
+  main {
+    width: calc($minW - 2*$minP);
+  }
+}
+
 // 颜色
 $color-main: rgb(129, 56, 224);
 $color-dark: #a3a3a3;

@@ -1,4 +1,5 @@
-import '../styles/home.scss'
+import '../styles/clear.scss'
+import '../styles/ui-kit.scss'
 
 // console.log(moment().format('YYYY-MM-DD'))
 
@@ -9,6 +10,6 @@ import '../styles/home.scss'
 //   loop: true
 // });
 
-function isMobile() { 
-  return ('ontouchstart' in document.documentElement); 
-}
+// function isMobile() { 
+//   return ('ontouchstart' in document.documentElement); 
+// }
