@@ -1,38 +1,3 @@
-// 文字
-@font-face {
-  font-family: EN;
-  font-weight: 400;
-  src: url('/public/fonts/Lexend-Regular.ttf');
-}
-
-@font-face {
-  font-family: EN;
-  font-weight: 600;
-  src: url('/public/fonts/Lexend-SemiBold.ttf');
-}
-
-@font-face {
-  font-family: EN;
-  font-weight: 100;
-  src: url('/public/fonts/Lexend-Thin.ttf');
-}
-
-@font-face {
-  font-family: EN;
-  font-weight: 800;
-  src: url('/public/fonts/Lexend-ExtraBold.ttf');
-}
-
-@font-face {
-  font-family: CN;
-  src: local('PingFang SC'), local('Microsoft YaHei');
-}
-
-html {
-  font-family: EN, CN, sans-serif;
-  font-size: 100px;
-}
-
 // 栅格
 $maxW: 1440px; // 屏幕最大宽度，再宽、内容宽度不变
 $minW: 640px; // 屏幕最小宽度，再窄、横向滚动
@@ -62,6 +27,22 @@ main {
   main {
     width: calc($minW - 2*$minP);
   }
+}
+
+// 文字
+@font-face {
+  font-family: EN;
+  src: url('/public/fonts/Lexend-VariableFont.ttf');
+}
+
+@font-face {
+  font-family: CN;
+  src: url('/public/fonts/NotoSansSC-VariableFont.ttf'), local('PingFang SC'), local('Microsoft YaHei');
+}
+
+html {
+  font-family: CN, sans-serif;
+  font-size: 100px;
 }
 
 // 颜色

@@ -2,15 +2,28 @@ const config = {
   index: {
     html: './src/html/index.html',
     js: [
+      './src/js/global.js',
+      './src/js/home.js'
+    ]
+  },
+
+  // 所有项目
+  works: {
+    html: './src/html/works.html',
+    js: [
       './src/js/global.js'
     ]
   },
+
+  // 关于我
   me: {
     html: './src/html/me.html',
     js: [
       './src/js/global.js'
     ]
   },
+
+  // 峰米FengOS
   fengos: {
     html: './src/html/fengos/index.html',
     js: './src/js/global.js',

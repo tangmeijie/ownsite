@@ -2,11 +2,12 @@
 
 body {
   background: $color-light;
-  font-weight: 800;
 }
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  
+  img { width: 100%; }
 }
 .me {
   font-size: 0.6rem;
