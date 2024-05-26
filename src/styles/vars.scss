@@ -1,0 +1,24 @@
+// 颜色
+$c-main: rgb(129, 56, 224);
+$c-dark: #a3a3a3;
+$c-white-0: #fff;
+$c-white-1: #f4f4f4;
+
+// 动效曲线
+$curve-stand: cubic-bezier(0.4, 0.0, 0.2, 1);
+$curve-decel: cubic-bezier(0.0, 0.0, 0.2, 1);
+$curve-accel: cubic-bezier(0.4, 0.0, 1.0, 1);
+$curve-sharp: cubic-bezier(0.4, 0.0, 0.6, 1);
+$curve-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+$curve-ease-in: cubic-bezier(0.42, 0, 1, 1);
+$curve-ease-out: cubic-bezier(0, 0, 0.58, 1);
+$curve-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+
+@function spring-wobbly($t) {
+  $E: math.$e;
+  @return -0.5 * math.pow($E, (-6 * $t)) * (-2 * math.pow($E, (6 * $t)) + math.sin(12 * $t) + 2 * math.cos(12 * $t));
+}
+
+@function lerp($a, $b, $p) {
+  @return $a+$p * ($b - $a);
+}

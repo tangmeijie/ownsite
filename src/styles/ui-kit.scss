@@ -1,51 +1,116 @@
-// 栅格
-$maxW: 1440px; // 屏幕最大宽度，再宽、内容宽度不变
-$minW: 640px; // 屏幕最小宽度，再窄、横向滚动
-$maxP: 40px; // 宽的页边距
-$minP: 24px; // 窄的页边距
+@import './vars.scss';
 
+// 栅格
 main {
   margin: 0 auto;
 }
 
 // PC最大宽度
-@media screen and (min-width: $maxW) {
+@media screen and (min-width: 1440px) {
+  html {
+    font-size: 8px;
+  }
+
+  nav,
   main {
-    width: calc($maxW - 2*$maxP);
+    width: calc(1440px - 2*7rem);
+    // background-color: rgba(#f00, .2);
   }
 }
 
-// Pad
-@media screen and (max-width: $maxW) and (min-width: $minW) {
+// Pad横屏
+@media screen and (max-width: 1439px) and (min-width: 981px) and (orientation: landscape) {
+  html {
+    font-size: 8px;
+  }
+
+  nav,
   main {
-    width: calc(100% - 2*$maxP);
+    width: calc(100% - 2*6rem);
+    // background-color: rgba(#ff0, .2);
+  }
+}
+@media screen and (max-width: 980px) and (orientation: landscape) {
+  html {
+    font-size: 6px;
+  }
+
+  nav,
+  main {
+    width: calc(100% - 2*8rem);
+    // background-color: rgba(#0f0, .2);
   }
 }
 
-// Phone最小宽度
-@media screen and (max-width: $minW) {
+// Phone最小宽度 & Pad竖屏
+@media screen and (max-width: 980px) and (orientation: portrait) {
+  html {
+    font-size: 16px;
+  }
+
+  nav,
   main {
-    width: calc($minW - 2*$minP);
+    width: calc(980px - 2*3rem);
+    // background-color: rgba(#f0f, .2);
   }
 }
 
 // 文字
 @font-face {
-  font-family: EN;
-  src: url('/public/fonts/Lexend-VariableFont.ttf');
-}
-
-@font-face {
   font-family: CN;
   src: url('/public/fonts/NotoSansSC-VariableFont.ttf'), local('PingFang SC'), local('Microsoft YaHei');
 }
 
-html {
-  font-family: CN, sans-serif;
-  font-size: 100px;
+@font-face {
+  font-family: EN;
+  src: url('/public/fonts/Lexend-VariableFont.ttf');
 }
 
-// 颜色
-$color-main: rgb(129, 56, 224);
-$color-dark: #a3a3a3;
-$color-light: #f4f4f4;
+html {
+  font-family: CN, sans-serif;
+}
+
+h1 {
+  font-size: 10rem;
+}
+
+h2 {
+  font-size: 8rem;
+}
+
+h3 {
+  font-size: 6rem;
+}
+
+p {
+  font-size: 2rem;
+}
+
+// 导航栏
+header {
+  display: flex;
+  justify-content: center;
+  height: 8rem;
+  width: 100%;
+  background-color: rgba($c-white-0, .88);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 100%;
+  margin: 0 1rem;
+}
+
+.menu {
+  display: inline-flex;
+  align-items: center;
+
+  li {
+    font-size: 2rem;
+    margin-left: 8rem;
+  }
+}

@@ -1,5 +1,4 @@
 import '../styles/clear.scss'
-import '../styles/ui-kit.scss'
 
 // console.log(moment().format('YYYY-MM-DD'))
 
