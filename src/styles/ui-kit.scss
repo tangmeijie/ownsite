@@ -8,12 +8,12 @@ main {
 // PC最大宽度
 @media screen and (min-width: 1440px) {
   html {
-    font-size: 8px;
+    font-size: 7px;
   }
 
   nav,
   main {
-    width: calc(1440px - 2*7rem);
+    width: calc(1440px - 2*20rem);
     // background-color: rgba(#f00, .2);
   }
 }
@@ -30,6 +30,7 @@ main {
     // background-color: rgba(#ff0, .2);
   }
 }
+
 @media screen and (max-width: 980px) and (orientation: landscape) {
   html {
     font-size: 6px;
@@ -45,7 +46,7 @@ main {
 // Phone最小宽度 & Pad竖屏
 @media screen and (max-width: 980px) and (orientation: portrait) {
   html {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   nav,
@@ -109,7 +110,47 @@ nav {
   align-items: center;
 
   li {
+    margin-left: 6rem;
+  }
+
+  a {
     font-size: 2rem;
-    margin-left: 8rem;
+    font-weight: 300;
+    line-height: 150%;
+    color: $colorLight0;
+    position: relative;
+    transition: font-weight 150ms $curveEaseInOut;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0.25rem;
+      background-color: $colorLight9;
+      position: absolute;
+      left: 50%;
+      bottom: -0.6rem;
+      transition: all 150ms $curveEaseInOut;
+    }
+
+    &.current{
+      font-weight: 400;
+
+      &::after{
+        width: 36%;
+        left: 32%;
+      }
+    }
+
+    &:hover {
+      font-weight: 500;
+      color: $colorMain;
+
+      &::after {
+        width: 90%;
+        left: 5%;
+        background-color: $colorMain;
+      }
+    }
   }
 }
