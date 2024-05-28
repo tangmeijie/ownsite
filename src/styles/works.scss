@@ -1,0 +1,12 @@
+@import './vars.scss';
+@import './ui-kit.scss';
+
+body {
+  background: $colorLight2;
+}
+
+.project {
+  width: calc(100% - 4rem);
+  height: 10rem;
+  background-color: $colorLight5;
+}

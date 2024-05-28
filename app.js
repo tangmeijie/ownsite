@@ -11,7 +11,8 @@ const config = {
   works: {
     html: './src/html/works.html',
     js: [
-      './src/js/global.js'
+      './src/js/global.js',
+      './src/js/works.js'
     ]
   },
 
