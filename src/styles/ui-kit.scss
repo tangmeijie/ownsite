@@ -1,72 +1,53 @@
 @import './vars.scss';
 
+// 根尺寸
+html {
+  @include deviceMobile {
+    font-size: 18px;
+  }
+
+  @include deviceTabletMini {
+    font-size: 6px;
+  }
+
+  @include deviceTablet {
+    font-size: 8px;
+  }
+
+  @include devicePC {
+    font-size: 7px;
+  }
+}
+
 // 栅格
 main {
   margin: 0 auto;
 }
 
-// PC最大宽度
-@media screen and (min-width: 1440px) {
-  html {
-    font-size: 7px;
-  }
-
-  nav,
-  main {
+main,
+nav {
+  @include devicePC {
     width: calc(1440px - 2*20rem);
     // background-color: rgba(#f00, .2);
   }
-}
 
-// Pad横屏
-@media screen and (max-width: 1439px) and (min-width: 981px) and (orientation: landscape) {
-  html {
-    font-size: 8px;
-  }
-
-  nav,
-  main {
+  @include deviceTablet {
     width: calc(100% - 2*6rem);
     // background-color: rgba(#ff0, .2);
   }
-}
 
-@media screen and (max-width: 980px) and (orientation: landscape) {
-  html {
-    font-size: 6px;
-  }
-
-  nav,
-  main {
+  @include deviceTabletMini {
     width: calc(100% - 2*8rem);
     // background-color: rgba(#0f0, .2);
   }
-}
 
-// Phone最小宽度 & Pad竖屏
-@media screen and (max-width: 980px) and (orientation: portrait) {
-  html {
-    font-size: 18px;
-  }
-
-  nav,
-  main {
+  @include deviceMobile {
     width: calc(980px - 2*3rem);
     // background-color: rgba(#f0f, .2);
   }
 }
 
 // 文字
-@font-face {
-  font-family: CN;
-  src: url('/public/fonts/NotoSansSC-VariableFont.ttf'), local('PingFang SC'), local('Microsoft YaHei');
-}
-
-@font-face {
-  font-family: EN;
-  src: url('/public/fonts/Lexend-VariableFont.ttf');
-}
-
 html {
   font-family: CN, sans-serif;
 }
@@ -133,10 +114,10 @@ p {
       transition: all 150ms $curveEaseInOut;
     }
 
-    &.current{
+    &.current {
       font-weight: 400;
 
-      &::after{
+      &::after {
         width: 36%;
         left: 32%;
       }

@@ -12,6 +12,42 @@ $colorLight0: #000000;
 
 $colorMain: #FFA14A;
 
+// 响应式断点
+@mixin deviceMobile {
+  @media screen and (max-width: 980px) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin deviceTabletMini {
+  @media screen and (max-width: 980px) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin deviceTablet {
+  @media screen and (max-width: 1439px) and (min-width: 981px) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin devicePC {
+  @media screen and (min-width: 1440px) {
+    @content;
+  }
+}
+
+// 字体
+@font-face {
+  font-family: CN;
+  src: url('/public/fonts/NotoSansSC-VariableFont.ttf'), local('PingFang SC'), local('Microsoft YaHei');
+}
+
+@font-face {
+  font-family: EN;
+  src: url('/public/fonts/Lexend-VariableFont.ttf');
+}
+
 // 动效曲线
 $curveStand: cubic-bezier(0.4, 0.0, 0.2, 1);
 $curveDecel: cubic-bezier(0.0, 0.0, 0.2, 1);

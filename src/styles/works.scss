@@ -5,8 +5,16 @@ body {
   background: $colorLight2;
 }
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 6rem;
+}
+
 .project {
-  width: calc(100% - 4rem);
-  height: 10rem;
+  width: calc( (100% - 4rem) / 2 );
+  height: 30rem;
+  margin-bottom: 6rem;
   background-color: $colorLight5;
 }
