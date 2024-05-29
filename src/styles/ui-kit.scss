@@ -7,7 +7,7 @@ html {
   }
 
   @include deviceTabletMini {
-    font-size: 6px;
+    font-size: 9px;
   }
 
   @include deviceTablet {
@@ -19,31 +19,31 @@ html {
   }
 }
 
-// 栅格
+// 内容区栅格
 main {
   margin: 0 auto;
 }
 
 main,
 nav {
-  @include devicePC {
-    width: calc(1440px - 2*20rem);
-    // background-color: rgba(#f00, .2);
-  }
-
-  @include deviceTablet {
-    width: calc(100% - 2*6rem);
-    // background-color: rgba(#ff0, .2);
+  @include deviceMobile {
+    width: calc($deviceWidthMin - 2*3rem);
+    // background-color: rgba(#f0f, .2);
   }
 
   @include deviceTabletMini {
-    width: calc(100% - 2*8rem);
+    width: calc(100% - 2*5rem);
     // background-color: rgba(#0f0, .2);
   }
 
-  @include deviceMobile {
-    width: calc(980px - 2*3rem);
-    // background-color: rgba(#f0f, .2);
+  @include deviceTablet {
+    width: calc(100% - 2*8rem);
+    // background-color: rgba(#ff0, .2);
+  }
+
+  @include devicePC {
+    width: calc($deviceWidthMax - 2*20rem);
+    // background-color: rgba(#f00, .2);
   }
 }
 

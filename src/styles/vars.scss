@@ -13,26 +13,29 @@ $colorLight0: #000000;
 $colorMain: #FFA14A;
 
 // 响应式断点
+$deviceWidthMin: 980px;
+$deviceWidthMax: 1400px;
+
 @mixin deviceMobile {
-  @media screen and (max-width: 980px) and (orientation: portrait) {
+  @media screen and (max-width: $deviceWidthMin) and (orientation: portrait) {
     @content;
   }
 }
 
 @mixin deviceTabletMini {
-  @media screen and (max-width: 980px) and (orientation: landscape) {
+  @media screen and (max-width: $deviceWidthMin) and (orientation: landscape) {
     @content;
   }
 }
 
 @mixin deviceTablet {
-  @media screen and (max-width: 1439px) and (min-width: 981px) and (orientation: landscape) {
+  @media screen and (min-width: 981px) {
     @content;
   }
 }
 
 @mixin devicePC {
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: $deviceWidthMax) {
     @content;
   }
 }
