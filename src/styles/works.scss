@@ -2,7 +2,7 @@
 @import './ui-kit.scss';
 
 body {
-  background: $colorLight2;
+  background: $colorBg;
 }
 
 .container {
@@ -19,7 +19,7 @@ body {
   }
 
   margin-bottom: 6rem;
-  background-color: $colorLight5;
+  background-color: red;
   
   img{
     width: 100%;

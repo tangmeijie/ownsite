@@ -47,6 +47,11 @@ nav {
   }
 }
 
+// 颜色
+$colorBg: $colorLight2;
+$colorPrimary: $colorOrange;
+$colorFont1: $colorLight0;
+
 // 文字
 html {
   font-family: CN, sans-serif;
@@ -74,7 +79,7 @@ p {
   justify-content: center;
   height: 8rem;
   width: 100%;
-  background-color: rgba($colorLight1, .88);
+  background-color: rgba($colorBg, .88);
 }
 
 .header>nav {
@@ -98,7 +103,7 @@ p {
     font-size: 2rem;
     font-weight: 300;
     line-height: 150%;
-    color: $colorLight0;
+    color: $colorFont1;
     position: relative;
     transition: font-weight 150ms $curveEaseInOut;
 
@@ -125,12 +130,12 @@ p {
 
     &:hover {
       font-weight: 500;
-      color: $colorMain;
+      color: $colorPrimary;
 
       &::after {
         width: 90%;
         left: 5%;
-        background-color: $colorMain;
+        background-color: $colorPrimary;
       }
     }
   }
