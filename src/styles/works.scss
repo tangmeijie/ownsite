@@ -14,7 +14,15 @@ body {
 
 .project {
   width: calc( (100% - 4rem) / 2 );
-  height: 30rem;
+  @include deviceMobile {
+    width: 100%;
+  }
+
   margin-bottom: 6rem;
   background-color: $colorLight5;
+  
+  img{
+    width: 100%;
+    height: auto;
+  }
 }
