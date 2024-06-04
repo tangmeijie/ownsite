@@ -98,7 +98,7 @@ body {
 
 .logo {
   display: inline-flex;
-  height: 80%;
+  height: 90%;
 }
 
 .menu {
@@ -106,7 +106,7 @@ body {
   align-items: center;
 
   li {
-    margin-left: 6rem;
+    margin-left: 5rem;
   }
 }
 // 默认状态
@@ -130,6 +130,15 @@ body {
     transition: all 150ms $curveEaseInOut;
   }
 }
+// 选中状态
+.menu a.active {
+  font-weight: 400;
+
+  &::after {
+    width: 36%;
+    left: 32%;
+  }
+}
 // 悬停状态
 .menu a:hover {
   font-weight: 500;
@@ -139,14 +148,5 @@ body {
     width: 90%;
     left: 5%;
     background-color: $colorPrimary;
-  }
-}
-// 选中状态
-.menu a.active {
-  font-weight: 400;
-
-  &::after {
-    width: 36%;
-    left: 32%;
   }
 }
