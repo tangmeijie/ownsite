@@ -7,7 +7,7 @@ const config = {
     ]
   },
 
-  // 所有项目
+  // 项目
   works: {
     html: './src/html/works.html',
     js: [
@@ -17,11 +17,23 @@ const config = {
   },
 
   // 关于我
-  me: {
-    html: './src/html/me.html',
+  about: {
+    html: './src/html/about.html',
     js: [
       './src/js/global.js'
     ]
+  },
+
+  // 组件
+  kits: {
+    html: './src/html/kits/index.html',
+    js: './src/js/global.js',
+    children: {
+      nav: {
+        html: './src/html/kits/nav.html',
+        js: [ './src/js/home.js' ]
+      }
+    }
   },
 
   // 峰米FengOS

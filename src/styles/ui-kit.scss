@@ -50,6 +50,7 @@ nav {
 // 颜色
 $colorBg: $colorLight2;
 $colorPrimary: $colorOrange;
+
 $colorFont1: $colorLight0;
 
 // 文字
@@ -74,7 +75,7 @@ p {
 }
 
 // 导航栏
-.header {
+.nav-wrapper {
   display: flex;
   justify-content: center;
   height: 8rem;
@@ -82,13 +83,15 @@ p {
   background-color: rgba($colorBg, .88);
 }
 
-.header>nav {
+.nav-wrapper>nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  height: 100%;
+  display: inline-flex;
+  height: 80%;
 }
 
 .menu {
@@ -98,45 +101,45 @@ p {
   li {
     margin-left: 6rem;
   }
+}
+// 默认状态
+.menu a {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 150%;
+  color: $colorFont1;
+  position: relative;
+  transition: font-weight 150ms $curveEaseInOut;
 
-  a {
-    font-size: 2rem;
-    font-weight: 300;
-    line-height: 150%;
-    color: $colorFont1;
-    position: relative;
-    transition: font-weight 150ms $curveEaseInOut;
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0.25rem;
+    background-color: $colorLight9;
+    position: absolute;
+    left: 50%;
+    bottom: -0.6rem;
+    transition: all 150ms $curveEaseInOut;
+  }
+}
+// 悬停状态
+.menu a:hover {
+  font-weight: 500;
+  color: $colorPrimary;
 
-    &::after {
-      content: '';
-      display: block;
-      width: 0;
-      height: 0.25rem;
-      background-color: $colorLight9;
-      position: absolute;
-      left: 50%;
-      bottom: -0.6rem;
-      transition: all 150ms $curveEaseInOut;
-    }
+  &::after {
+    width: 90%;
+    left: 5%;
+    background-color: $colorPrimary;
+  }
+}
+// 选中状态
+.menu a.active {
+  font-weight: 400;
 
-    &.current {
-      font-weight: 400;
-
-      &::after {
-        width: 36%;
-        left: 32%;
-      }
-    }
-
-    &:hover {
-      font-weight: 500;
-      color: $colorPrimary;
-
-      &::after {
-        width: 90%;
-        left: 5%;
-        background-color: $colorPrimary;
-      }
-    }
+  &::after {
+    width: 36%;
+    left: 32%;
   }
 }
