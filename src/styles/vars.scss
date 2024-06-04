@@ -13,8 +13,8 @@ $colorLight0: #000000;
 $colorOrange: #FFA14A;
 
 // 响应式断点
-$deviceWidthMin: 980px;
-$deviceWidthMax: 1400px;
+$deviceWidthMin: 981px;
+$deviceWidthMax: 1200px;
 
 @mixin deviceMobile {
   @media screen and (max-width: $deviceWidthMin) and (orientation: portrait) {
@@ -29,7 +29,7 @@ $deviceWidthMax: 1400px;
 }
 
 @mixin deviceTablet {
-  @media screen and (min-width: 981px) {
+  @media screen and (min-width: calc($deviceWidthMin + 0.01px)) {
     @content;
   }
 }
