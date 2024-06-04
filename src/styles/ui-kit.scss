@@ -75,12 +75,19 @@ p {
 }
 
 // 导航栏
+body {
+  padding-top: 8rem;  // 预留导航栏位置
+}
+
 .nav-wrapper {
   display: flex;
   justify-content: center;
   height: 8rem;
   width: 100%;
   background-color: rgba($colorBg, .88);
+  backdrop-filter: blur(.8rem);
+  position: fixed;
+  top: 0;
 }
 
 .nav-wrapper>nav {
