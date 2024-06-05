@@ -19,10 +19,15 @@ body {
   }
 
   margin-bottom: 6rem;
-  background-color: red;
   
-  img{
+  .cover {
     width: 100%;
     height: auto;
+  }
+  .title {
+    font-size: 3.2rem;
+  }
+  .role {
+    font-size: 2rem;
   }
 }

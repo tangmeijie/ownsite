@@ -19,6 +19,9 @@ function fnLoadProjects() {
   const template = document.getElementById('temp-project').content
   const oContainer = document.getElementById('container')
 
+  // 清空容器
+  oContainer.innerHTML = ""
+
   // 渲染项目组件
   projects.forEach(project => {
     // 克隆模板内容
