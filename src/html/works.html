@@ -7,17 +7,30 @@
 <body>
   <header id="header" class="nav-wrapper"></header>
 
-  <main class="container">
-    <section class="project">
-      <img src="/pics/img-cover-fengos.png" />
-    </section>
-    <section class="project">
-      <img src="/pics/img-cover-purifit.png" />
-    </section>
-    <section class="project"></section>
-    <section class="project"></section>
-    <section class="project"></section>
+  <!-- 将项目数据嵌入到HTML中 -->
+  <script id="data-project" type="application/json">
+    [{
+      "src": "/pics/img-cover-fengos.png",
+      "title": "FengOS影视操作系统设计",
+      "role": "产品设计师"
+    }, {
+      "src": "/pics/img-cover-purifit.png",
+      "title": "智能穿戴硬件及APP设计",
+      "role": "UI交互设计师"
+    }]
+  </script>
+
+  <main id="container" class="container">
+    <!-- 作品项组件 -->
+    <template id="temp-project">
+      <section class="project">
+        <img class="cover" data-src="src" />
+        <h1 class="title" data-text="title"></h1>
+        <span class="role" data-text="role"></span>
+      </section>
+    </template>
   </main>
+
 </body>
 
 </html>
