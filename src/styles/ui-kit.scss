@@ -86,6 +86,7 @@ body {
   width: 100%;
   background-color: rgba($colorBg, .88);
   backdrop-filter: blur(.8rem);
+  -webkit-backdrop-filter: blur(.8rem);
   position: fixed;
   top: 0;
 }

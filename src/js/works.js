@@ -4,7 +4,7 @@ import {
 } from './global.js'
 
 document.addEventListener('DOMContentLoaded', () => {
-  fnLoadComponent('/kits/nav.html', 'nav', 'header', 'works')
+  fnLoadComponent('/kits/nav.html', 'temp-nav', 'header', 'works')
   fnLoadProjects()
 })
 

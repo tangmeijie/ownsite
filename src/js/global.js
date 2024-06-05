@@ -17,6 +17,10 @@ export {
 // }
 
 // 载入组件
+//  @param {string} sKitURL - 组件地址
+//  @param {string} sImportId - 模板元素的ID
+//  @param {string} sContainerId - 组件容器的ID
+//  @param {string} sActiveId - 选中项ID（非必须）
 function fnLoadComponent(sKitURL, sImportId, sContainerId, sActiveId) {
   fetch(sKitURL)
     .then(response => response.text())
