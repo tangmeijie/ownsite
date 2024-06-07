@@ -5,7 +5,7 @@ html {
   font-size: 7px;
 }
 
-// 内容区栅格
+// 内容区尺寸
 main,
 nav {
   min-width: 320px;
@@ -31,13 +31,17 @@ nav {
 }
 
 // 颜色
-$colorBg: $colorNeural1;
+$colorBg: $colorNeural2;
 $colorPrimary: $colorOrange;
 
 $colorFont1: $colorNeural0;
 $colorFont2: $colorNeural8;
 $colorFont3: $colorNeural4;
 $colorFont4: $colorNeural1;
+
+body {
+  background: $colorBg;
+}
 
 // 文字
 html {
