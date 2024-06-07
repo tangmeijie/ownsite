@@ -1,16 +1,45 @@
 // 颜色
-$colorLight1: #ffffff;
-$colorLight2: #f4f4f4;
-$colorLight3: #e5e5e5;
-$colorLight4: #d6d6d6;
-$colorLight5: #b1b1b1;
-$colorLight6: #8d8d8d;
-$colorLight7: #6b6b6b;
-$colorLight8: #484848;
-$colorLight9: #242424;
-$colorLight0: #000000;
+:root {
+  --colorNeural1: #ffffff;
+  --colorNeural2: #f3f3f3;
+  --colorNeural3: #e5e5e5;
+  --colorNeural4: #d6d6d6;
+  --colorNeural5: #b1b1b1;
+  --colorNeural6: #8d8d8d;
+  --colorNeural7: #6b6b6b;
+  --colorNeural8: #4f4f4f;
+  --colorNeural9: #2e2e2e;
+  --colorNeural0: #181818;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --colorNeural1: #181818;
+    --colorNeural2: #2e2e2e;
+    --colorNeural3: #4f4f4f;
+    --colorNeural4: #6b6b6b;
+    --colorNeural5: #8d8d8d;
+    --colorNeural6: #b1b1b1;
+    --colorNeural7: #d6d6d6;
+    --colorNeural8: #e5e5e5;
+    --colorNeural9: #f4f4f4;
+    --colorNeural0: #ffffff;
+  }
+}
+
+$colorNeural1: var(--colorNeural1);
+$colorNeural2: var(--colorNeural2);
+$colorNeural3: var(--colorNeural3);
+$colorNeural4: var(--colorNeural4);
+$colorNeural5: var(--colorNeural5);
+$colorNeural6: var(--colorNeural6);
+$colorNeural7: var(--colorNeural7);
+$colorNeural8: var(--colorNeural8);
+$colorNeural9: var(--colorNeural9);
+$colorNeural0: var(--colorNeural0);
 
 $colorOrange: #FFA14A;
+$colorBlue: #5361E2;
 
 // 响应式断点
 @mixin deviceMobile {

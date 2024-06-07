@@ -31,10 +31,13 @@ nav {
 }
 
 // 颜色
-$colorBg: $colorLight2;
+$colorBg: $colorNeural1;
 $colorPrimary: $colorOrange;
 
-$colorFont1: $colorLight0;
+$colorFont1: $colorNeural0;
+$colorFont2: $colorNeural8;
+$colorFont3: $colorNeural4;
+$colorFont4: $colorNeural1;
 
 // 文字
 html {
@@ -64,11 +67,15 @@ body {
 
 .nav-wrapper {
   width: 100%;
-  background-color: rgba($colorBg, .88);
+  background-color: rgba($colorNeural1, .88);
   backdrop-filter: blur(.8rem);
   -webkit-backdrop-filter: blur(.8rem);
   position: fixed;
   top: 0;
+}
+
+.nav-wrapper.no-bg {
+  background-color: transparent;
 }
 
 .nav-wrapper>nav {
@@ -106,7 +113,7 @@ body {
     display: block;
     width: 0;
     height: 0.25rem;
-    background-color: $colorLight9;
+    background-color: $colorNeural9;
     position: absolute;
     left: 50%;
     bottom: -0.6rem;
@@ -125,7 +132,8 @@ body {
 }
 
 // 悬停状态
-.menu a:hover {
+.menu a:hover,
+.menu a:active {
   font-weight: 500;
   color: $colorPrimary;
 
