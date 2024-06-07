@@ -2,47 +2,30 @@
 
 // 根尺寸
 html {
-  @include deviceMobile {
-    font-size: 16px;
-  }
-
-  @include deviceTabletMini {
-    font-size: 7px;
-  }
-
-  @include deviceTablet {
-    font-size: 6px;
-  }
-
-  @include devicePC {
-    font-size: 6px;
-  }
+  font-size: 7px;
 }
 
 // 内容区栅格
-main {
-  margin: 0 auto;
-}
-
 main,
 nav {
-  @include deviceMobile {
-    width: calc($deviceWidthMin - 2*3rem);
-    // background-color: rgba(#f0f, .2);
-  }
+  min-width: 320px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: calc(100% - 2*3rem);
+  // background-color: rgba(#f0f, .2);
 
-  @include deviceTabletMini {
-    width: calc(100% - 2*6rem);
+  @include deviceMobile {
+    width: calc(100% - 2*8rem);
     // background-color: rgba(#0f0, .2);
   }
 
   @include deviceTablet {
-    width: calc(100% - 2*8rem);
-    // background-color: rgba(#ff0, .2);
+    width: calc(100% - 2*12rem);
+    // background-color: rgba(rgb(0, 8, 255), .2);
   }
 
   @include devicePC {
-    width: calc($deviceWidthMax - 2*10rem);
+    width: calc(100% - 2*16rem);
     // background-color: rgba(#f00, .2);
   }
 }
@@ -76,13 +59,10 @@ p {
 
 // 导航栏
 body {
-  padding-top: 8rem;  // 预留导航栏位置
+  padding-top: 8rem; // 预留导航栏位置
 }
 
 .nav-wrapper {
-  display: flex;
-  justify-content: center;
-  height: 8rem;
   width: 100%;
   background-color: rgba($colorBg, .88);
   backdrop-filter: blur(.8rem);
@@ -92,6 +72,7 @@ body {
 }
 
 .nav-wrapper>nav {
+  height: 8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,6 +91,7 @@ body {
     margin-left: 5rem;
   }
 }
+
 // 默认状态
 .menu a {
   font-size: 2rem;
@@ -131,6 +113,7 @@ body {
     transition: all 150ms $curveEaseInOut;
   }
 }
+
 // 选中状态
 .menu a.active {
   font-weight: 400;
@@ -140,6 +123,7 @@ body {
     left: 32%;
   }
 }
+
 // 悬停状态
 .menu a:hover {
   font-weight: 500;
