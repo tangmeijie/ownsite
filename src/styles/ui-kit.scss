@@ -92,10 +92,10 @@ body {
 
 .logo {
   display: inline-flex;
-  width: 6rem;
-  height: 100%;
 
   svg {
+    width: 6rem;
+    height: 6rem;
     fill: $colorNeural0;
   }
 }
