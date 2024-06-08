@@ -1,12 +1,15 @@
 import '../styles/works.scss'
 import {
-  fnLoadComponent
+  fnLoadComponent,
+  fnScrollHeader
 } from './global.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   fnLoadComponent('/kits/nav.html', 'temp-nav', 'header', 'works')
   fnLoadProjects()
 })
+
+fnScrollHeader()
 
 // 载入项目模板
 function fnLoadProjects() {
@@ -25,14 +28,14 @@ function fnLoadProjects() {
   // 渲染项目组件
   projects.forEach(project => {
     // 克隆模板内容
-    const clone = document.importNode(template, true);
+    const clone = document.importNode(template, true)
 
     // 填充数据
-    clone.querySelector('img').src = project.src;
-    clone.querySelector('h1').textContent = project.title;
-    clone.querySelector('span').textContent = project.role;
+    clone.querySelector('img').src = project.src
+    clone.querySelector('h1').textContent = project.title
+    clone.querySelector('span').textContent = project.role
 
     // 添加到容器中
-    oContainer.appendChild(clone);
+    oContainer.appendChild(clone)
   })
 }

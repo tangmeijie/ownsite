@@ -1,3 +1,5 @@
+// 全站通用的变量和样式
+
 // 颜色
 :root {
   --colorNeural1: #ffffff;
@@ -10,6 +12,8 @@
   --colorNeural8: #4f4f4f;
   --colorNeural9: #242424;
   --colorNeural0: #141414;
+
+  --colorBgBlur: rgba(245,245,245, .88);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,6 +28,8 @@
     --colorNeural8: #e3e3e3;
     --colorNeural9: #f5f5f5;
     --colorNeural0: #ffffff;
+
+    --colorBgBlur: rgba(36, 36, 36, .88);
   }
 }
 
@@ -37,6 +43,8 @@ $colorNeural7: var(--colorNeural7);
 $colorNeural8: var(--colorNeural8);
 $colorNeural9: var(--colorNeural9);
 $colorNeural0: var(--colorNeural0);
+
+$colorBgBlur: var(--colorBgBlur);
 
 $colorOrange: #FFA14A;
 $colorBlue: #5361E2;

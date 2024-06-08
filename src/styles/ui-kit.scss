@@ -1,3 +1,5 @@
+// 首页（作品集、项目、关于）的通用样式
+
 @import './vars.scss';
 
 // 根尺寸
@@ -72,11 +74,18 @@ body {
 
 .nav-wrapper {
   width: 100%;
-  background-color: rgba($colorNeural1, .88);
+  background-color: $colorBgBlur;
   backdrop-filter: blur(.8rem);
   -webkit-backdrop-filter: blur(.8rem);
+  z-index: 999;
   position: fixed;
   top: 0;
+  transition: top 350ms $curveDecel;
+}
+
+.nav-wrapper.hide {
+  top: -8rem;
+  transition: top 350ms $curveAccel;
 }
 
 .nav-wrapper.no-bg {

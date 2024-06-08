@@ -1,7 +1,10 @@
+// 全站通用函数
+
 import '../styles/clear.scss'
 
 export {
-  fnLoadComponent
+  fnLoadComponent,
+  fnScrollHeader
 }
 // console.log(moment().format('YYYY-MM-DD'))
 
@@ -44,4 +47,37 @@ function fnLoadComponent(sKitURL, sImportId, sContainerId, sActiveId) {
     .catch(error => {
       console.error('Error loading component:', error)
     })
+}
+
+// 导航栏随滚动隐藏或显示
+function fnScrollHeader() {
+  let lastScrollTop = 0
+  let lastTimestamp = 0
+  const headerbar = document.getElementById('header')
+
+  window.addEventListener('scroll', function(event) {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      let currentTimestamp = event.timeStamp
+      let timeDifference = currentTimestamp - lastTimestamp
+
+      // 计算滚动速度
+      let scrollDistance = Math.abs(scrollTop - lastScrollTop)
+      let scrollSpeed = scrollDistance / timeDifference
+
+      if (scrollTop < 150) {
+          // 滚动后距页面顶部的距离小于该值时，导航栏始终显示
+          headerbar.classList.remove('hide')
+      } else {
+          if (scrollTop > lastScrollTop + 4) {
+              // 向下滚动时隐藏导航栏，需产生一定幅度的距离
+              headerbar.classList.add('hide')
+          } else if (scrollTop < lastScrollTop && scrollSpeed > 0.6) {
+              // 向上滚动且速度（速度单位：px/ms）较快时，显示导航栏
+              headerbar.classList.remove('hide')
+          }
+      }
+
+      lastScrollTop = scrollTop
+      lastTimestamp = currentTimestamp
+  })
 }
