@@ -54,14 +54,10 @@ body {
   align-items: center;
 }
 
-.logo {
-  display: inline-flex;
-
-  svg {
-    width: 6rem;
-    height: 6rem;
-    fill: $colorNeural0;
-  }
+.logo svg {
+  width: 4.2rem;
+  height: 4.2rem;
+  fill: $colorNeural0;
 }
 
 .menu {
