@@ -18,20 +18,20 @@ body {
 
 // 导航栏
 :root {
-  --colorNavBg: rgba(245, 245, 245, .88);
+  --colorNavBg: rgba(245, 245, 245, .9);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --colorNavBg: rgba(36, 36, 36, .88);
+    --colorNavBg: rgba(36, 36, 36, .9);
   }
 }
 
 .nav-wrapper {
   width: 100%;
   background-color: var(--colorNavBg);
-  backdrop-filter: blur(.8rem);
-  -webkit-backdrop-filter: blur(.8rem);
+  backdrop-filter: blur(2rem);
+  -webkit-backdrop-filter: blur(2rem);
   z-index: 999;
   position: fixed;
   top: 0;
