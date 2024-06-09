@@ -51,13 +51,13 @@ $colorBlue: #5361E2;
 }
 
 @mixin deviceTablet {
-  @media (min-width: 768px) {
+  @media (min-width: 760px) {
     @content;
   }
 }
 
 @mixin devicePC {
-  @media (min-width: 1128px) {
+  @media (min-width: 1440px) {
     @content;
   }
 }
@@ -73,22 +73,18 @@ nav {
   min-width: 320px;
   max-width: 1440px;
   margin: 0 auto;
-  width: calc(100% - 2*2.8rem);
-  // background-color: rgba(#f0f, .2);
+  width: calc(100% - 2 * 2.5rem);
 
   @include deviceMobile {
-    width: calc(100% - 2*8rem);
-    // background-color: rgba(#0f0, .2);
+    width: calc(100% - 2 * 8rem);
   }
 
   @include deviceTablet {
-    width: calc(100% - 2*12rem);
-    // background-color: rgba(#0ff, .2);
+    width: calc(100% - 2 * 15rem);
   }
 
   @include devicePC {
-    width: calc(100% - 2*16rem);
-    // background-color: rgba(#f00, .2);
+    width: calc(100% - 2 * 22rem);
   }
 }
 
