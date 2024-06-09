@@ -45,19 +45,19 @@ $colorBlue: #5361E2;
 
 // 响应式断点
 @mixin deviceMobile {
-  @media (min-width: 600px) {
+  @media (min-width: 480px) {
     @content;
   }
 }
 
 @mixin deviceTablet {
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     @content;
   }
 }
 
 @mixin devicePC {
-  @media (min-width: 1440px) {
+  @media (min-width: 1128px) {
     @content;
   }
 }
@@ -73,7 +73,7 @@ nav {
   min-width: 320px;
   max-width: 1440px;
   margin: 0 auto;
-  width: calc(100% - 2*3rem);
+  width: calc(100% - 2*2.8rem);
   // background-color: rgba(#f0f, .2);
 
   @include deviceMobile {
@@ -83,7 +83,7 @@ nav {
 
   @include deviceTablet {
     width: calc(100% - 2*12rem);
-    // background-color: rgba(rgb(0, 8, 255), .2);
+    // background-color: rgba(#0ff, .2);
   }
 
   @include devicePC {
