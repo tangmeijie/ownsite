@@ -26,14 +26,7 @@ const config = {
 
   // 组件
   kits: {
-    html: './src/html/kits/index.html',
-    js: './src/js/global.js',
-    children: {
-      nav: {
-        html: './src/html/kits/nav.html',
-        js: [ './src/js/home.js' ]
-      }
-    }
+    html: './src/html/kits.html'
   },
 
   // 峰米FengOS
