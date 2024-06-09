@@ -2,37 +2,7 @@
 
 @import './vars.scss';
 
-// 根尺寸
-html {
-  font-size: 7px;
-}
-
-// 内容区尺寸
-main,
-nav {
-  min-width: 320px;
-  max-width: 1440px;
-  margin: 0 auto;
-  width: calc(100% - 2*3rem);
-  // background-color: rgba(#f0f, .2);
-
-  @include deviceMobile {
-    width: calc(100% - 2*8rem);
-    // background-color: rgba(#0f0, .2);
-  }
-
-  @include deviceTablet {
-    width: calc(100% - 2*12rem);
-    // background-color: rgba(rgb(0, 8, 255), .2);
-  }
-
-  @include devicePC {
-    width: calc(100% - 2*16rem);
-    // background-color: rgba(#f00, .2);
-  }
-}
-
-// 颜色
+// 颜色应用
 $colorBg: $colorNeural2;
 $colorPrimary: $colorOrange;
 
@@ -43,38 +13,23 @@ $colorFont4: $colorNeural1;
 
 body {
   background: $colorBg;
-}
-
-// 文字
-html {
-  font-family: CN, sans-serif;
-  line-height: 1.5;
-}
-
-h1 {
-  font-size: 10rem;
-}
-
-h2 {
-  font-size: 8rem;
-}
-
-h3 {
-  font-size: 6rem;
-}
-
-p {
-  font-size: 2rem;
+  padding-top: 8rem; // 预留导航栏位置
 }
 
 // 导航栏
-body {
-  padding-top: 8rem; // 预留导航栏位置
+:root {
+  --colorNavBg: rgba(245, 245, 245, .88);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --colorNavBg: rgba(36, 36, 36, .88);
+  }
 }
 
 .nav-wrapper {
   width: 100%;
-  background-color: $colorBgBlur;
+  background-color: var(--colorNavBg);
   backdrop-filter: blur(.8rem);
   -webkit-backdrop-filter: blur(.8rem);
   z-index: 999;

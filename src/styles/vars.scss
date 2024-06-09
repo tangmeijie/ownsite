@@ -12,8 +12,6 @@
   --colorNeural8: #4f4f4f;
   --colorNeural9: #242424;
   --colorNeural0: #141414;
-
-  --colorBgBlur: rgba(245,245,245, .88);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,8 +26,6 @@
     --colorNeural8: #e3e3e3;
     --colorNeural9: #f5f5f5;
     --colorNeural0: #ffffff;
-
-    --colorBgBlur: rgba(36, 36, 36, .88);
   }
 }
 
@@ -43,8 +39,6 @@ $colorNeural7: var(--colorNeural7);
 $colorNeural8: var(--colorNeural8);
 $colorNeural9: var(--colorNeural9);
 $colorNeural0: var(--colorNeural0);
-
-$colorBgBlur: var(--colorBgBlur);
 
 $colorOrange: #FFA14A;
 $colorBlue: #5361E2;
@@ -68,6 +62,36 @@ $colorBlue: #5361E2;
   }
 }
 
+// 根尺寸
+html {
+  font-size: 7px;
+}
+
+// 内容区尺寸
+main,
+nav {
+  min-width: 320px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: calc(100% - 2*3rem);
+  // background-color: rgba(#f0f, .2);
+
+  @include deviceMobile {
+    width: calc(100% - 2*8rem);
+    // background-color: rgba(#0f0, .2);
+  }
+
+  @include deviceTablet {
+    width: calc(100% - 2*12rem);
+    // background-color: rgba(rgb(0, 8, 255), .2);
+  }
+
+  @include devicePC {
+    width: calc(100% - 2*16rem);
+    // background-color: rgba(#f00, .2);
+  }
+}
+
 // 字体
 @font-face {
   font-family: CN;
@@ -77,6 +101,28 @@ $colorBlue: #5361E2;
 @font-face {
   font-family: EN;
   src: url('/public/fonts/Lexend-VariableFont.ttf');
+}
+
+html {
+  font-family: CN, sans-serif;
+  line-height: 1.5;
+}
+
+// 字号
+h1 {
+  font-size: 10rem;
+}
+
+h2 {
+  font-size: 8rem;
+}
+
+h3 {
+  font-size: 6rem;
+}
+
+p {
+  font-size: 2rem;
 }
 
 // 动效曲线
