@@ -1,4 +1,4 @@
-import '../styles/home.scss'
+import '../styles/portfolio.scss'
 import {
   fnLoadComponent,
   fnScrollHeader

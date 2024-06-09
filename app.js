@@ -3,7 +3,7 @@ const config = {
     html: './src/html/index.html',
     js: [
       './src/js/global.js',
-      './src/js/home.js'
+      './src/js/portfolio.js'
     ]
   },
 
@@ -26,7 +26,8 @@ const config = {
 
   // 组件
   kits: {
-    html: './src/html/kits.html'
+    html: './src/html/kits.html',
+    js: './src/js/global.js'
   },
 
   // 峰米FengOS
