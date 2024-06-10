@@ -6,6 +6,7 @@ import {
 
 document.addEventListener('DOMContentLoaded', () => {
   fnLoadComponent('/kits.html', 'temp-nav', 'header', 'works')
+  fnLoadComponent('/kits.html', 'temp-foot', 'footer')
   fnLoadProjects()
 })
 
@@ -20,7 +21,7 @@ function fnLoadProjects() {
 
   // 获取模板和目标容器
   const template = document.getElementById('temp-project').content
-  const oContainer = document.getElementById('container')
+  const oContainer = document.getElementById('projects')
 
   // 清空容器
   oContainer.innerHTML = ""

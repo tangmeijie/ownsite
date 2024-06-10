@@ -27,7 +27,7 @@ body {
   }
 }
 
-.nav-wrapper {
+.header-wrapper {
   width: 100%;
   background-color: var(--colorNavBg);
   backdrop-filter: blur(2rem);
@@ -38,16 +38,16 @@ body {
   transition: top 350ms $curveDecel;
 }
 
-.nav-wrapper.hide {
+.header-wrapper.hide {
   top: -8rem;
   transition: top 350ms $curveAccel;
 }
 
-.nav-wrapper.no-bg {
+.header-wrapper.no-bg {
   background-color: transparent;
 }
 
-.nav-wrapper>nav {
+.nav {
   height: 8rem;
   display: flex;
   justify-content: space-between;
@@ -62,11 +62,6 @@ body {
 
 .menu {
   display: inline-flex;
-  align-items: center;
-
-  li {
-    margin-left: 5rem;
-  }
 }
 
 // 默认状态
@@ -75,12 +70,12 @@ body {
   font-weight: 300;
   line-height: 150%;
   color: $colorFont1;
+  margin-left: 5rem;
   position: relative;
   transition: font-weight 150ms $curveEaseInOut;
 
   &::after {
     content: '';
-    display: block;
     width: 0;
     height: 0.25rem;
     background-color: $colorNeural9;
@@ -111,5 +106,81 @@ body {
     width: 80%;
     left: 10%;
     background-color: $colorPrimary;
+  }
+}
+
+// 页脚
+.footer-wrapper {
+  position: relative;
+
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-color: $colorNeural3;
+    opacity: .5;
+    z-index: -1;
+  }
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4.5rem 0 5rem;
+}
+
+.copyright {
+  display: inline-flex;
+  align-items: center;
+
+  svg {
+    fill: $colorNeural8;
+    width: 7rem;
+    height: 7rem;
+
+    @include deviceTablet {
+      width: 9rem;
+      height: 9rem;
+    }
+  }
+
+  p {
+    color: $colorFont1;
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-left: 1rem;
+
+    @include deviceTablet {
+      line-height: 2;
+      margin-left: 2rem;
+    }
+  }
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+
+  a {
+    margin-left: 1.6rem;
+
+    @include deviceTablet {
+      margin-left: 3rem;
+    }
+  }
+
+  svg {
+    fill: $colorNeural7;
+    width: 4rem;
+    height: 4rem;
+
+    @include deviceTablet {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
   }
 }

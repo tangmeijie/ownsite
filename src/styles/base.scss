@@ -68,8 +68,7 @@ html {
 }
 
 // 内容区尺寸
-main,
-nav {
+.container {
   min-width: 320px;
   max-width: 1440px;
   margin: 0 auto;
@@ -105,19 +104,19 @@ html {
 }
 
 // 字号
-h1 {
+.font1 {
   font-size: 10rem;
 }
 
-h2 {
+.font2 {
   font-size: 8rem;
 }
 
-h3 {
+.font3 {
   font-size: 6rem;
 }
 
-p {
+.font {
   font-size: 2rem;
 }
 
