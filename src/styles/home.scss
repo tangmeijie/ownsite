@@ -113,7 +113,7 @@ body {
 .footer-wrapper {
   position: relative;
 
-  &::before {
+  &::after {
     content: '';
     width: 100%;
     height: 100%;
@@ -121,7 +121,7 @@ body {
     top: 0;
     background-color: $colorNeural3;
     opacity: .5;
-    z-index: -1;
+    z-index: -2;
   }
 }
 
@@ -129,7 +129,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4.5rem 0 5rem;
+  padding: 4.5rem 0 9rem;
+  position: relative;
+
+  // Magic Space 底纹通过mask遮罩实现
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-color: $colorFont4;
+    mask: url('/public/pics/magic-space.svg') no-repeat bottom center;
+    mask-size: contain;
+    opacity: .3;
+    z-index: -1;
+  }
 }
 
 .copyright {
@@ -151,6 +166,7 @@ body {
     color: $colorFont1;
     font-size: 1.6rem;
     font-weight: 300;
+    white-space: nowrap;
     line-height: 1.7;
     margin-left: 1rem;
 
