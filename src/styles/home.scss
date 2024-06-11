@@ -61,16 +61,18 @@ body {
 }
 
 .menu {
-  display: inline-flex;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 5rem;
+  // grid-template-columns: 5.8rem 9.1rem;
+  // justify-items: center;
 }
 
 // 默认状态
 .menu a {
   font-size: 2rem;
   font-weight: 300;
-  line-height: 150%;
   color: $colorFont1;
-  margin-left: 5rem;
   position: relative;
   transition: font-weight 150ms $curveEaseInOut;
 
