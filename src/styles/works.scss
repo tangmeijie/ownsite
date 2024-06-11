@@ -1,20 +1,21 @@
 @import './home.scss';
 
-.projects {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding-top: 6rem;
+.projects-wrapper {
+  padding: 6rem 0 12rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6rem 3%;
+
+  @include deviceTablet {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .project {
-  width: 100%;
-
-  margin-bottom: 6rem;
+  color: $colorFont1;
 
   .cover {
     width: 100%;
-    height: auto;
   }
 
   .title {
