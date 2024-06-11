@@ -13,7 +13,7 @@ $colorFont4: $colorNeural1;
 
 body {
   background: $colorBg;
-  padding-top: 8rem; // 预留导航栏位置
+  // padding-top: 8rem; // 预留导航栏位置
 }
 
 // 导航栏
@@ -45,6 +45,8 @@ body {
 
 .header-wrapper.no-bg {
   background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .nav {
