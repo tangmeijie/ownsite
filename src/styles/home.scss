@@ -13,7 +13,6 @@ $colorFont4: $colorNeural1;
 
 body {
   background: $colorBg;
-  // padding-top: 8rem; // 预留导航栏位置
 }
 
 // 导航栏
@@ -66,8 +65,6 @@ body {
   display: grid;
   grid-auto-flow: column;
   gap: 5rem;
-  // grid-template-columns: 5.8rem 9.1rem;
-  // justify-items: center;
 }
 
 // 默认状态
@@ -156,12 +153,12 @@ body {
 
   svg {
     fill: $colorNeural8;
-    width: 7rem;
-    height: 7rem;
+    width: 9rem;
+    height: 9rem;
 
     @include deviceTablet {
-      width: 9rem;
-      height: 9rem;
+      width: 7rem;
+      height: 7rem;
     }
   }
 
@@ -170,26 +167,26 @@ body {
     font-size: 1.6rem;
     font-weight: 300;
     white-space: nowrap;
-    line-height: 1.7;
-    margin-left: 1rem;
+    line-height: 2;
+    margin-left: 2rem;
 
     @include deviceTablet {
-      line-height: 2;
-      margin-left: 2rem;
+      line-height: 1.7;
+      margin-left: 1rem;
     }
   }
 }
 
 .social {
   display: grid;
-  grid-template-columns: repeat(3, 4rem);
-  grid-template-rows: 4rem;
-  gap: 1.6rem;
+  grid-template-columns: repeat(3, 4.5rem);
+  grid-template-rows: 4.5rem;
+  gap: 3rem;
 
   @include deviceTablet {
-    grid-template-columns: repeat(3, 4.5rem);
-    grid-template-rows: 4.5rem;
-    gap: 3rem;
+    grid-template-columns: repeat(3, 4rem);
+    grid-template-rows: 4rem;
+    gap: 1.6rem;
   }
 
   svg {

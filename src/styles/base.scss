@@ -44,20 +44,20 @@ $colorOrange: #FFA14A;
 $colorBlue: #5361E2;
 
 // 响应式断点
-@mixin deviceMobile {
-  @media (min-width: 480px) {
+@mixin devicePC {
+  @media (max-width: 1440px) {
     @content;
   }
 }
 
 @mixin deviceTablet {
-  @media (min-width: 760px) {
+  @media (max-width: 960px) {
     @content;
   }
 }
 
-@mixin devicePC {
-  @media (min-width: 1440px) {
+@mixin deviceMobile {
+  @media (max-width: 480px) {
     @content;
   }
 }
@@ -72,18 +72,18 @@ html {
   min-width: 320px;
   max-width: 1440px;
   margin: 0 auto;
-  width: calc(100% - 2 * 2.5rem);
+  width: calc(100% - 2 * 22rem);
 
-  @include deviceMobile {
-    width: calc(100% - 2 * 8rem);
-  }
-
-  @include deviceTablet {
+  @include devicePC {
     width: calc(100% - 2 * 15rem);
   }
 
-  @include devicePC {
-    width: calc(100% - 2 * 22rem);
+  @include deviceTablet {
+    width: calc(100% - 2 * 8rem);
+  }
+
+  @include deviceMobile {
+    width: calc(100% - 2 * 2.5rem);
   }
 }
 
