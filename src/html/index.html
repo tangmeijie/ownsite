@@ -16,7 +16,16 @@
   <header id="header" class="header-wrapper no-bg"></header>
 
   <div class="cover">
-    <video src="/pics/portfolio-cover.mp4" autoplay muted loop>
+    <video autoplay loop muted>
+      <source src="/pics/portfolio-cover-1080p.mp4" type="video/mp4" media="(min-width: 960px)">
+      <source src="/pics/portfolio-cover-720p.mp4" type="video/mp4">
+      您的浏览器不支持视频播放。
+    </video>
+    <picture>
+      <source srcset="your-video-first-frame-1920.jpg" media="(min-width: 960px)">
+      <source srcset="your-video-first-frame-1280.jpg" media="(min-width: 480px)">
+      <img src="/pics/img-cover-fengos.png">
+    </picture>
   </div>
 
   <main class="container portfolio-wrapper">
