@@ -62,8 +62,7 @@ body {
 }
 
 .menu {
-  display: grid;
-  grid-auto-flow: column;
+  display: inline-flex;
   gap: 5rem;
 }
 
@@ -113,6 +112,7 @@ body {
 // 页脚
 .footer-wrapper {
   position: relative;
+  z-index: 0;
 
   &::after {
     content: '';
@@ -130,8 +130,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4.5rem 0 9rem;
+  padding-top: 4.5rem;
+  padding-bottom: 9rem;
   position: relative;
+
+  @include deviceTablet {
+    padding-bottom: 6rem;
+  }
 
   // Magic Space 底纹通过mask遮罩实现
   &::before {
