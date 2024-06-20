@@ -32,9 +32,10 @@ function fnLoadProjects() {
     const clone = document.importNode(template, true)
 
     // 填充数据
-    clone.querySelector('img').src = project.src
-    clone.querySelector('h1').textContent = project.title
-    clone.querySelector('span').textContent = project.role
+    clone.querySelector('img').src = project.cover
+    clone.querySelector('h1').textContent = project.name
+    clone.querySelector('p').textContent = project.desc
+    clone.querySelector('a').href = project.link
 
     // 添加到容器中
     oContainer.appendChild(clone)

@@ -1,5 +1,9 @@
 @import './home.scss';
 
+body {
+  overflow-y: scroll;
+}
+
 // 封面视频
 .cover {
   width: 100%;
@@ -8,7 +12,9 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 0;
 
   video {
     width: auto;

@@ -18,21 +18,25 @@
   <!-- 将项目数据嵌入到HTML中 -->
   <script id="data-project" type="application/json">
     [{
-      "src": "/home/work-fengos.png",
-      "title": "FengOS 影视操作系统设计",
-      "role": "产品设计师"
+      "cover": "/home/work-cover-fengos.png",
+      "name": "FengOS大屏影视操作系统",
+      "desc": "智能硬件OS设计、软硬件体验设计",
+      "link": "/fengos.html"
     }, {
-      "src": "/home/work-purifit.png",
-      "title": "智能穿戴硬件及 APP 设计",
-      "role": "UI 交互设计师"
+      "cover": "/home/work-cover-fengos.png",
+      "name": "餐饮服务机器人",
+      "desc": "服务设计、用户及行业竞品调研",
+      "link": ""
     }, {
-      "src": "/home/work-purifit.png",
-      "title": "智能穿戴硬件及 APP 设计",
-      "role": "UI 交互设计师"
+      "cover": "/home/work-cover-purifit.png",
+      "name": "智能穿戴 & 运动健身APP",
+      "desc": "手表手环界面设计、APP交互UI设计",
+      "link": ""
     }, {
-      "src": "/home/work-fengos.png",
-      "title": "FengOS 影视操作系统设计",
-      "role": "产品设计师"
+      "cover": "/home/work-cover-gravity.png",
+      "name": "海外社交聊天APP",
+      "desc": "APP界面设计、Logo设计",
+      "link": ""
     }]
   </script>
 
@@ -40,9 +44,9 @@
     <!-- 作品项组件 -->
     <template id="temp-project">
       <section class="project-item">
-        <img class="cover" />
-        <h1 class="title"></h1>
-        <span class="role"></span>
+        <a><img class="cover" /></a>
+        <h1 class="name"></h1>
+        <p class="desc"></p>
       </section>
     </template>
   </main>

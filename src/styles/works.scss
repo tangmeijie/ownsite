@@ -1,28 +1,53 @@
 @import './home.scss';
 
+body {
+  padding-top: 8rem;
+}
+
 .projects-wrapper {
-  padding: 6rem 0 12rem;
+  padding: 3rem 0 9rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6rem 3%;
 
   @include deviceTablet {
     grid-template-columns: 1fr;
+    row-gap: 4.8rem;
   }
 }
 
 .project-item {
-  color: $colorFont1;
+  a {
+    display: block;
+    overflow: hidden;
+    border-radius: 2rem;
+
+    &:hover .cover {
+      transform: scale(1.05);
+      transition: transform 500ms $curveDecel;
+    }
+  }
 
   .cover {
     width: 100%;
+    transition: transform 300ms $curveAccel;
   }
 
-  .title {
+  .name,
+  .desc {
+    margin-left: 0.3rem;
+  }
+
+  .name {
+    color: $colorFont1;
     font-size: 3.2rem;
+    font-weight: 600;
+    margin-top: 1rem;
   }
 
-  .role {
+  .desc {
+    color: $colorFont2;
     font-size: 2rem;
+    margin-top: 0.3rem;
   }
 }
