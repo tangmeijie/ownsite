@@ -28,7 +28,7 @@ export {
 fnSetFavicon(fnDetectTheme())
 // 监听系统主题变化并切换favicon
 window.matchMedia('(prefers-color-scheme: dark)').addListener((e) => {
-  setFavicon(e.matches ? 'dark' : 'light')
+  fnSetFavicon(e.matches ? 'dark' : 'light')
 })
 
 function fnSetFavicon(theme) {
